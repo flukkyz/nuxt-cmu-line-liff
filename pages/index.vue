@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  layout: 'empty',
   data () {
     return {
       profile: null
