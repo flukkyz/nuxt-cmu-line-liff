@@ -3,9 +3,6 @@
     <h1 class="display-1 text-center mt-10">
       Apps
     </h1>
-    <h1>Mounted: {{ isMounted ? 'T' : 'F' }}</h1>
-    <h1>is init: {{ isInit ? 'T' : 'F' }}</h1>
-    <h1>is Login: {{ isLogin ? 'T' : 'F' }}</h1>
     <h1>is Get Profile: {{ isGetProfile ? 'T' : 'F' }}</h1>
     <div v-if="profile">
       <h1>Page Apps</h1>
@@ -32,29 +29,15 @@ export default {
   data () {
     return {
       profile: null,
-      isMounted: false,
-      isInit: false,
-      isLogin: false,
       isGetProfile: false
     }
   },
   mounted () {
     // this.$overlay.showLoading()
-    this.isMounted = true
-    liff.init({
-      liffId: '1656332858-DgV6jA5l'
-    }).then(() => {
-      this.isInit = true
-      if (liff.isLoggedIn()) {
-        this.isLogin = true
-        liff.getProfile().then((profile) => {
-          this.isGetProfile = true
-          this.profile = profile
-          // this.$overlay.hide()
-        })
-      } else {
-        liff.login()
-      }
+    liff.getProfile().then((profile) => {
+      this.isGetProfile = true
+      this.profile = profile
+      // this.$overlay.hide()
     })
   }
 }

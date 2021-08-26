@@ -21,13 +21,19 @@ export default {
   },
   mounted () {
     this.q = this.$route.query
-    setTimeout(() => {
-      if (this.$route.query['liff.state'] === '/apps') {
-        this.$router.push({ name: 'apps' })
-      } else if (this.$route.query['liff.state'] === '/profile') {
-        this.$router.push({ name: 'profile' })
+    liff.init({
+      liffId: '1656332858-DgV6jA5l'
+    }).then(() => {
+      if (liff.isLoggedIn()) {
+        if (this.$route.query['liff.state'] === '/apps') {
+          this.$router.push({ name: 'apps' })
+        } else if (this.$route.query['liff.state'] === '/profile') {
+          this.$router.push({ name: 'profile' })
+        }
+      } else {
+        liff.login()
       }
-    }, 2000)
+    })
   }
 
 }
