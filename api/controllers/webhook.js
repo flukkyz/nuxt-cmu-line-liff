@@ -32,7 +32,7 @@ module.exports = {
 
       try {
         await axios({
-          method,
+          method: 'post',
           url: `${LINE_MESSAGING_API}/reply`,
           data: JSON.stringify({
             replyToken: event.replyToken,
