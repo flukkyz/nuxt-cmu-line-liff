@@ -41,6 +41,9 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/icons/favicon-96x96.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x16.png' }
+    ],
+    script: [
+      { src: 'https://static.line-scdn.net/liff/edge/2.1/sdk.js', charset: 'utf-8' }
     ]
   },
 
@@ -55,7 +58,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/liff.js',
+    // '~/plugins/liff.js',
     '~/plugins/lodash.js',
     '~/plugins/head-util.js',
     '~/plugins/helpers.js',

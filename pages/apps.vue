@@ -41,19 +41,19 @@ export default {
   mounted () {
     // this.$overlay.showLoading()
     this.isMounted = true
-    this.$liff.init({
+    liff.init({
       liffId: '1656332858-DgV6jA5l'
     }).then(() => {
       this.isInit = true
-      if (this.$liff.isLoggedIn()) {
+      if (liff.isLoggedIn()) {
         this.isLogin = true
-        this.$liff.getProfile().then((profile) => {
+        liff.getProfile().then((profile) => {
           this.isGetProfile = true
           this.profile = profile
           // this.$overlay.hide()
         })
       } else {
-        this.$liff.login()
+        liff.login()
       }
     })
   }
