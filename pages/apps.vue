@@ -34,10 +34,18 @@ export default {
   },
   mounted () {
     // this.$overlay.showLoading()
-    liff.getProfile().then((profile) => {
-      this.isGetProfile = true
-      this.profile = profile
-      // this.$overlay.hide()
+    liff.init({
+      liffId: '1656332858-DgV6jA5l'
+    }).then(() => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile().then((profile) => {
+          this.isGetProfile = true
+          this.profile = profile
+          // this.$overlay.hide()
+        })
+      } else {
+        liff.login()
+      }
     })
   }
 }

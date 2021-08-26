@@ -18,5 +18,8 @@ module.exports = {
   rules: {
     'no-console': 'off'
   },
+  globals: {
+    liff: true
+  },
   ignorePatterns: ['/api/*']
 }

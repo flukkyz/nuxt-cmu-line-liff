@@ -26,12 +26,15 @@ export default {
     }
   },
   mounted () {
-    this.$overlay.showLoading()
-    liff.getProfile().then((profile) => {
-      this.isGetProfile = true
-      this.profile = profile
-      // this.$overlay.hide()
-    })
+    if (liff.isLoggedIn()) {
+      liff.getProfile().then((profile) => {
+        this.isGetProfile = true
+        this.profile = profile
+        // this.$overlay.hide()
+      })
+    } else {
+      liff.login()
+    }
   }
 }
 </script>
