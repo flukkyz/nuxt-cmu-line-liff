@@ -27,16 +27,16 @@ export default {
   },
   mounted () {
     this.$overlay.showLoading()
-    this.$liff.init({
+    liff.init({
       liffId: process.env.LiffID
     }).then(() => {
-      if (this.$liff.isLoggedIn()) {
-        this.$liff.getProfile().then((profile) => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile().then((profile) => {
           this.profile = profile
           this.$overlay.hide()
         })
       } else {
-        this.$liff.login()
+        liff.login()
       }
     })
   }

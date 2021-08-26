@@ -45,12 +45,12 @@ module.exports = {
                     defaultAction: {
                         type: "uri",
                         label: "LINE",
-                        uri: `https://liff.line.me/1656332858-DgV6jA5l/index`
+                        uri: `https://liff.line.me/1656332858-DgV6jA5l`
                     },
                     actions: [{
                         type: "uri",
                         label: "Index",
-                        uri: `https://liff.line.me/1656332858-DgV6jA5l/index`
+                        uri: `https://liff.line.me/1656332858-DgV6jA5l`
                     }]
                 },
                 {
@@ -84,7 +84,7 @@ module.exports = {
                     "action": {
                         "type": "uri",
                         "label": "CLICK Link",
-                        "uri": `https://liff.line.me/1656332858-DgV6jA5l/index`
+                        "uri": `https://liff.line.me/1656332858-DgV6jA5l/apps`
                     }
                 },
                 {
