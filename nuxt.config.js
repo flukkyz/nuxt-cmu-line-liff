@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import auth from './config/auth'
 
 export default {
 
@@ -86,6 +87,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
+    '@nuxtjs/auth-next',
     '@nuxtjs/axios',
     // '@nuxtjs/pwa',
     '@nuxtjs/dayjs',
@@ -113,6 +115,8 @@ export default {
       'localeData'
     ]
   },
+
+  auth,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

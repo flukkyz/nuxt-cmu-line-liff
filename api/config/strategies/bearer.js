@@ -8,7 +8,7 @@ module.exports = new BearerStrategy(async (token, done) => {
     }
 
     try {
-      const getUser = await axios.get(`${process.env.API_URL}${process.env.API_DIR}me`,{headers})
+      const getUser = await axios.get('https://misapi.cmu.ac.th/cmuitaccount/v1/api/cmuitaccount/basicinfo',{headers})
       return done(null, getUser.data)
     } catch (e) {
       console.log(e);
