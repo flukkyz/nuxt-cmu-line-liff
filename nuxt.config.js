@@ -48,7 +48,7 @@ export default {
   },
 
   serverMiddleware: [
-    '~/api/server'
+    '~/api/oauth2'
   ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
