@@ -20,6 +20,7 @@ app.get('/authorize', (req, res) => {
   data.append('redirect_uri', `${process.env.BASE_URL}${process.env.OAUTH_RETURN_URI}`)
   data.append('scope', process.env.OAUTH_SCOPE)
   data.append('state', process.env.OAUTH_STATE)
+  console.log(data.toString());
   res.redirect(`${process.env.OAUTH_URL}${process.env.OAUTH_AUTHORIZE}?${data.toString()}`)
 })
 
