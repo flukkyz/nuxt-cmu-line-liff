@@ -8,6 +8,9 @@
         {{ q }}
         {{ $route.query['liff.state'] }}
       </pre>
+    <pre v-if="$auth.loggedIn">
+      {{ $auth.user }}
+    </pre>
   </div>
 </template>
 
