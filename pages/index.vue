@@ -24,6 +24,7 @@ export default {
   },
   mounted () {
     this.q = this.$route.query
+    console.log('mounted')
     liff.init({
       liffId: '1656332858-DgV6jA5l'
     }).then(() => {
