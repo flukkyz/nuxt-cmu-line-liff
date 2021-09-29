@@ -35,7 +35,7 @@ export default {
         liff.getProfile().then((profile) => {
           this.profile = profile
           this.url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
-          this.$axios.$get(this.url).then((res) => {
+          this.$axios.get(this.url).then((res) => {
             this.callApi = true
             this.datas = res
           }).catch((err) => {
