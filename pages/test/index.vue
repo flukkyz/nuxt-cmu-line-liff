@@ -29,7 +29,7 @@ export default {
       liffId: '1656332858-DgV6jA5l'
     }).then(() => {
       if (liff.isLoggedIn()) {
-        liff.getProfile().then(async (profile) => {
+        liff.getProfile().then((profile) => {
           this.profile = profile
           this.$axios.$get(`http://101e-2403-6200-8851-44f8-118a-a804-6904-ce4.ngrok.io/api/users/${profile.userId}`).then((res) => {
             this.callApi = true
