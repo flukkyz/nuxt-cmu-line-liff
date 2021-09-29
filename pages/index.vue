@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="display-1 text-center mt-10">
-      CMU Line
+      CMU Line Datas
       <br>
     </h1>
     <pre v-if="q">
