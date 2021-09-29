@@ -31,9 +31,13 @@ export default {
       if (liff.isLoggedIn()) {
         liff.getProfile().then(async (profile) => {
           this.profile = profile
-          const acc = await this.$axios.$get(`http://101e-2403-6200-8851-44f8-118a-a804-6904-ce4.ngrok.io/api/users/${profile.userId}`)
+          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+          const acc = await this.$axios.$get(url)
           this.callApi = true
           this.datas = acc
+          if (acc.status === 'error') {
+            window.location = '/oauth2/authorize'
+          }
         })
       } else {
         liff.login()

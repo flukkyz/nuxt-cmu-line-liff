@@ -39,6 +39,9 @@ export default {
           axios.get(this.url).then((res) => {
             this.callApi = true
             this.datas = res
+            if (res.data.status === 'error') {
+              window.location = '/oauth2/authorize'
+            }
           }).catch((err) => {
             this.callApi = true
             this.datas = err
