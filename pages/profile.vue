@@ -26,15 +26,15 @@ export default {
     }
   },
   mounted () {
-    if (liff.isLoggedIn()) {
-      liff.getProfile().then((profile) => {
-        this.isGetProfile = true
-        this.profile = profile
-        // this.$overlay.hide()
-      })
-    } else {
-      liff.login()
-    }
+    // if (liff.isLoggedIn()) {
+    //   liff.getProfile().then((profile) => {
+    //     this.isGetProfile = true
+    //     this.profile = profile
+    //     // this.$overlay.hide()
+    //   })
+    // } else {
+    //   liff.login()
+    // }
   }
 }
 </script>

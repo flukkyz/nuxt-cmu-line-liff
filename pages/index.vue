@@ -10,6 +10,9 @@
     </pre>
     <br>
     <br>
+    <br>
+    <span v-if="callApi"> call api</span>
+    <br>
     <span>
       datas
     </span>
@@ -37,6 +40,7 @@ export default {
     return {
       q: null,
       datas: null,
+      callApi: false,
       profile: null
     }
   },
@@ -49,6 +53,7 @@ export default {
       if (liff.isLoggedIn()) {
         liff.getProfile().then(async (profile) => {
           const acc = await this.$axios.$get(`http://101e-2403-6200-8851-44f8-118a-a804-6904-ce4.ngrok.io/api/users/${profile.userId}`)
+          this.callApi = true
           this.datas = acc
         })
         // if (this.$route.query['liff.state'] === '/apps') {
