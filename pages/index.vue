@@ -7,9 +7,22 @@
     <pre v-if="q">
         {{ q }}
         {{ $route.query['liff.state'] }}
-      </pre>
+    </pre>
+    <br>
+    <br>
+    <span>
+      datas
+    </span>
     <pre v-if="datas">
       {{ datas }}
+    </pre>
+    <br>
+    <br>
+    <span>
+      profile
+    </span>
+    <pre v-if="profile">
+      {{ profile }}
     </pre>
     <pre v-if="$auth.loggedIn">
       {{ $auth.user }}
@@ -23,7 +36,8 @@ export default {
   data () {
     return {
       q: null,
-      datas: null
+      datas: null,
+      profile: null
     }
   },
   mounted () {
