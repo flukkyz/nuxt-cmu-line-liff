@@ -26,6 +26,10 @@ export default {
     return {
       title: 'Login'
     }
+  },
+  async mounted () {
+    const data = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/api/users/123')
+    console.log(data)
   }
 }
 </script>
