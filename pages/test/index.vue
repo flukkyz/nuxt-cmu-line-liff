@@ -6,6 +6,8 @@
     </pre>
     <p>
       call API : {{ callApi ? 'T' : 'F' }}
+      <br>
+      {{ url }}
     </p>
     <pre v-if="datas">
       {{ datas }}
@@ -20,7 +22,8 @@ export default {
     return {
       callApi: false,
       datas: null,
-      profile: null
+      profile: null,
+      url: ''
     }
   },
   mounted () {
@@ -31,7 +34,8 @@ export default {
       if (liff.isLoggedIn()) {
         liff.getProfile().then((profile) => {
           this.profile = profile
-          this.$axios.$get(`https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`).then((res) => {
+          this.url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+          this.$axios.$get(this.url).then((res) => {
             this.callApi = true
             this.datas = res
           }).catch((err) => {
