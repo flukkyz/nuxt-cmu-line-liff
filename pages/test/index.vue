@@ -31,7 +31,7 @@ export default {
       if (liff.isLoggedIn()) {
         liff.getProfile().then((profile) => {
           this.profile = profile
-          this.$axios.$get(`http://101e-2403-6200-8851-44f8-118a-a804-6904-ce4.ngrok.io/api/users/${profile.userId}`).then((res) => {
+          this.$axios.$get(`https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`).then((res) => {
             this.callApi = true
             this.datas = res
           }).catch((err) => {
