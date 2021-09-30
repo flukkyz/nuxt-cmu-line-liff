@@ -35,9 +35,9 @@ export default {
           const acc = await this.$axios.$get(url)
           this.callApi = true
           this.datas = acc
-          if (acc.status === 'error') {
-            window.location = '/oauth2/authorize'
-          }
+          // if (acc.status === 'error') {
+          //   window.location = '/oauth2/authorize'
+          // }
         })
       } else {
         liff.login()
