@@ -13,6 +13,12 @@
     <h1 class="display-2 text-center teal--text mt-5">
       Waiting for Authentication
     </h1>
+    <p>
+      call API : {{ callApi ? 'T' : 'F' }}
+    </p>
+    <pre v-if="datas">
+      {{ datas }}
+    </pre>
   </div>
 </template>
 
@@ -21,6 +27,12 @@ export default {
   middleware: 'guest',
   validate ({ query }) {
     return query.code && query.state
+  },
+  data () {
+    return {
+      callApi: false,
+      datas: null
+    }
   },
   head () {
     return {
@@ -31,21 +43,21 @@ export default {
     // this.$breadcrumbs.clear()
     this.$store.commit('setPendingLogin', true)
   },
-  async beforeMount () {
-    const timeOfTimeout = 20
-    const timeout = setTimeout(() => {
-      this.$store.commit('setPendingLogin', false)
-      this.$nuxt.error({ statusCode: 401, message: 'Unauthorized' })
-    }, timeOfTimeout * 1000)
-    const acc = await this.$axios.$get(`${process.env.baseUrl}/oauth2/callback?code=${this.$route.query.code}&state=${this.$route.query.state}`)
-    this.$auth.setUserToken(acc.access_token, acc.refresh_token).then(async () => {
-      const user = await this.$auth.fetchUser()
-      console.log(user)
-      if (user) {
-        clearTimeout(timeout)
+  mounted () {
+    liff.init({
+      liffId: '1656332858-DgV6jA5l'
+    }).then(() => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile().then(async (profile) => {
+          this.profile = profile
+          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
+          const acc = await this.$axios.$get(url)
+          this.callApi = true
+          this.datas = acc
+        })
+      } else {
+        liff.login()
       }
-      this.$store.commit('setPendingLogin', false)
-      // this.$bus.$emit('reset-side-menu')
     })
   }
 }

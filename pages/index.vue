@@ -43,7 +43,7 @@ export default {
           if (acc.status === 'error') {
             const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
             this.authen = authen
-            // window.location = authen.data
+            window.location = authen.data
           }
         })
       } else {
