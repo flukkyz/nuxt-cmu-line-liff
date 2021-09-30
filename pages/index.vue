@@ -10,6 +10,10 @@
     <pre v-if="datas">
       {{ datas }}
     </pre>
+    <p>authen</p>
+    <pre v-if="authen">
+      {{ authen }}
+    </pre>
   </div>
 </template>
 
@@ -20,7 +24,8 @@ export default {
     return {
       callApi: false,
       datas: null,
-      profile: null
+      profile: null,
+      authen: null
     }
   },
   mounted () {
@@ -35,9 +40,11 @@ export default {
           const acc = await this.$axios.$get(url)
           this.callApi = true
           this.datas = acc
-          // if (acc.status === 'error') {
-          //   window.location = '/oauth2/authorize'
-          // }
+          if (acc.status === 'error') {
+            const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
+            this.authen = authen
+            // window.location = authen.data
+          }
         })
       } else {
         liff.login()
