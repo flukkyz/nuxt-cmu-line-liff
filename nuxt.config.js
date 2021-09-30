@@ -48,10 +48,6 @@ export default {
     ]
   },
 
-  serverMiddleware: [
-    '~/api/oauth2'
-  ],
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@fortawesome/fontawesome-free/css/all.css'
