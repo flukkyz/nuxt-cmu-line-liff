@@ -26,6 +26,8 @@ module.exports = {
         resp.push(utility.CarouselTemplate());
       } else if(msg === 'Quick') {
         resp.push(utility.QuickReply(userId));
+      } else if(msg === 'test1') {
+        resp.push(utility.test1());
       } else {
         resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
       }
