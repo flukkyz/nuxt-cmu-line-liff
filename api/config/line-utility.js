@@ -149,7 +149,7 @@ module.exports = {
         "type": "bubble",
         "body": {
           "type": "box",
-          "layout": "horizontal",
+          "layout": "baseline",
           "contents": [
 						{
               "type": "text",
