@@ -28,6 +28,8 @@ module.exports = {
         resp.push(utility.QuickReply(userId));
       } else if(msg === 'test1') {
         resp.push(utility.test1());
+      } else if(msg === 'test2') {
+        resp.push(utility.test2());
       } else {
         resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
       }
