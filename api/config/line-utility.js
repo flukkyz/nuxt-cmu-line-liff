@@ -213,5 +213,47 @@ module.exports = {
         }
       }
     }
+  },
+  test3: () => {
+    return {
+      "type": "flex",
+      "altText": "this is a flex message",
+      "contents": {
+        "type": "carousel",
+        "contents": [{
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [{
+                "type": "text",
+                "text": "First bubble",
+								"action": {
+									"type": "message",
+									"label": "Message",
+									"text": "Hello World!"
+								}
+              }]
+            }
+          },
+          {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [{
+                "type": "text",
+                "text": "Second bubble",
+								"action": {
+									"type": "message",
+									"label": "Message2",
+									"text": "Hello World! 2"
+								}
+              }]
+            }
+          }
+        ]
+      }
+    }
   }
 }
