@@ -162,22 +162,6 @@ module.exports = {
 						{
               "type": "text",
               "text": "hello"
-            },
-						{
-              "type": "text",
-              "text": "hello"
-            },
-						{
-              "type": "text",
-              "text": "hello"
-            },
-						{
-              "type": "text",
-              "text": "hello"
-            },
-            {
-              "type": "text",
-              "text": "world"
             }
           ]
         }
