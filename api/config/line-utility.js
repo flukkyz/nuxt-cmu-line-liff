@@ -194,9 +194,20 @@ module.exports = {
           "text": "Footer text"
         }]
       },
-      "styles": {
-        "comment": "See the example of a bubble style object"
-      }
+			"styles": {
+				"header": {
+					"backgroundColor": "#00ffff"
+				},
+				"hero": {
+					"separator": true,
+					"separatorColor": "#000000"
+				},
+				"footer": {
+					"backgroundColor": "#00ffff",
+					"separator": true,
+					"separatorColor": "#000000"
+				}
+			}
     }
   }
 }
