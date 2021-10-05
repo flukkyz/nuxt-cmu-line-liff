@@ -176,7 +176,7 @@ module.exports = {
       },
       "hero": {
         "type": "image",
-        "url": "https://example.com/flex/images/image.jpg"
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
       },
       "body": {
         "type": "box",
