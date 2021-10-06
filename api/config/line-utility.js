@@ -251,29 +251,31 @@ module.exports = {
               layout: 'vertical',
               contents: [
                 {
-                  "type": "text",
-                  "text": "เงินเดือนปัจจุบันของคุณ"
+                  type: 'text',
+                  text: 'เงินเดือนปัจจุบันของคุณ'
                 }
               ]
             },
             {
-              "type": "text",
-              "text": "เงินเดือนปัจจุบันของคุณ"
-            },
-            {
-              "type": "text",
-              "weight": "bold",
-              "contents": [
+              type: 'box',
+              layout: 'vertical',
+              contents: [
                 {
-                  "type": "span",
-                  "text": new Intl.NumberFormat('th-th').format(salary),
-                  "size": "3xl"
-                },
-                {
-                  "type": "span",
-                  "text": ' บาท',
-                  "size": "xl"
-                },
+                  type: 'text',
+                  weight: 'bold',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: new Intl.NumberFormat('th-th').format(salary),
+                      size: '3xl'
+                    },
+                    {
+                      type: 'span',
+                      text: ' บาท',
+                      size: 'xl'
+                    }
+                  ]
+                }
               ]
             },
             {
