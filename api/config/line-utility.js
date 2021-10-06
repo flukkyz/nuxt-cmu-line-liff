@@ -258,6 +258,8 @@ module.exports = {
         "body": {
           "type": "box",
           "layout": "vertical",
+          "alignItems": 'flex-center',
+          "justifyContent": "flex-center",
           "contents": [
             {
               "type": "text",
