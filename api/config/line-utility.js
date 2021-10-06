@@ -234,6 +234,75 @@ module.exports = {
       }
     }
   },
+  salary: (salary) => {
+    return {
+      "type": "flex",
+      "altText": "this is a flex message",
+      "contents": {
+        "type": "bubble",
+        // "header": {
+        //   "type": "box",
+        //   "layout": "vertical",
+        //   "contents": [{
+        //     "type": "text",
+        //     "text": "Header text"
+        //   }]
+        // },
+        // "hero": {
+        //   "type": "image",
+        //   "size": "full",
+        //   "aspectRatio": "20:13",
+        //   "aspectMode": "cover",
+        //   "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
+        // },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [{
+            "type": "text",
+            "weight": "bold",
+            "size": "3xl",
+            // "wrap": true,
+            // "gravity": "bottom",
+            "contents": [
+              {
+                "type": "span",
+                "text": "เงินเดือนปัจจุบันของคุณ",
+              },
+              {
+                "type": "span",
+                "text": `${salary} บาท`
+              }
+            ]
+            // "text": "ลอยขึ้นแบบนี้",
+            // "size": "xxl"
+          }]
+        }
+        // "footer": {
+        //   "type": "box",
+        //   "layout": "vertical",
+        //   "contents": [{
+        //     "type": "text",
+        //     "text": "Footer text"
+        //   }]
+        // },
+        // "styles": {
+        //   "header": {
+        //     "backgroundColor": "#00ffff"
+        //   },
+        //   "hero": {
+        //     "separator": true,
+        //     "separatorColor": "#000000"
+        //   },
+        //   "footer": {
+        //     "backgroundColor": "#00ffff",
+        //     "separator": true,
+        //     "separatorColor": "#000000"
+        //   }
+        // }
+      }
+    }
+  },
   test3: () => {
     return {
       "type": "flex",

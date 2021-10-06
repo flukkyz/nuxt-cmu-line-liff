@@ -29,7 +29,7 @@ module.exports = {
       } else if(msg === 'test1') {
         resp.push(utility.test1());
       } else if(msg === 'A') {
-        resp.push(utility.test2());
+        resp.push(utility.salary(15000));
       } else if(msg === 'test3') {
         resp.push(utility.test3());
       } else {
