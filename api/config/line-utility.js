@@ -192,11 +192,21 @@ module.exports = {
         "body": {
           "type": "box",
           "layout": "vertical",
-          "weight": "bold",
-          "size": "3xl",
           "contents": [{
             "type": "text",
-            "text": "ลอยขึ้นแบบนี้"
+            "weight": "bold",
+            "size": "3xl",
+            "wrap": true,
+            "gravity": "bottom",
+            "contents": [
+              {
+                "type": "span",
+                "text": "ลอยขึ้นแบบนี้นะ",
+                "size": "xxl"
+              }
+            ]
+            // "text": "ลอยขึ้นแบบนี้",
+            // "size": "xxl"
           }]
         },
         // "footer": {
