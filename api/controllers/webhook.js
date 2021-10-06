@@ -32,6 +32,8 @@ module.exports = {
         resp.push(utility.salary(15000));
       } else if(msg === 'Z') {
         resp.push(utility.leave());
+      } else if(msg === 'S') {
+        resp.push(utility.document());
       } else if(msg === 'test3') {
         resp.push(utility.test3());
       } else {
