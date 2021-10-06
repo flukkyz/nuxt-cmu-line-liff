@@ -276,7 +276,7 @@ module.exports = {
                 },
                 {
                   "type": "span",
-                  "text": 'บาท',
+                  "text": ' บาท',
                   "size": "xl"
                 },
               ]
