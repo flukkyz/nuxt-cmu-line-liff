@@ -315,6 +315,8 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              alignItems: 'center',
+              justifyContent: 'center',
               contents: [
                 {
                   type: 'text',
