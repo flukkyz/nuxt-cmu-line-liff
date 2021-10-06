@@ -58,6 +58,7 @@ export default {
           const acc = await this.$axios.$get(url)
           this.callApi = true
           this.datas = acc
+          this.$router.push({ name: this.$route.query.state })
         })
       } else {
         liff.login()
