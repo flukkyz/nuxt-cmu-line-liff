@@ -248,15 +248,15 @@ module.exports = {
             justifyContent: 'center',
             contents: [
               {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                  {
-                    type: 'text',
-                    text: 'เงินเดือนปัจจุบันของคุณ'
-                  }
-                ]
+                type: 'text',
+                text: 'เงินเดือนปัจจุบันของคุณ'
               }
+              // {
+              //   type: 'box',
+              //   layout: 'vertical',
+              //   contents: [
+              //   ]
+              // }
             ]
           }
         }
