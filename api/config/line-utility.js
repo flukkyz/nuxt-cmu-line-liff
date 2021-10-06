@@ -262,53 +262,53 @@ module.exports = {
         }
       ]
     }
-    return {
-      "type": "flex",
-      "altText": "เงินเดือนปัจจุบันของคุณ",
-      "contents": {
-        "type": "bubble",
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "alignItems": "center",
-          "justifyContent": "center",
-          "contents": [
-            {
-              "type": "text",
-              "text": "เงินเดือนปัจจุบันของคุณ"
-            },
-            {
-              "type": "text",
-              "weight": "bold",
-              "contents": [
-                {
-                  "type": "span",
-                  "text": new Intl.NumberFormat('th-th').format(salary),
-                  "size": "3xl"
-                },
-                {
-                  "type": "span",
-                  "text": ' บาท',
-                  "size": "xl"
-                },
-              ]
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "แสดงรายละเอียดเพิ่มเติม",
-                "uri": "https://liff.line.me/1656332858-DgV6jA5l"
-              },
-              "style": "primary",
-              "color": "#0000ff",
-              offsetTop: '50px',
-              "height": "sm"
-            }
-          ]
-        }
-      }
-    }
+    // return {
+    //   "type": "flex",
+    //   "altText": "เงินเดือนปัจจุบันของคุณ",
+    //   "contents": {
+    //     "type": "bubble",
+    //     "body": {
+    //       "type": "box",
+    //       "layout": "vertical",
+    //       "alignItems": "center",
+    //       "justifyContent": "center",
+    //       "contents": [
+    //         {
+    //           "type": "text",
+    //           "text": "เงินเดือนปัจจุบันของคุณ"
+    //         },
+    //         {
+    //           "type": "text",
+    //           "weight": "bold",
+    //           "contents": [
+    //             {
+    //               "type": "span",
+    //               "text": new Intl.NumberFormat('th-th').format(salary),
+    //               "size": "3xl"
+    //             },
+    //             {
+    //               "type": "span",
+    //               "text": ' บาท',
+    //               "size": "xl"
+    //             },
+    //           ]
+    //         },
+    //         {
+    //           "type": "button",
+    //           "action": {
+    //             "type": "uri",
+    //             "label": "แสดงรายละเอียดเพิ่มเติม",
+    //             "uri": "https://liff.line.me/1656332858-DgV6jA5l"
+    //           },
+    //           "style": "primary",
+    //           "color": "#0000ff",
+    //           offsetTop: '50px',
+    //           "height": "sm"
+    //         }
+    //       ]
+    //     }
+    //   }
+    // }
   },
   test3: () => {
     return {
