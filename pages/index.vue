@@ -55,6 +55,7 @@ export default {
             } else if (this.$route.query['liff.state'] === '/profile') {
               this.$router.push({ name: 'profile' })
             }
+            console.log('else Redirect')
           } else {
             console.log('else DB')
             const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
