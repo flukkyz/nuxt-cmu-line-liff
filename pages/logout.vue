@@ -8,6 +8,11 @@
 
 <script>
 export default {
+  mounted () {
+    liff.init({
+      liffId: '1656332858-DgV6jA5l'
+    })
+  },
   methods: {
     logout () {
       liff.logout()
