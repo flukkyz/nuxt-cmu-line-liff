@@ -337,6 +337,22 @@ module.exports = {
                     {
                       type: 'text',
                       text: 'ลาป่วย'
+                    },
+                    {
+                      type: 'text',
+                      text: 'ลาป่วย'
+                    },
+                    {
+                      type: 'text',
+                      text: 'ลาป่วย'
+                    },
+                    {
+                      type: 'text',
+                      text: 'ลาป่วย'
+                    },
+                    {
+                      type: 'text',
+                      text: 'ลาป่วย'
                     }
                   ]
                 }
