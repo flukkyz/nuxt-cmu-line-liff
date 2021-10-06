@@ -236,6 +236,33 @@ module.exports = {
   },
   salary: (salary) => {
     return {
+      type: 'flex',
+      altText: "เงินเดือนปัจจุบันของคุณ",
+      contents: [
+        {
+          type: 'bubble',
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            alignItems: 'center',
+            justifyContent: 'center',
+            contents: [
+              {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                  {
+                    type: 'text',
+                    text: 'เงินเดือนปัจจุบันของคุณ'
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+    return {
       "type": "flex",
       "altText": "เงินเดือนปัจจุบันของคุณ",
       "contents": {
