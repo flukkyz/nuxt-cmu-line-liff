@@ -259,6 +259,8 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              paddingTop: '20px',
+              paddingBottom: '20px',
               contents: [
                 {
                   type: 'text',
