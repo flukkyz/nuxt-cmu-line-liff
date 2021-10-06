@@ -295,7 +295,6 @@ module.exports = {
                       },
                       style: 'primary',
                       color: '#0000ff',
-                      offsetTop: '50px',
                       height: 'sm'
                     }
                   ]
