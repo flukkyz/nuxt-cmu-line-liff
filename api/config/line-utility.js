@@ -174,16 +174,19 @@ module.exports = {
       "altText": "this is a flex message",
       "contents": {
         "type": "bubble",
-        "header": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [{
-            "type": "text",
-            "text": "Header text"
-          }]
-        },
+        // "header": {
+        //   "type": "box",
+        //   "layout": "vertical",
+        //   "contents": [{
+        //     "type": "text",
+        //     "text": "Header text"
+        //   }]
+        // },
         "hero": {
           "type": "image",
+          "size": "full",
+          "aspectRatio": "20:13",
+          "aspectMode": "cover",
           "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
         },
         "body": {
@@ -194,14 +197,14 @@ module.exports = {
             "text": "Body text"
           }]
         },
-        "footer": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [{
-            "type": "text",
-            "text": "Footer text"
-          }]
-        },
+        // "footer": {
+        //   "type": "box",
+        //   "layout": "vertical",
+        //   "contents": [{
+        //     "type": "text",
+        //     "text": "Footer text"
+        //   }]
+        // },
         "styles": {
           "header": {
             "backgroundColor": "#00ffff"
