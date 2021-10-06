@@ -279,17 +279,29 @@ module.exports = {
               ]
             },
             {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "แสดงรายละเอียดเพิ่มเติม",
-                "uri": "https://liff.line.me/1656332858-DgV6jA5l"
-              },
-              "style": "primary",
-              "color": "#0000ff",
-              offsetTop: '50px',
-              "height": "sm"
-            }
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'text',
+                  weight: 'bold',
+                  contents: [
+                    {
+                      type: 'button',
+                      action: {
+                        type: 'uri',
+                        label: 'แสดงรายละเอียดเพิ่มเติม',
+                        uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+                      },
+                      style: 'primary',
+                      color: '#0000ff',
+                      offsetTop: '50px',
+                      height: 'sm'
+                    }
+                  ]
+                }
+              ]
+            },
           ]
         }
       }
