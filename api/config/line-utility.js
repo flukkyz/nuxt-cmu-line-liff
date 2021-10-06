@@ -331,17 +331,12 @@ module.exports = {
               paddingBottom: '30px',
               contents: [
                 {
-                  type: 'text',
+                  type: 'box',
+                  layout: 'horizontal',
                   contents: [
                     {
-                      type: 'span',
-                      text: 'ลาป่วย',
-                      align: 'start'
-                    },
-                    {
-                      type: 'span',
-                      text: ' 1 วัน',
-                      align: 'end'
+                      type: 'text',
+                      text: 'ลาป่วย'
                     }
                   ]
                 }
