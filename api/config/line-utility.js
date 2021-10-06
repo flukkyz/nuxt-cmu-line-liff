@@ -237,24 +237,9 @@ module.exports = {
   salary: (salary) => {
     return {
       "type": "flex",
-      "altText": "this is a flex message",
+      "altText": "เงินเดือนปัจจุบันของคุณ",
       "contents": {
         "type": "bubble",
-        // "header": {
-        //   "type": "box",
-        //   "layout": "vertical",
-        //   "contents": [{
-        //     "type": "text",
-        //     "text": "Header text"
-        //   }]
-        // },
-        // "hero": {
-        //   "type": "image",
-        //   "size": "full",
-        //   "aspectRatio": "20:13",
-        //   "aspectMode": "cover",
-        //   "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
-        // },
         "body": {
           "type": "box",
           "layout": "vertical",
@@ -288,33 +273,10 @@ module.exports = {
                 "label": "แสดงรายละเอียดเพิ่มเติม",
                 "uri": "https://liff.line.me/1656332858-DgV6jA5l"
               },
-              "style": "primary",
-              "color": "#0000ff"
+              "height": "sm"
             }
           ]
         }
-        // "footer": {
-        //   "type": "box",
-        //   "layout": "vertical",
-        //   "contents": [{
-        //     "type": "text",
-        //     "text": "Footer text"
-        //   }]
-        // },
-        // "styles": {
-        //   "header": {
-        //     "backgroundColor": "#00ffff"
-        //   },
-        //   "hero": {
-        //     "separator": true,
-        //     "separatorColor": "#000000"
-        //   },
-        //   "footer": {
-        //     "backgroundColor": "#00ffff",
-        //     "separator": true,
-        //     "separatorColor": "#000000"
-        //   }
-        // }
       }
     }
   },
