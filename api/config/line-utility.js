@@ -258,25 +258,30 @@ module.exports = {
         "body": {
           "type": "box",
           "layout": "vertical",
-          "contents": [{
-            "type": "text",
-            "weight": "bold",
-            "size": "3xl",
-            // "wrap": true,
-            // "gravity": "bottom",
-            "contents": [
-              {
-                "type": "span",
-                "text": "เงินเดือนปัจจุบันของคุณ",
-              },
-              {
-                "type": "span",
-                "text": `${salary} บาท`
-              }
-            ]
-            // "text": "ลอยขึ้นแบบนี้",
-            // "size": "xxl"
-          }]
+          "contents": [
+            {
+              "type": "text",
+              "contents": [
+                {
+                  "type": "span",
+                  "text": "เงินเดือนปัจจุบันของคุณ",
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "weight": "bold",
+              "size": "3xl",
+              // "wrap": true,
+              // "gravity": "bottom",
+              "contents": [
+                {
+                  "type": "span",
+                  "text": `${salary} บาท`
+                }
+              ]
+            },
+          ]
         }
         // "footer": {
         //   "type": "box",
