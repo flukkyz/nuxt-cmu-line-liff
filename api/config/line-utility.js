@@ -268,14 +268,17 @@ module.exports = {
             {
               "type": "text",
               "weight": "bold",
-              "size": "3xl",
-              // "wrap": true,
-              // "gravity": "bottom",
               "contents": [
                 {
                   "type": "span",
-                  "text": `${new Intl.NumberFormat('th-th').format(salary)} บาท`
-                }
+                  "text": new Intl.NumberFormat('th-th').format(salary),
+                  "size": "3xl"
+                },
+                {
+                  "type": "span",
+                  "text": 'บาท',
+                  "size": "xl"
+                },
               ]
             },
             {
