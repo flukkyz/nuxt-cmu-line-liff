@@ -53,7 +53,7 @@ export default {
           }
         })
       } else {
-        liff.login()
+        liff.login({ redirectUri: window.location.href })
       }
     })
   }
