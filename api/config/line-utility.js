@@ -347,7 +347,48 @@ module.exports = {
             },
             {
               type: 'box',
+              layout: 'baseline',
+              paddingStart: '30px',
+              paddingEnd: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'ลากิจ'
+                },
+                {
+                  type: 'filler'
+                },
+                {
+                  type: 'text',
+                  text: '1 วัน',
+                  align: 'end'
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'baseline',
+              paddingStart: '30px',
+              paddingEnd: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'ลาพักร้อน'
+                },
+                {
+                  type: 'filler'
+                },
+                {
+                  type: 'text',
+                  text: '1 วัน',
+                  align: 'end'
+                }
+              ]
+            },
+            {
+              type: 'box',
               layout: 'vertical',
+              paddingธนย: '30px',
               contents: [
                 {
                   type: 'button',
