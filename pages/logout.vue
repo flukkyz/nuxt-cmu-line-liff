@@ -16,6 +16,7 @@ export default {
   methods: {
     logout () {
       liff.logout()
+      window.location.reload()
     }
   }
 }
