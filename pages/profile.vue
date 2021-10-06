@@ -47,7 +47,7 @@ export default {
           if (acc.status === 'ok') {
             this.acc = acc
           } else {
-            const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
+            const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
             this.authen = authen
             window.location = authen.data
           }
