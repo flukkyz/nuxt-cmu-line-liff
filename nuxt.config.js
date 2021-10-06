@@ -44,7 +44,7 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x16.png' }
     ],
     script: [
-      { src: 'https://static.line-scdn.net/liff/edge/2.1/sdk.js', charset: 'utf-8' }
+      { src: 'https://static.line-scdn.net/liff/edge/2.3.0/sdk.js', charset: 'utf-8' }
     ]
   },
 

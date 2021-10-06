@@ -28,11 +28,11 @@ module.exports = {
         resp.push(utility.QuickReply(userId));
       } else if(msg === 'test1') {
         resp.push(utility.test1());
-      } else if(msg === 'A') {
+      } else if(['salary','เงินเดือน'].includes(msg)) {
         resp.push(utility.salary(15000));
-      } else if(msg === 'Z') {
+      } else if(['leave','ลา'].includes(msg)) {
         resp.push(utility.leave());
-      } else if(msg === 'S') {
+      } else if(['document','doc','e-doc', 'e-document'].includes(msg)) {
         resp.push(utility.document());
       } else if(msg === 'test3') {
         resp.push(utility.test3());
