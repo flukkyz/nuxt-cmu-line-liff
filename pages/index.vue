@@ -2,9 +2,9 @@
   <div>
     <h1>Hello</h1>
     <p>Q</p>
-    <pre v-if="$route.query">
+    <!-- <pre v-if="$route.query">
       {{ $route.query }}
-    </pre>
+    </pre> -->
     <p>profile</p>
     <pre v-if="profile">
       {{ profile }}
