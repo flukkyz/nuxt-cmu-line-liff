@@ -239,12 +239,12 @@ module.exports = {
       type: 'flex',
       altText: 'เงินเดือนปัจจุบันของคุณ',
       contents: {
-        type: "bubble",
+        type: 'bubble',
         body: {
-          type: "box",
-          layout: "vertical",
-          alignItems: "center",
-          justifyContent: "center",
+          type: 'box',
+          layout: 'vertical',
+          alignItems: 'center',
+          justifyContent: 'center',
           contents: [
             {
               "type": "text",
