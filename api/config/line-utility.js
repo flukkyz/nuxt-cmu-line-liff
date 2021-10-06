@@ -274,6 +274,8 @@ module.exports = {
                 "uri": "https://liff.line.me/1656332858-DgV6jA5l"
               },
               "style": "primary",
+              "color": "#0000ff",
+              offsetTop: '50px',
               "height": "sm"
             }
           ]
