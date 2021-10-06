@@ -41,11 +41,11 @@ export default {
           this.callApi = true
           this.datas = acc
           if (acc.status === 'ok') {
-            if (this.$route.query['liff.state'] === '/apps') {
-              this.$router.push({ name: 'apps' })
-            } else if (this.$route.query['liff.state'] === '/profile') {
-              this.$router.push({ name: 'profile' })
-            }
+            // if (this.$route.query['liff.state'] === '/apps') {
+            //   this.$router.push({ name: 'apps' })
+            // } else if (this.$route.query['liff.state'] === '/profile') {
+            //   this.$router.push({ name: 'profile' })
+            // }
           } else {
             const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
             this.authen = authen
