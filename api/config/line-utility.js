@@ -320,6 +320,8 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
+                  wrap: true,
+                  gravity: 'bottom',
                   text: 'จำนวนวันลาที่เหลือ'
                 }
               ]
