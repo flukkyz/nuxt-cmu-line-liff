@@ -328,6 +328,7 @@ module.exports = {
             {
               type: 'box',
               layout: 'baseline',
+              paddingAll: '50px',
               contents: [
                 {
                   type: 'text',
