@@ -14,6 +14,9 @@
       </span>
       {{ profile.displayName }}
     </h2>
+    <pre v-if="acc">
+      {{ acc }}
+    </pre>
   </div>
 </template>
 
@@ -22,19 +25,33 @@ export default {
   layout: 'empty',
   data () {
     return {
-      profile: null
+      profile: null,
+      acc: null
     }
   },
   mounted () {
-    // if (liff.isLoggedIn()) {
-    //   liff.getProfile().then((profile) => {
-    //     this.isGetProfile = true
-    //     this.profile = profile
-    //     // this.$overlay.hide()
-    //   })
-    // } else {
-    //   liff.login()
-    // }
+    liff.init({
+      liffId: '1656332858-DgV6jA5l'
+    }).then(() => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile().then(async (profile) => {
+          this.profile = profile
+          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+          const acc = await this.$axios.$get(url)
+          this.callApi = true
+          this.datas = acc
+          if (acc.status === 'ok') {
+            this.acc = acc
+          } else {
+            const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
+            this.authen = authen
+            window.location = authen.data
+          }
+        })
+      } else {
+        liff.login()
+      }
+    })
   }
 }
 </script>
