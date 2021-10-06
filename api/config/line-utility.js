@@ -314,16 +314,16 @@ module.exports = {
           alignItems: 'center',
           justifyContent: 'center',
           contents: [
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'จำนวนวันลาที่เหลือ'
-                }
-              ]
-            },
+            // {
+            //   type: 'box',
+            //   layout: 'vertical',
+            //   contents: [
+            //     {
+            //       type: 'text',
+            //       text: 'จำนวนวันลาที่เหลือ'
+            //     }
+            //   ]
+            // },
             {
               "type": "box",
               "layout": "horizontal",
@@ -343,24 +343,24 @@ module.exports = {
                   "flex": 3
                 }
               ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
-                }
-              ]
-            },
+            }
+            // {
+            //   type: 'box',
+            //   layout: 'vertical',
+            //   contents: [
+            //     {
+            //       type: 'button',
+            //       action: {
+            //         type: 'uri',
+            //         label: 'แสดงรายละเอียดเพิ่มเติม',
+            //         uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+            //       },
+            //       style: 'primary',
+            //       color: '#0000ff',
+            //       height: 'sm'
+            //     }
+            //   ]
+            // }
           ]
         }
       }
