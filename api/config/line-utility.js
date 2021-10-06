@@ -196,8 +196,8 @@ module.exports = {
             "type": "text",
             "weight": "bold",
             "size": "3xl",
-            "wrap": true,
-            "gravity": "bottom",
+            // "wrap": true,
+            // "gravity": "bottom",
             "contents": [
               {
                 "type": "span",
