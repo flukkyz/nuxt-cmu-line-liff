@@ -322,7 +322,16 @@ module.exports = {
                   type: 'text',
                   wrap: true,
                   gravity: 'bottom',
-                  text: 'จำนวนวันลาที่เหลือ'
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'จำนวนวันลาที่เหลือ'
+                    },
+                    {
+                      type: 'span',
+                      text: ' '
+                    }
+                  ]
                 }
               ]
             },
