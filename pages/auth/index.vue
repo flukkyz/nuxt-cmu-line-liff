@@ -10,10 +10,6 @@
         />
       </v-col>
     </v-row>
-    <!-- <p>Q</p>
-    <pre v-if="$route.query">
-      {{ $route.query }} -->
-    <!-- </pre> -->
     <h1 class="display-2 text-center teal--text mt-5">
       Waiting for Authentication
     </h1>
