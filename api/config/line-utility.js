@@ -317,21 +317,11 @@ module.exports = {
               layout: 'vertical',
               alignItems: 'center',
               justifyContent: 'center',
+              paddingBottom: '20px',
               contents: [
                 {
                   type: 'text',
-                  wrap: true,
-                  gravity: 'bottom',
-                  contents: [
-                    {
-                      type: 'span',
-                      text: 'จำนวนวันลาที่เหลือ'
-                    },
-                    {
-                      type: 'span',
-                      text: ' '
-                    }
-                  ]
+                  text: 'จำนวนวันลาที่เหลือ'
                 }
               ]
             },
@@ -348,7 +338,8 @@ module.exports = {
                 },
                 {
                   type: 'text',
-                  text: '1 วัน'
+                  text: '1 วัน',
+                  align: 'end'
                 }
               ]
             },
