@@ -194,6 +194,7 @@ module.exports = {
           "layout": "vertical",
           "weight": "bold",
           "size": "3xl",
+          "wrap": true,
           "contents": [{
             "type": "text",
             "text": "ลอยขึ้นแบบนี้"
