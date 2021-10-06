@@ -277,7 +277,7 @@ module.exports = {
               "contents": [
                 {
                   "type": "span",
-                  "text": `${salary} บาท`
+                  "text": `${new Intl.NumberFormat('th-th').format(salary)} บาท`
                 }
               ]
             },
