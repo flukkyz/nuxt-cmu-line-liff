@@ -330,7 +330,7 @@ module.exports = {
               contents: [
                 {
                   type: 'box',
-                  layout: 'horizontal',
+                  layout: 'vertical',
                   contents: [
                     {
                       type: 'text',
