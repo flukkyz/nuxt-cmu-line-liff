@@ -1,9 +1,9 @@
 <template>
   <div v-if="profile">
     <p>Q</p>
-    <pre v-if="$route.query">
+    <!-- <pre v-if="$route.query">
       {{ $route.query }}
-    </pre>
+    </pre> -->
     <h1>Page Profile</h1>
     <v-img :src="profile.pictureUrl" contain />
     <p class="mt-3 mb-1 text-center">
