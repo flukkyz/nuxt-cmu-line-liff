@@ -194,7 +194,7 @@ module.exports = {
           "layout": "vertical",
           "contents": [{
             "type": "text",
-            "text": "Body text"
+            "text": "ลอยขึ้นแบบนี้"
           }]
         },
         // "footer": {
