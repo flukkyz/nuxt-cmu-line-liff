@@ -326,33 +326,17 @@ module.exports = {
             },
             {
               type: 'box',
-              layout: 'vertical',
+              layout: 'horizontal',
               contents: [
                 {
-                  type: 'box',
-                  layout: 'vertical',
-                  contents: [
-                    {
-                      type: 'text',
-                      text: 'ลาป่วย'
-                    },
-                    {
-                      type: 'text',
-                      text: 'ลาป่วย'
-                    },
-                    {
-                      type: 'text',
-                      text: 'ลาป่วย'
-                    },
-                    {
-                      type: 'text',
-                      text: 'ลาป่วย'
-                    },
-                    {
-                      type: 'text',
-                      text: 'ลาป่วย'
-                    }
-                  ]
+                  type: 'text',
+                  text: 'ลาป่วย',
+                  flex: 1
+                },
+                {
+                  type: 'text',
+                  text: '1 วัน',
+                  flex: 1
                 }
               ]
             },
