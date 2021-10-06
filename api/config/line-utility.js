@@ -311,8 +311,6 @@ module.exports = {
         body: {
           type: 'box',
           layout: 'vertical',
-          alignItems: 'center',
-          justifyContent: 'center',
           contents: [
             {
               type: 'box',
