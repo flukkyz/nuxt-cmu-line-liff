@@ -388,7 +388,7 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
-              paddingธนย: '30px',
+              paddingTop: '30px',
               contents: [
                 {
                   type: 'button',
