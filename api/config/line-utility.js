@@ -263,12 +263,7 @@ module.exports = {
           "contents": [
             {
               "type": "text",
-              "contents": [
-                {
-                  "type": "span",
-                  "text": "เงินเดือนปัจจุบันของคุณ",
-                }
-              ]
+              "text": "เงินเดือนปัจจุบันของคุณ"
             },
             {
               "type": "text",
