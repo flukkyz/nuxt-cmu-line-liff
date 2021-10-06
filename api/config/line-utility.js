@@ -327,8 +327,6 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
-              paddingTop: '20px',
-              paddingBottom: '30px',
               contents: [
                 {
                   type: 'box',
