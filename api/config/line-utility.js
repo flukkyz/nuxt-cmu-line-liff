@@ -237,7 +237,7 @@ module.exports = {
   salary: (salary) => {
     return {
       type: 'flex',
-      altText: 'เงินเดือนปัจจุบันของคุณ',
+      altText: 'เงินเดือนปัจจุบัน',
       contents: {
         type: 'bubble',
         body: {
@@ -252,7 +252,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
-                  text: 'เงินเดือนปัจจุบันของคุณ'
+                  text: 'เงินเดือนปัจจุบัน'
                 }
               ]
             },
@@ -260,7 +260,7 @@ module.exports = {
               type: 'box',
               layout: 'vertical',
               paddingTop: '20px',
-              paddingBottom: '20px',
+              paddingBottom: '30px',
               contents: [
                 {
                   type: 'text',
@@ -275,6 +275,73 @@ module.exports = {
                       type: 'span',
                       text: ' บาท',
                       size: 'xl'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'button',
+                  action: {
+                    type: 'uri',
+                    label: 'แสดงรายละเอียดเพิ่มเติม',
+                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+                  },
+                  style: 'primary',
+                  color: '#0000ff',
+                  height: 'sm'
+                }
+              ]
+            },
+          ]
+        }
+      }
+    }
+  },
+  leave: () => {
+    return {
+      type: 'flex',
+      altText: 'การลา',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          alignItems: 'center',
+          justifyContent: 'center',
+          contents: [
+            {
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'จำนวนวันลาที่เหลือ'
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingTop: '20px',
+              paddingBottom: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'ลาป่วย',
+                      align: 'start'
+                    },
+                    {
+                      type: 'span',
+                      text: ' 1 วัน',
+                      align: 'end'
                     }
                   ]
                 }
