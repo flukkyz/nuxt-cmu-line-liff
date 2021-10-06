@@ -273,7 +273,7 @@ module.exports = {
                 "label": "แสดงรายละเอียดเพิ่มเติม",
                 "uri": "https://liff.line.me/1656332858-DgV6jA5l"
               },
-              "style": "secondary",
+              "style": "primary",
               "height": "sm"
             }
           ]
