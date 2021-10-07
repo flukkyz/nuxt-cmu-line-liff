@@ -47,7 +47,7 @@ export default {
           if (user.status === 'ok') {
             this.profile = {
               ...profile,
-              ...user
+              ...user.data
             }
           } else {
             const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
