@@ -1,7 +1,7 @@
 <template>
-  <div v-if="profile">
+  <div v-if="profile" class="text-center">
     <v-img :src="profile.pictureUrl" contain />
-    <p class="text-center caption teal--text mt-2">
+    <p class="caption teal--text mt-2">
       {{ profile.displayName }}
     </p>
     <p class="title">
