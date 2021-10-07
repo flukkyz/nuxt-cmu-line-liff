@@ -33,40 +33,40 @@ export default {
     }
   },
   mounted () {
-    this.q = this.$route.query
-    liff.init({
-      liffId: '1656332858-DgV6jA5l'
-    }).then(() => {
-      console.log('line')
-      if (liff.isLoggedIn()) {
-        console.log('login')
-        liff.getProfile().then(async (profile) => {
-          console.log('before profile')
-          this.profile = profile
-          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
-          const acc = await this.$axios.$get(url)
-          this.callApi = true
-          this.datas = acc
-          console.log('api profile')
-          if (acc.status === 'ok') {
-            console.log('if DB')
-            if (this.$route.query['liff.state'] === '/apps') {
-              this.$router.push({ name: 'apps' })
-            } else if (this.$route.query['liff.state'] === '/profile') {
-              this.$router.push({ name: 'profile' })
-            }
-            console.log('else Redirect')
-          } else {
-            console.log('else DB')
-            const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
-            this.authen = authen
-            window.location = authen.data
-          }
-        })
-      } else {
-        liff.login()
-      }
-    })
+    // this.q = this.$route.query
+    // liff.init({
+    //   liffId: '1656332858-DgV6jA5l'
+    // }).then(() => {
+    //   console.log('line')
+    //   if (liff.isLoggedIn()) {
+    //     console.log('login')
+    //     liff.getProfile().then(async (profile) => {
+    //       console.log('before profile')
+    //       this.profile = profile
+    //       const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+    //       const acc = await this.$axios.$get(url)
+    //       this.callApi = true
+    //       this.datas = acc
+    //       console.log('api profile')
+    //       if (acc.status === 'ok') {
+    //         console.log('if DB')
+    //         if (this.$route.query['liff.state'] === '/apps') {
+    //           this.$router.push({ name: 'apps' })
+    //         } else if (this.$route.query['liff.state'] === '/profile') {
+    //           this.$router.push({ name: 'profile' })
+    //         }
+    //         console.log('else Redirect')
+    //       } else {
+    //         console.log('else DB')
+    //         const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
+    //         this.authen = authen
+    //         window.location = authen.data
+    //       }
+    //     })
+    //   } else {
+    //     liff.login()
+    //   }
+    // })
   }
 
 }
