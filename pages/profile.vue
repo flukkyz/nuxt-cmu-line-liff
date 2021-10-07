@@ -13,12 +13,15 @@
       </v-icon>
       {{ `${profile.organizationname}` }}
     </p>
-    <p class="subtitle-1 mb-2">
+    <p class="subtitle-1">
       <v-icon small>
         fas fa-envelope
       </v-icon>
       {{ `${profile.email}` }}
     </p>
+    <v-btn outlined @click="close">
+      ปิด
+    </v-btn>
   </div>
 </template>
 
@@ -55,6 +58,11 @@ export default {
         liff.login({ redirectUri: window.location.href })
       }
     })
+  },
+  methods: {
+    close () {
+      liff.closeWindow()
+    }
   }
 }
 </script>
