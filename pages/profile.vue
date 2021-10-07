@@ -19,6 +19,10 @@
       </v-icon>
       {{ `${profile.email}` }}
     </p>
+
+    <pre>
+      {{ profile }}
+    </pre>
   </div>
 </template>
 
