@@ -1,12 +1,24 @@
 <template>
   <div v-if="profile">
     <v-img :src="profile.pictureUrl" contain />
-    <p class="text-center caption teal--text">
+    <p class="text-center caption teal--text mt-2">
       {{ profile.displayName }}
     </p>
-    <pre v-if="acc">
-      {{ acc }}
-    </pre>
+    <p class="title">
+      {{ `${profile.firstname} ${profile.lastname}` }}
+    </p>
+    <p class="subtitle-1">
+      <v-icon small>
+        fas fa-envelope
+      </v-icon>
+      {{ `${profile.email}` }}
+    </p>
+    <p class="subtitle-1">
+      <v-icon small>
+        fas fa-envelope
+      </v-icon>
+      {{ `${profile.email}` }}
+    </p>
   </div>
 </template>
 
@@ -25,13 +37,14 @@ export default {
     }).then(() => {
       if (liff.isLoggedIn()) {
         liff.getProfile().then(async (profile) => {
-          this.profile = profile
-          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
-          const acc = await this.$axios.$get(url)
-          this.callApi = true
-          this.datas = acc
-          if (acc.status === 'ok') {
-            this.acc = acc
+          const urlCheckIsUser = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+          const user = await this.$axios.$get(urlCheckIsUser)
+          this.datas = user
+          if (user.status === 'ok') {
+            this.profile = {
+              ...profile,
+              ...user
+            }
           } else {
             const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
             this.authen = authen
