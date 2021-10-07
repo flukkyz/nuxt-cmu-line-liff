@@ -10,19 +10,9 @@
         />
       </v-col>
     </v-row>
-    <p>Q</p>
-    <pre v-if="$route.query">
-      {{ $route.query }}
-    </pre>
-    <h1 class="display-2 text-center teal--text mt-5">
+    <h1 class="display-1 text-center teal--text mt-5">
       Waiting for Authentication
     </h1>
-    <p>
-      call API : {{ callApi ? 'T' : 'F' }}
-    </p>
-    <pre v-if="datas">
-      {{ datas }}
-    </pre>
   </div>
 </template>
 
@@ -31,12 +21,6 @@ export default {
   middleware: 'guest',
   validate ({ query }) {
     return query.code && query.state
-  },
-  data () {
-    return {
-      callApi: false,
-      datas: null
-    }
   },
   head () {
     return {
@@ -55,9 +39,7 @@ export default {
         liff.getProfile().then(async (profile) => {
           this.profile = profile
           const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
-          const acc = await this.$axios.$get(url)
-          this.callApi = true
-          this.datas = acc
+          await this.$axios.$get(url)
           this.$router.push({ name: this.$route.query.state })
         })
       } else {
