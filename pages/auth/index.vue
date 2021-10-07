@@ -32,20 +32,24 @@ export default {
     this.$store.commit('setPendingLogin', true)
   },
   mounted () {
-    liff.init({
-      liffId: '1656332858-DgV6jA5l'
-    }).then(() => {
-      if (liff.isLoggedIn()) {
-        liff.getProfile().then(async (profile) => {
-          this.profile = profile
-          const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
-          await this.$axios.$get(url)
-          this.$router.push({ name: this.$route.query.state })
-        })
-      } else {
-        liff.login()
-      }
-    })
+    if (this.$route.query.state && this.$route.query.state === 'admin') {
+      console.log('admin')
+    } else {
+      liff.init({
+        liffId: '1656332858-DgV6jA5l'
+      }).then(() => {
+        if (liff.isLoggedIn()) {
+          liff.getProfile().then(async (profile) => {
+            this.profile = profile
+            const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
+            await this.$axios.$get(url)
+            this.$router.push({ name: `liff-${this.$route.query.state}` })
+          })
+        } else {
+          liff.login()
+        }
+      })
+    }
   }
 }
 </script>
