@@ -1,21 +1,9 @@
 <template>
   <div v-if="profile">
     <v-img :src="profile.pictureUrl" contain />
-    <h1 class="display-1 text-center mb-3">
-      My Profile
-    </h1>
-    <p class="mt-3 mb-1 text-center">
-      <span class="font-weight-bold">
-        User ID:
-      </span>
-      {{ profile.userId }}
-    </p>
-    <h2 class="text-center">
-      <span class="font-weight-bold">
-        Display Name:
-      </span>
+    <p class="text-center caption teal--text">
       {{ profile.displayName }}
-    </h2>
+    </p>
     <pre v-if="acc">
       {{ acc }}
     </pre>
