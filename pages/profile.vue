@@ -9,9 +9,9 @@
     </p>
     <p class="subtitle-1">
       <v-icon small>
-        fas fa-envelope
+        fas fa-briefcase
       </v-icon>
-      {{ `${profile.email}` }}
+      {{ `${profile.organizationname}` }}
     </p>
     <p class="subtitle-1">
       <v-icon small>
