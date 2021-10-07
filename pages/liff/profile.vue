@@ -33,7 +33,8 @@ export default {
       profile: null
     }
   },
-  mounted () {
+  async beforeMount () {
+    await liff.init({ liffId: '1656332858-DgV6jA5l' })
     if (liff.isInClient()) {
       this.getLineProfile()
     } else if (liff.isLoggedIn()) {
