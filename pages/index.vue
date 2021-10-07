@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex h-100">
     <v-img src="/images/logo.png" contain max-width="250" class="my-auto mx-auto" />
   </div>
 </template>
