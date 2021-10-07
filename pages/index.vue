@@ -33,6 +33,7 @@ export default {
     }
   },
   mounted () {
+    liff.init({ liffId: '1656332858-DgV6jA5l' })
     // this.q = this.$route.query
     // liff.init({
     //   liffId: '1656332858-DgV6jA5l'
