@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 import auth from './config/auth'
+import i18n from './config/i18n'
 
 export default {
 
@@ -89,6 +90,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/auth-next',
     '@nuxtjs/axios',
+    'nuxt-i18n',
     // '@nuxtjs/pwa',
     '@nuxtjs/dayjs',
     ['v-currency-field/nuxt-treeshaking', {
@@ -117,6 +119,7 @@ export default {
   },
 
   auth,
+  i18n,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

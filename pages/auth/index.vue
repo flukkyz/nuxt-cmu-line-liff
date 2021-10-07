@@ -57,7 +57,7 @@ export default {
             this.profile = profile
             const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
             await this.$axios.$get(url)
-            this.$router.push({ name: `liff-${this.$route.query.state}` })
+            this.$router.push(this.localePath({ name: `liff-${this.$route.query.state}` }))
           })
         } else {
           liff.login()
