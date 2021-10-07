@@ -13,7 +13,7 @@
       </v-icon>
       {{ `${profile.organizationname}` }}
     </p>
-    <p class="subtitle-1 mb-8">
+    <p class="subtitle-1 mb-7">
       <v-icon small>
         fas fa-envelope
       </v-icon>
