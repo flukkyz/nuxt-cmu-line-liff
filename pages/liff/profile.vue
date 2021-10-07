@@ -60,7 +60,6 @@ export default {
         this.$overlay.hide()
       } else {
         const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
-        this.authen = authen
         window.location = authen.data
       }
     },

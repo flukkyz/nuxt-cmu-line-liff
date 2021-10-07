@@ -1,25 +1,23 @@
 <template>
-  <a :href="authorizeUrl">
-    <div style="height: 100vh;" class="d-flex align-center justify-center">
-      <div class="w-75">
-        <!-- <v-img src="/images/logo.png" contain max-width="800" class="ma-auto" />
+  <div style="height: 100vh;" class="d-flex align-center justify-center pointer" @click="login">
+    <div class="w-75">
+      <!-- <v-img src="/images/logo.png" contain max-width="800" class="ma-auto" />
         <v-img src="/images/logo.gif" max-width="100" class="ma-auto" /> -->
-        <h1 class="display-1 info--text text-center">
-          Click for Login
-        </h1>
-      </div>
-
+      <h1 class="display-1 info--text text-center">
+        Click for Login
+      </h1>
     </div>
-  </a>
+  </div>
 </template>
 
 <script>
 export default {
   layout: 'empty',
-  // middleware: 'guest',
+  middleware: 'guest',
   data () {
     return {
-      authorizeUrl: '/oauth2/authorize'
+      authorizeUrl: '/oauth2/authorize',
+      authen: null
     }
   },
   head () {
@@ -27,9 +25,15 @@ export default {
       title: 'Login'
     }
   },
-  async mounted () {
-    const data = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/api/users/123')
-    console.log(data)
+  async beforeMount () {
+    const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize')
+    this.authen = authen
+    window.location = authen.data
+  },
+  methods: {
+    login () {
+      window.location = this.authen.data
+    }
   }
 }
 </script>
