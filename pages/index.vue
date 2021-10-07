@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex h-100" style="min-height: 100vh;">
+  <div class="d-flex h-100 fill">
     <v-img src="/images/logo.png" contain max-width="250" class="my-auto mx-auto" />
   </div>
 </template>
@@ -13,3 +13,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss" scoped>
+.fill{
+  min-height: 100vh;
+}
+</style>
