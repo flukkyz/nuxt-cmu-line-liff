@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  layout: 'empty',
   middleware: 'guest',
   validate ({ query }) {
     return query.code && query.state
