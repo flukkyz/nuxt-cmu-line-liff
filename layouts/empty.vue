@@ -3,6 +3,9 @@
     <v-main>
       <nuxt />
     </v-main>
+    <snackbar />
+    <overlay />
+    <b-t-t />
   </v-app>
 </template>
 
