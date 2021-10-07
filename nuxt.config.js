@@ -90,7 +90,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/auth-next',
     '@nuxtjs/axios',
-    'nuxt-i18n',
+    '@nuxtjs/i18n',
     // '@nuxtjs/pwa',
     '@nuxtjs/dayjs',
     ['v-currency-field/nuxt-treeshaking', {
