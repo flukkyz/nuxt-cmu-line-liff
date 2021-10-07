@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="/images/logo.png" contain />
+    <v-img src="/images/logo.png" contain max-width="300" class="ma-auto" />
   </div>
 </template>
 
