@@ -4,16 +4,16 @@
     <p class="caption teal--text mt-2">
       {{ profile.displayName }}
     </p>
-    <p class="title mb-2">
+    <p class="title mb-1">
       {{ `${profile.firstname} ${profile.lastname}` }}
     </p>
-    <p class="subtitle-1 mb-2">
+    <p class="subtitle-1 mb-1">
       <v-icon small>
         fas fa-briefcase
       </v-icon>
       {{ `${profile.organizationname}` }}
     </p>
-    <p class="subtitle-1 mb-7">
+    <p class="subtitle-1 mb-6">
       <v-icon small>
         fas fa-envelope
       </v-icon>
