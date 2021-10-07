@@ -1,13 +1,8 @@
 <template>
   <div v-if="profile">
-    <p>Q</p>
-    <pre v-if="$route.query">
-      {{ $route.query }}
-    </pre>
-    <pre>
-      {{ profile }}
-    </pre>
-    <h1>Page Profile</h1>
+    <h1 class="display-1 text-center mb-3">
+      My Profile
+    </h1>
     <v-img :src="profile.pictureUrl" contain />
     <p class="mt-3 mb-1 text-center">
       <span class="font-weight-bold">
