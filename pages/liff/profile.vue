@@ -33,6 +33,9 @@ export default {
       profile: null
     }
   },
+  created () {
+    this.$overlay.showLoading()
+  },
   async beforeMount () {
     await liff.init({ liffId: '1656332858-DgV6jA5l' })
     if (liff.isInClient()) {
@@ -54,6 +57,7 @@ export default {
           ...profile,
           ...user.data
         }
+        this.$overlay.hide()
       } else {
         const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
         this.authen = authen
