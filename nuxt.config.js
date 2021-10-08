@@ -170,6 +170,8 @@ export default {
     apiUrl: process.env.API_URL || 'http://localhost:3000',
     apiDirectory: process.env.API_DIR || '/api/',
 
+    oAuthAuthorize: process.env.OAUTH_AUTHORIZE || '/authorize',
+
     metaDefaultLang: process.env.META_DEFAULT_LANG || '',
     metaDefaultTitle: process.env.META_DEFAULT_TITLE || '',
     metaDefaultDescription: process.env.META_DEFAULT_DESCRIPTION || '',
@@ -180,6 +182,6 @@ export default {
 
     googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || '',
 
-    LiffID: process.env.LIFF_ID || ''
+    liffID: process.env.LIFF_ID || ''
   }
 }

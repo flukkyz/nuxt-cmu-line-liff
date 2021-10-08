@@ -4,7 +4,7 @@ const axios = require('axios')
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
 const headers = {
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${process.env.ChannelAccessToken}`
+  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
 };
 
 module.exports = {

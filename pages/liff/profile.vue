@@ -37,7 +37,7 @@ export default {
     this.$overlay.showLoading()
   },
   async beforeMount () {
-    await liff.init({ liffId: '1656332858-DgV6jA5l' })
+    await liff.init({ liffId: process.env.liffID })
     if (liff.isInClient()) {
       this.getLineProfile()
     } else if (liff.isLoggedIn()) {
@@ -49,7 +49,7 @@ export default {
   methods: {
     async getLineProfile () {
       const profile = await liff.getProfile()
-      const urlCheckIsUser = `https://mis-api.cmu.ac.th/mis/lineapp/api/users/${profile.userId}`
+      const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
       this.datas = user
       if (user.status === 'ok') {
@@ -59,7 +59,7 @@ export default {
         }
         this.$overlay.hide()
       } else {
-        const authen = await this.$axios.$get('https://mis-api.cmu.ac.th/mis/lineapp/authorize?page=profile')
+        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.name}`)
         window.location = authen.data
       }
     },

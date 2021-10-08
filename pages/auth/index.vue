@@ -49,15 +49,13 @@ export default {
         // this.$bus.$emit('reset-side-menu')
       })
     } else {
-      liff.init({
-        liffId: '1656332858-DgV6jA5l'
-      }).then(() => {
+      liff.init({ liffId: process.env.liffID }).then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then(async (profile) => {
             this.profile = profile
-            const url = `https://mis-api.cmu.ac.th/mis/lineapp/api/token/${this.$route.query.code}/${profile.userId}`
+            const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}/${profile.userId}`
             await this.$axios.$get(url)
-            this.$router.push(this.localePath({ name: `liff-${this.$route.query.state}` }))
+            this.$router.push({ name: `liff-${this.$route.query.state}` })
           })
         } else {
           liff.login()
