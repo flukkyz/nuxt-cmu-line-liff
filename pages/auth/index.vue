@@ -39,7 +39,7 @@ export default {
         this.$store.commit('setPendingLogin', false)
         this.$nuxt.error({ statusCode: 401, message: 'Unauthorized' })
       }, timeOfTimeout * 1000)
-      const acc = await this.$axios.$get(`${process.env.baseUrl}/oauth2/callback?code=${this.$route.query.code}&state=${this.$route.query.state}`)
+      const acc = await `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}`
       this.$auth.setUserToken(acc.access_token, acc.refresh_token).then(async () => {
         const user = await this.$auth.fetchUser()
         if (user) {
