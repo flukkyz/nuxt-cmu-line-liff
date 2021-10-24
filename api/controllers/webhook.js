@@ -8,6 +8,9 @@ const headers = {
 };
 
 module.exports = {
+  hook: async (req, res) => {
+    res.send("HTTP Get request sent to the webhook URL!")
+  },
   index: async (req, res) => {
     console.log('test hook');
     res.send("HTTP POST request sent to the webhook URL!")
