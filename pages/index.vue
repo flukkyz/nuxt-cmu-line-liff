@@ -6,7 +6,18 @@
 
 <script>
 export default {
-  layout: 'empty'
+  layout: 'empty',
+  mounted () {
+    setTimeout(async () => {
+      await this.$axios.$post(`${process.env.baseUrl}/api/webhook`,{
+        data: 'test'
+      }, {
+        headers: {
+          Authorization: 'Bearer i6DNvKSVEeXmQC+IAdPqghQwxqmBj0ZTvTZLTf5Vk2A2GVxHZXrdFjk/8A7uE4aamuIc8hFOgUdPG+zDyGy+56cp6J9tYIIKyRDUPs3aR/4ttoyzahApREp03DQXjFhAxHAycFB8EFnVcq9LGuhaagdB04t89/1O/w1cDnyilFU='
+        }
+      })
+    }, 1000)
+  }
 }
 </script>
 
