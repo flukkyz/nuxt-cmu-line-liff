@@ -9,7 +9,7 @@ const headers = {
 
 module.exports = {
   index: async (req, res) => {
-    res.send("HTTP POST request sent to the webhook URL!")
+    // res.send("HTTP POST request sent to the webhook URL!")
     let event = req.body.events[0];
     let userId = event.source.userId;
     if (event.type === "message") {
