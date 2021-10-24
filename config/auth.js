@@ -19,7 +19,7 @@ export default {
       user: 'user',
       endpoints: {
         refresh: { url: `${process.env.BASE_URL}/oauth2/token`, method: 'post' },
-        user: { url: `${process.env.apiUrl}${process.env.apiDirectory}users/access`, method: 'get' },
+        user: { url: `${process.env.API_URL}${process.env.API_DIR}users/access`, method: 'get' },
         logout: false
       }
     }
