@@ -40,6 +40,9 @@ module.exports = {
         resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
       }
 
+      console.log(resp)
+
+
       try {
         await axios({
           method: 'post',
