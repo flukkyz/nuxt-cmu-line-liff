@@ -40,7 +40,7 @@ export default {
         this.$nuxt.error({ statusCode: 401, message: 'Unauthorized' })
       }, timeOfTimeout * 1000)
       const acc = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}`)
-      this.$auth.setUserToken(acc.access_token, acc.refresh_token).then(async () => {
+      this.$auth.setUserToken(acc.access_token, '1234567').then(async () => {
         const user = await this.$auth.fetchUser()
         if (user) {
           clearTimeout(timeout)

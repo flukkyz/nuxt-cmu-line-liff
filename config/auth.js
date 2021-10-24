@@ -11,15 +11,15 @@ export default {
         property: 'access_token',
         maxAge: 3600
       },
-      refreshToken: {
-        property: 'refresh_token',
-        data: 'refresh_token',
-        maxAge: 60 * 60 * 10
-      },
+      // refreshToken: {
+      //   property: 'refresh_token',
+      //   data: 'refresh_token',
+      //   maxAge: 60 * 60 * 10
+      // },
       user: 'user',
       endpoints: {
         refresh: { url: `${process.env.BASE_URL}/oauth2/token`, method: 'post' },
-        user: { url: `${process.env.BASE_URL}/oauth2/me`, method: 'get' },
+        user: { url: `${process.env.apiUrl}${process.env.apiDirectory}users/access`, method: 'get' },
         logout: false
       }
     }
