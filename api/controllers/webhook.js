@@ -9,6 +9,7 @@ const headers = {
 
 module.exports = {
   index: async (req, res) => {
+    console.log('test hook');
     res.send("HTTP POST request sent to the webhook URL!")
     let event = req.body.events[0];
     let userId = event.source.userId;
