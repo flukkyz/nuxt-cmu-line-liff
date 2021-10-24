@@ -9,7 +9,7 @@ export default {
   layout: 'empty',
   mounted () {
     setTimeout(async () => {
-      await this.$axios.$post(`${process.env.baseUrl}/api/webhook`,{
+      await this.$axios.$post(`${process.env.baseUrl}/api/webhook`, {
         data: 'test'
       }, {
         headers: {
