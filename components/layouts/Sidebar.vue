@@ -135,7 +135,7 @@ export default {
         header: 'จัดการ'
       })
       this.sideItems.push({
-        url: { name: 'helpdesks' },
+        url: { name: 'manages-helpdesks' },
         icon: 'fas fa-info-circle',
         text: 'Helpdesks'
       })

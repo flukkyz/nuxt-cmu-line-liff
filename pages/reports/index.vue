@@ -1,5 +1,5 @@
 <template>
   <div>
-    t
+    reports
   </div>
 </template>

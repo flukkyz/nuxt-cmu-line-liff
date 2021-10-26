@@ -1,5 +1,5 @@
 <template>
   <div>
-    t
+    announce
   </div>
 </template>
