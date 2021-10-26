@@ -121,96 +121,51 @@ export default {
       this.$router.push(this.localePath({ name: 'logout' }))
     },
     resetSideMenu () {
-      // this.sideItems.push({
-      //   url: { name: 'my-researchs' },
-      //   icon: 'fas fa-flask',
-      //   text: 'โครงการวิจัยของฉัน'
-      // })
-      // this.sideItems.push({
-      //   group: 'โครงการวิจัยของฉัน',
-      //   items: [
-      //     {
-      //       url: { name: 'my-researchs' },
-      //       icon: 'fas fa-receipt',
-      //       text: 'โครงการวิจัยล่าสุด'
-      //     },
-      //     {
-      //       url: { name: 'my-researchs-histories' },
-      //       icon: 'fas fa-receipt',
-      //       text: 'ประวัติการเบิกเงินโครงการวิจัย'
-      //     }
-      //   ]
-      // })
       this.sideItems.push({
         icon: 'fas fa-th-large',
         text: 'Dashboard',
         url: { name: 'dashboard' }
       })
       this.sideItems.push({
-        group: 'รายงาน',
-        icon: 'fas fa-list-alt',
-        items: [
-          {
-            url: 'reports-process-duration',
-            icon: 'fas fa-list-alt',
-            text: 'รายงานสรุประยะเวลาในการดำเนินการเบิกเงินโครงการวิจัย'
-          },
-          {
-            url: 'reports-average-process-duration',
-            icon: 'fas fa-list-alt',
-            text: 'รายงานสรุประยะเวลาเฉลี่ยในการดำเนินการเบิกเงินโครงการวิจัย'
-          },
-          {
-            url: 'reports-research-project-withdraw',
-            icon: 'fas fa-list-alt',
-            text: 'รายงานการเบิกจ่ายเงินโครงการวิจัย'
-          },
-          {
-            url: 'reports-research-project-withdraw-detail',
-            icon: 'fas fa-list-alt',
-            text: 'รายละเอียดการเบิกจ่ายเงินโครงการวิจัย'
-          },
-          {
-            url: 'reports-summary-tax-adress',
-            icon: 'fas fa-list-alt',
-            text: 'สรุปที่อยู่ออกใบกำกับภาษี และที่อยู่จัดส่งใบกำกับภาษี'
-          },
-          {
-            url: 'reports-van-transaction',
-            icon: 'fas fa-list-alt',
-            text: 'รายการเคลื่อนไหวเงินเข้าบัญชี VAN'
-          },
-          {
-            url: 'reports-transfer-to-research-support-fund',
-            icon: 'fas fa-list-alt',
-            text: 'รายการโอนเงินเข้าบัญชีกองทุนสนับสนุนการวิจัย'
-          }
-        ]
+        icon: 'fas fa-bullhorn',
+        text: 'ประกาศ',
+        url: { name: 'announce' }
       })
       this.sideItems.push({
         header: 'จัดการ'
       })
       this.sideItems.push({
-        url: { name: 'researchs' },
-        icon: 'fas fa-list',
-        text: 'จัดการโครงการวิจัย'
+        url: { name: 'helpdesks' },
+        icon: 'fas fa-info-circle',
+        text: 'Helpdesks'
       })
       this.sideItems.push({
-        url: { name: 'groups' },
-        icon: 'fas fa-layer-group',
-        text: 'สรุปรายการ และสั่งจ่ายเงินวิจัย'
+        url: { name: 'manages-faqs' },
+        icon: 'fas fa-question-circle',
+        text: 'คำถามที่พบบ่อย (FAQ)'
       })
       this.sideItems.push({
         divider: true
       })
+      // this.sideItems.push({
+      //   group: 'รายงาน',
+      //   icon: 'fas fa-list-alt',
+      //   items: [
+      //     // {
+      //     //   url: 'reports-process-duration',
+      //     //   icon: 'fas fa-list-alt',
+      //     //   text: 'รายงานสรุประยะเวลาในการดำเนินการเบิกเงินโครงการวิจัย'
+      //     // },
+      //   ]
+      // })
       this.sideItems.push({
         group: 'ตั้งค่า',
         icon: 'fas fa-cogs',
         items: [
           {
-            url: 'settings-segment-groups',
-            icon: 'fas fa-cog',
-            text: 'Segment Groups'
+            url: 'settings-users',
+            icon: 'fas fa-users-cog',
+            text: 'ผู้ใช้งาน'
           }
         ]
       })
