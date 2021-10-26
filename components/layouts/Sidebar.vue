@@ -164,6 +164,9 @@ export default {
         ]
       })
       this.sideItems.push({
+        divider: true
+      })
+      this.sideItems.push({
         group: 'ตั้งค่า',
         icon: 'fas fa-cogs',
         items: [
