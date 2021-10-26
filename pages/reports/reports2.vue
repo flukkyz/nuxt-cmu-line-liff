@@ -1,5 +1,5 @@
 <template>
   <div>
-    reports
+    reports 2
   </div>
 </template>

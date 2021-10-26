@@ -147,17 +147,22 @@ export default {
       this.sideItems.push({
         divider: true
       })
-      // this.sideItems.push({
-      //   group: 'รายงาน',
-      //   icon: 'fas fa-list-alt',
-      //   items: [
-      //     // {
-      //     //   url: 'reports-process-duration',
-      //     //   icon: 'fas fa-list-alt',
-      //     //   text: 'รายงานสรุประยะเวลาในการดำเนินการเบิกเงินโครงการวิจัย'
-      //     // },
-      //   ]
-      // })
+      this.sideItems.push({
+        group: 'รายงาน',
+        icon: 'fas fa-list-alt',
+        items: [
+          {
+            url: 'reports-reports1',
+            icon: 'fas fa-list-alt',
+            text: 'รายงาน 1'
+          },
+          {
+            url: 'reports-reports2',
+            icon: 'fas fa-list-alt',
+            text: 'รายงาน 2'
+          }
+        ]
+      })
       this.sideItems.push({
         group: 'ตั้งค่า',
         icon: 'fas fa-cogs',
