@@ -19,9 +19,12 @@
     "core-js": "^3.15.1",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.7",
+    "print-js": "^1.6.0",
     "thai-baht-text": "^1.0.8",
     "v-currency-field": "^3.1.1",
     "v-mask": "^2.2.4",
+    "vue-pdf": "^4.3.0",
+    "vuedraggable": "^2.24.3",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {

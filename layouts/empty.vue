@@ -1,7 +1,9 @@
 <template>
   <v-app dark>
     <v-main>
-      <nuxt />
+      <v-container class="py-0 my-0">
+        <nuxt />
+      </v-container>
     </v-main>
     <snackbar />
     <overlay />
