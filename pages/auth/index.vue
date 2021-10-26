@@ -54,6 +54,7 @@ export default {
           liff.getProfile().then(async (profile) => {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
+            console.log(url)
             await this.$axios.$get(url)
             this.$router.push({ name: this.$route.query.state })
           })
