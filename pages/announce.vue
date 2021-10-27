@@ -42,7 +42,7 @@
           />
           <img-input
             v-else
-            v-model="form.img"
+            v-model="form.announce_img"
             label="รูปภาพ"
             :rules="rules.image"
           />
@@ -201,7 +201,7 @@ export default {
         txt: '',
         send_type: 'all',
         users: [],
-        img: null
+        announce_img: null
       }
     },
     send () {
@@ -228,8 +228,12 @@ export default {
       }
     },
     async confirmSend () {
+      const formData = new FormData()
+      for (const [key, value] of Object.entries(this.form)) {
+        formData.append(key, value)
+      }
       try {
-        const result = await this.$axios.$post(`${process.env.baseUrl}/api/announce`, this.form)
+        const result = await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
         if (result) {
           this.$notifier.showMessage({ title: 'ปรับปรุงข้อมูลสำเร็จ', content: `ปรับปรุงข้อมูล${this.modelName}สำเร็จ`, color: 'success' })
         }

@@ -28,10 +28,10 @@ module.exports = {
       })
     }
     const resp = [];
-    if(data.img){
-
+    if (req.file) {
+      resp.push(utility.image(`${process.env.BASE_URL}${req.file.path.replace('static', '')}`))
     }else{
-      resp.push(utility.message(data.txt));
+      resp.push(utility.message(data.txt))
     }
 
     
@@ -54,7 +54,6 @@ module.exports = {
       })
       res.json({status: 'ok'})
     } catch (e) {
-      console.log(e.messages);
       res.status(500).json({
         message: 'Cannot POST API #2'
       })

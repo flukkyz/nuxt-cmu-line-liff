@@ -5,11 +5,11 @@ module.exports = {
       "text": message
     }
   },
-  image: () => {
+  image: (originalUrl,previewUrl = null) => {
     return {
       type: "image",
-      originalContentUrl: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
-      previewImageUrl: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
+      originalContentUrl: originalUrl,
+      previewImageUrl: previewUrl || originalUrl
     }
   },
   uri: () => {
