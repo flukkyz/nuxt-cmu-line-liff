@@ -153,6 +153,9 @@ export default {
             return !v || mimetypeImages.includes(v.type) || this.$t('IMG_ONLY')
           },
           v => !v || v.size <= 10000000 || this.$t('LESS_SIZE', { text: this.$t('FILE'), count: '10 MB' })
+        ],
+        users: [
+          v => v.length > 0 || 'กรุณาเลือกสมาชิกอย่างน้อย 1 คน'
         ]
       },
       form: {}
