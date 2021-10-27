@@ -35,15 +35,6 @@ module.exports = {
 
     
     try {
-      console.log('---------------------------------------------------------------------');
-      console.log(data.users);
-      console.log('----------------------');
-      console.log(`${LINE_MESSAGING_API}/multicast`);
-      console.log('----------------------');
-      console.log(resp);
-      console.log('----------------------');
-      console.log(headers);
-      console.log('---------------------------------------------------------------------');
       client.multicast(data.users,resp)
       res.json({status: 'ok'})
     } catch (e) {
