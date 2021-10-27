@@ -10,7 +10,7 @@
       <v-spacer />
       <v-toolbar-title>
         <div class="d-flex align-center">
-          <img src="/images/logo-40.gif" width="30">
+          <img src="/images/logo.png" width="30">
           <span class="mb-0 mt-2 ml-1">
             CMU Line Management
           </span>

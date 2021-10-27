@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mb-5">
+  <v-card class="mb-5" elevation="0" color="grey lighten-4">
     <v-card-title class="py-3">
       <p class="body-1 mb-0 mr-2">
         {{ label }}
@@ -50,7 +50,7 @@
         @change="changeImage"
       >
         <template #label>
-          <span class="caption">{{ $t('LESS_SIZE', { text: $t('FILE'), count: '1 MB' }) }}</span>
+          <span class="caption">{{ $t('LESS_SIZE', { text: $t('FILE'), count: '10 MB' }) }}</span>
         </template>
       </v-file-input>
     </v-card-text>
