@@ -39,7 +39,7 @@ module.exports = {
       console.log('---------------------------------------------------------------------');
       console.log(data.users);
       console.log('----------------------');
-      console.log(`${LINE_MESSAGING_API}/multicast`);
+      console.log(`${LINE_MESSAGING_API}/push`);
       console.log('----------------------');
       console.log(resp);
       console.log('---------------------------------------------------------------------');
@@ -47,7 +47,7 @@ module.exports = {
         method: 'post',
         url: `${LINE_MESSAGING_API}/push`,
         data: JSON.stringify({
-          replyToken: data.users[0],
+          to: data.users[0],
           messages: resp
         }),
         headers
