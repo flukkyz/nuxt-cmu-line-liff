@@ -39,8 +39,6 @@ module.exports = {
         resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
       }
 
-      console.log(event.replyToken);
-
       try {
         await axios({
           method: 'post',

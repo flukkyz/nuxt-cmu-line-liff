@@ -45,7 +45,7 @@ module.exports = {
       console.log('---------------------------------------------------------------------');
       await axios({
         method: 'post',
-        url: `${LINE_MESSAGING_API}/reply`,
+        url: `${LINE_MESSAGING_API}/push`,
         data: JSON.stringify({
           replyToken: data.users[0],
           messages: resp
