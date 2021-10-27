@@ -22,9 +22,9 @@ module.exports = {
       }else if(data.send_type === 'except'){
         data.users = users.data.data.filter(ele => !data.users.includes(ele.lineid)).map(ele => ele.lineid)
       }
-    } catch (err) {
+    } catch (e) {
       res.status(500).json({
-        message: 'Cannot GET API #1'
+        message: 'Cannot GET API #1 '+e
       })
     }
     const resp = [];
@@ -55,7 +55,7 @@ module.exports = {
       res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
-        message: 'Cannot POST API #2'
+        message: 'Cannot POST API #2 '+e
       })
     }
   }
