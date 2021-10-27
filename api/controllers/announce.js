@@ -30,7 +30,7 @@ module.exports = {
     }
 
     const client = new line.Client({
-      channelAccessToken: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
+      channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
     });
 
     
