@@ -35,14 +35,15 @@ module.exports = {
 
     
     try {
-      // client.multicast(data.users,resp)
-      client.pushMessage(data.users[0], resp)
-      .then(() => {
-        res.json({status: 'ok'})
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      client.multicast(data.users,resp)
+      // client.pushMessage(data.users[0], resp)
+      // .then(() => {
+      //   res.json({status: 'ok'})
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+      res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
         message: 'Cannot POST API #2 '+e
