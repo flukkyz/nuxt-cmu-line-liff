@@ -1,10 +1,12 @@
 const utility = require('../config/line-utility')
 const axios = require('axios')
+const { v4: uuidv4 } = require('uuid');
 
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
 const headers = {
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
+  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`,
+  'X-Line-Retry-Key': uuidv4()
 };
 
 module.exports = {
