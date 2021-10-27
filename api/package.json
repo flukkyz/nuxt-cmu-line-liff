@@ -9,6 +9,7 @@
   "author": "Kunakorn Katasai",
   "license": "ISC",
   "dependencies": {
+    "@line/bot-sdk": "^7.4.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

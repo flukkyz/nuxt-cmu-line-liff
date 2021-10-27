@@ -1,13 +1,6 @@
 const utility = require('../config/line-utility')
 const axios = require('axios')
-const { v4: uuidv4 } = require('uuid');
-
-const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
-const headers = {
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`,
-  'X-Line-Retry-Key': uuidv4()
-};
+const line = require('@line/bot-sdk');
 
 module.exports = {
   index: async (req, res) => {
@@ -36,6 +29,10 @@ module.exports = {
       resp.push(utility.message(data.txt))
     }
 
+    const client = new line.Client({
+      channelAccessToken: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
+    });
+
     
     try {
       console.log('---------------------------------------------------------------------');
@@ -47,15 +44,7 @@ module.exports = {
       console.log('----------------------');
       console.log(headers);
       console.log('---------------------------------------------------------------------');
-      await axios({
-        method: 'post',
-        url: `${LINE_MESSAGING_API}/multicast`,
-        data: JSON.stringify({
-          to: data.users,
-          messages: resp
-        }),
-        headers
-      })
+      client.multicast(data.users,resp)
       res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
