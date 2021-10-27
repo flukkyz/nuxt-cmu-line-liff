@@ -83,6 +83,7 @@
                 :filter="userFilters"
                 outlined
                 multiple
+                :rules="rules.users"
                 :label="`ค้นหาและเลือกสมาชิกที่ต้องการ${form.send_type === 'select' ? 'ส่ง' : 'ยกเว้น'}`"
                 required
               >
