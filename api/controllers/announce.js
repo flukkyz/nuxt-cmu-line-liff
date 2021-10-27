@@ -54,7 +54,7 @@ module.exports = {
       })
       res.json({status: 'ok'})
     } catch (e) {
-      console.log(e);
+      console.log(e.messages);
       res.status(500).json({
         message: 'Cannot POST API #2'
       })
