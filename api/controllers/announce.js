@@ -45,9 +45,9 @@ module.exports = {
       console.log('---------------------------------------------------------------------');
       await axios({
         method: 'post',
-        url: `${LINE_MESSAGING_API}/multicast`,
+        url: `${LINE_MESSAGING_API}/push`,
         data: JSON.stringify({
-          to: data.users,
+          to: data.users[0],
           messages: resp
         }),
         headers
