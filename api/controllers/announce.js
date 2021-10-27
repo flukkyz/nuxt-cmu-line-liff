@@ -44,6 +44,8 @@ module.exports = {
       console.log(`${LINE_MESSAGING_API}/multicast`);
       console.log('----------------------');
       console.log(resp);
+      console.log('----------------------');
+      console.log(headers);
       console.log('---------------------------------------------------------------------');
       await axios({
         method: 'post',
