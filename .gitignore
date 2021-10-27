@@ -90,5 +90,5 @@ sw.*
 *.swp
 
 
-static/uploads/* 
-!static/uploads/.gitkeep 
+static/uploads/announces/* 
+!static/uploads/announces/.gitkeep 
