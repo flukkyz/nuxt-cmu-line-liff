@@ -39,20 +39,25 @@ module.exports = {
 
     
     try {
-      await client.multicast(data.users,resp).then(() => {
-        res.json({status: 'ok'})
-      })
-      .catch((err) => {
-        console.log(err);
-        // error handling
-      })
-      // client.pushMessage(data.users[0], resp)
-      // .then(() => {
+      // await client.multicast(data.users,resp).then(() => {
       //   res.json({status: 'ok'})
       // })
       // .catch((err) => {
       //   console.log(err);
-      // });
+      //   // error handling
+      // })
+      client.pushMessage('Uafd6cc9371cbdd3ed613b4a02d9c2bb8', [
+        {
+          type: 'text',
+          text: 'กรุณากรอกข้อความที่ต้องการประกาศ'
+        }
+      ])
+      .then(() => {
+        res.json({status: 'ok'})
+      })
+      .catch((err) => {
+        console.log(err);
+      });
       // res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
