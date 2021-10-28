@@ -5,9 +5,22 @@ const line = require('@line/bot-sdk');
 module.exports = {
   index: async (req, res) => {
     let data = req.body
+    
     console.log('DATA-------------------------------------');
     console.log(data);
     console.log('DATA-------------------------------------');
+
+    const resp = [];
+    if (req.file) {
+      resp.push(utility.image(`${process.env.BASE_URL}${req.file.path.replace('static', '')}`))
+    }else{
+      resp.push(utility.message(data.txt))
+    }
+
+    const client = new line.Client({
+      channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+    });
+
     let sendTo
     try {
       const users = await axios.get(`${process.env.API_URL}${process.env.API_DIR}users`)
@@ -27,17 +40,8 @@ module.exports = {
         message: 'Cannot GET API #1 '+e
       })
     }
-    const resp = [];
-    if (req.file) {
-      resp.push(utility.image(`${process.env.BASE_URL}${req.file.path.replace('static', '')}`))
-    }else{
-      resp.push(utility.message(data.txt))
-    }
 
-    const client = new line.Client({
-      channelAccessToken: 'i6DNvKSVEeXmQC+IAdPqghQwxqmBj0ZTvTZLTf5Vk2A2GVxHZXrdFjk/8A7uE4aamuIc8hFOgUdPG+zDyGy+56cp6J9tYIIKyRDUPs3aR/4ttoyzahApREp03DQXjFhAxHAycFB8EFnVcq9LGuhaagdB04t89/1O/w1cDnyilFU='
-      // channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
-    });
+    
 
     console.log(sendTo);
     console.log(resp);
@@ -51,7 +55,7 @@ module.exports = {
       //   console.log(err);
       //   // error handling
       // })
-      await client.multicast(sendTo, [
+      await client.broadcast([
         {
           type: 'text',
           text: 'ทดสอบ'
@@ -63,6 +67,18 @@ module.exports = {
       .catch((err) => {
         console.log(err);
       });
+      // await client.multicast(sendTo, [
+      //   {
+      //     type: 'text',
+      //     text: 'ทดสอบ'
+      //   }
+      // ])
+      // .then(() => {
+      //   res.json({status: 'ok'})
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
       // res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
