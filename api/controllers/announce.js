@@ -5,10 +5,6 @@ const line = require('@line/bot-sdk');
 module.exports = {
   index: async (req, res) => {
     let data = req.body
-    
-    console.log('DATA-------------------------------------');
-    console.log(data);
-    console.log('DATA-------------------------------------');
 
     const resp = [];
     if (req.file) {
@@ -38,12 +34,6 @@ module.exports = {
         message: 'Cannot GET API #1 '+e
       })
     }
-
-    
-
-    console.log(sendTo);
-    console.log(resp);
-
     
     try {
       if(data.send_type === 'all'){
@@ -51,37 +41,6 @@ module.exports = {
       }else{
         await client.multicast(sendTo,resp)
       }
-      // await client.multicast(data.users,resp).then(() => {
-      //   res.json({status: 'ok'})
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      //   // error handling
-      // })
-      // await client.broadcast([
-      //   {
-      //     type: 'text',
-      //     text: 'ทดสอบ'
-      //   }
-      // ])
-      // .then(() => {
-      //   res.json({status: 'ok'})
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-      // await client.multicast(sendTo, [
-      //   {
-      //     type: 'text',
-      //     text: 'ทดสอบ'
-      //   }
-      // ])
-      // .then(() => {
-      //   res.json({status: 'ok'})
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
       res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
