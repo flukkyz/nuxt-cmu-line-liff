@@ -30,12 +30,16 @@ module.exports = {
     }
 
     const client = new line.Client({
-      channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+      channelAccessToken: 'i6DNvKSVEeXmQC+IAdPqghQwxqmBj0ZTvTZLTf5Vk2A2GVxHZXrdFjk/8A7uE4aamuIc8hFOgUdPG+zDyGy+56cp6J9tYIIKyRDUPs3aR/4ttoyzahApREp03DQXjFhAxHAycFB8EFnVcq9LGuhaagdB04t89/1O/w1cDnyilFU='
+      // channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
     });
+
+    console.log();
+    console.log(resp);
 
     
     try {
-      client.multicast(data.users,resp)
+      await client.multicast(data.users,resp)
       // client.pushMessage(data.users[0], resp)
       // .then(() => {
       //   res.json({status: 'ok'})
