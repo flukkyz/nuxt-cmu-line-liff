@@ -24,16 +24,14 @@ module.exports = {
     let sendTo
     try {
       const users = await axios.get(`${process.env.API_URL}${process.env.API_DIR}users`)
-      if(data.send_type === 'all'){
-        sendTo = users.data.data.map(ele => ele.lineid)
-      }else if(data.send_type === 'personnel'){
+      if(data.send_type === 'personnel'){
         sendTo = users.data.data.filter(ele => !ele.isStudent).map(ele => ele.lineid)
       }else if(data.send_type === 'student'){
         sendTo = users.data.data.filter(ele => ele.isStudent).map(ele => ele.lineid)
       }else if(data.send_type === 'except'){
         sendTo = users.data.data.filter(ele => !data.users.includes(ele.lineid)).map(ele => ele.lineid)
       }else{
-        sendTo = [...data.users]
+        sendTo = [data.users]
       }
     } catch (e) {
       res.status(500).json({
@@ -48,6 +46,11 @@ module.exports = {
 
     
     try {
+      if(data.send_type === 'all'){
+        await client.broadcast(resp)
+      }else{
+        await client.multicast(sendTo,resp)
+      }
       // await client.multicast(data.users,resp).then(() => {
       //   res.json({status: 'ok'})
       // })
@@ -55,18 +58,18 @@ module.exports = {
       //   console.log(err);
       //   // error handling
       // })
-      await client.broadcast([
-        {
-          type: 'text',
-          text: 'ทดสอบ'
-        }
-      ])
-      .then(() => {
-        res.json({status: 'ok'})
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      // await client.broadcast([
+      //   {
+      //     type: 'text',
+      //     text: 'ทดสอบ'
+      //   }
+      // ])
+      // .then(() => {
+      //   res.json({status: 'ok'})
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
       // await client.multicast(sendTo, [
       //   {
       //     type: 'text',
@@ -79,7 +82,7 @@ module.exports = {
       // .catch((err) => {
       //   console.log(err);
       // });
-      // res.json({status: 'ok'})
+      res.json({status: 'ok'})
     } catch (e) {
       res.status(500).json({
         message: 'Cannot POST API #2 '+e
