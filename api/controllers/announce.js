@@ -5,6 +5,9 @@ const line = require('@line/bot-sdk');
 module.exports = {
   index: async (req, res) => {
     let data = req.body
+    console.log('DATA-------------------------------------');
+    console.log(data);
+    console.log('DATA-------------------------------------');
     let sendTo
     try {
       const users = await axios.get(`${process.env.API_URL}${process.env.API_DIR}users`)
