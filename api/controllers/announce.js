@@ -46,10 +46,10 @@ module.exports = {
       //   console.log(err);
       //   // error handling
       // })
-      client.pushMessage('Uafd6cc9371cbdd3ed613b4a02d9c2bb8', [
+      await client.multicast(data.users, [
         {
           type: 'text',
-          text: 'กรุณากรอกข้อความที่ต้องการประกาศ'
+          text: 'ทดสอบ'
         }
       ])
       .then(() => {
