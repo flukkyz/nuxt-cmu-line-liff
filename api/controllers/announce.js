@@ -5,17 +5,19 @@ const line = require('@line/bot-sdk');
 module.exports = {
   index: async (req, res) => {
     let data = req.body
-    
+    let sendTo
     try {
       const users = await axios.get(`${process.env.API_URL}${process.env.API_DIR}users`)
       if(data.send_type === 'all'){
-        data.users = users.data.data.map(ele => ele.lineid)
+        sendTo = users.data.data.map(ele => ele.lineid)
       }else if(data.send_type === 'personnel'){
-        data.users = users.data.data.filter(ele => !ele.isStudent).map(ele => ele.lineid)
+        sendTo = users.data.data.filter(ele => !ele.isStudent).map(ele => ele.lineid)
       }else if(data.send_type === 'student'){
-        data.users = users.data.data.filter(ele => ele.isStudent).map(ele => ele.lineid)
+        sendTo = users.data.data.filter(ele => ele.isStudent).map(ele => ele.lineid)
       }else if(data.send_type === 'except'){
-        data.users = users.data.data.filter(ele => !data.users.includes(ele.lineid)).map(ele => ele.lineid)
+        sendTo = users.data.data.filter(ele => !data.users.includes(ele.lineid)).map(ele => ele.lineid)
+      }else{
+        sendTo = data.users
       }
     } catch (e) {
       res.status(500).json({
@@ -34,7 +36,7 @@ module.exports = {
       // channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
     });
 
-    console.log();
+    console.log(sendTo);
     console.log(resp);
 
     
@@ -46,7 +48,7 @@ module.exports = {
       //   console.log(err);
       //   // error handling
       // })
-      await client.multicast(['Uafd6cc9371cbdd3ed613b4a02d9c2bb8'], [
+      await client.multicast(sendTo, [
         {
           type: 'text',
           text: 'ทดสอบ'
