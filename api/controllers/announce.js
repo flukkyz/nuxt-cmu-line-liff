@@ -46,7 +46,7 @@ module.exports = {
       //   console.log(err);
       //   // error handling
       // })
-      await client.multicast(data.users, [
+      await client.multicast(['Uafd6cc9371cbdd3ed613b4a02d9c2bb8'], [
         {
           type: 'text',
           text: 'ทดสอบ'
