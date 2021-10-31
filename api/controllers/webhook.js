@@ -55,8 +55,10 @@ module.exports = {
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
           const searchSymbol = `${msg.toUpperCase()}USDT`
+          console.log(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`);
           const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
           if(data){
+            console.log(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`);
             const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
             resp.push(lineUtility.message(`${data.symbols[0].baseAsset}: ${dataPrice.data.price}`))
           }else{
