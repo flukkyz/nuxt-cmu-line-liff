@@ -291,7 +291,7 @@ module.exports = {
       }
     }
   },
-  symbol: (symbol,usd,thb) => {
+  symbol: (symbol,usd) => {
     return {
       type: 'flex',
       altText: 'Cryptocurrency',
@@ -335,34 +335,34 @@ module.exports = {
                     {
                       type: 'span',
                       text: new Intl.NumberFormat('th-th').format(usd),
-                      size: '3xl'
+                      size: 'xxl'
                     }
                   ]
                 }
               ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              paddingBottom: '30px',
-              contents: [
-                {
-                  type: 'text',
-                  weight: 'bold',
-                  contents: [
-                    {
-                      type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(thb),
-                    },
-                    {
-                      type: 'span',
-                      text: ' บาท',
-                      size: 'sm'
-                    }
-                  ]
-                }
-              ]
-            },
+            }
+            // {
+            //   type: 'box',
+            //   layout: 'vertical',
+            //   paddingBottom: '30px',
+            //   contents: [
+            //     {
+            //       type: 'text',
+            //       weight: 'bold',
+            //       contents: [
+            //         {
+            //           type: 'span',
+            //           text: new Intl.NumberFormat('th-th').format(thb),
+            //         },
+            //         {
+            //           type: 'span',
+            //           text: ' บาท',
+            //           size: 'sm'
+            //         }
+            //       ]
+            //     }
+            //   ]
+            // },
           ]
         }
       }
