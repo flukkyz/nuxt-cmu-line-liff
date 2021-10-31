@@ -30,16 +30,12 @@ module.exports = {
                   type: 'text',
                   weight: 'bold',
                   contents: [
-                    {
-                      type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(salary),
+                    utility.span(new Intl.NumberFormat('th-th').format(salary),{
                       size: '3xl'
-                    },
-                    {
-                      type: 'span',
-                      text: ' บาท',
+                    }),
+                    utility.span(' บาท',{
                       size: 'xl'
-                    }
+                    })
                   ]
                 }
               ]
@@ -110,7 +106,7 @@ module.exports = {
         utility.message('FAQ',{
           align: 'center',
           size: 'xxl'
-        }),
+        })
       ]
     },
     {
@@ -157,12 +153,12 @@ module.exports = {
       }
     }
   },
-  faqPostback: (datas) => {
+  faqPostback: (data) => {
     const contents = []
-    for (const data of datas) {
+    for (const faq of data.faqs) {
       contents.push({
         type: 'flex',
-        altText: 'CMU e-Document',
+        altText: faq.question,
         contents: {
           type: 'bubble',
           body: {
@@ -172,32 +168,38 @@ module.exports = {
               {
                 type: 'box',
                 layout: 'baseline',
-                paddingStart: '30px',
-                paddingEnd: '30px',
                 contents: [
                   {
                     type: 'text',
-                    text: '1 รายการ',
-                    warp: true,
-                    size: 'xl'
+                    contents: [
+                      utility.span('Q: ',{
+                        weight: 'bold',
+                        size: 'xl'
+                      }),
+                      utility.span(faq.question,{
+                        weight: 'bold',
+                        size: 'xl'
+                      }),
+                    ]
                   }
                 ]
               },
               {
                 type: 'box',
-                layout: 'vertical',
-                paddingTop: '30px',
+                layout: 'baseline',
                 contents: [
                   {
-                    type: 'button',
-                    action: {
-                      type: 'uri',
-                      label: 'แสดงรายละเอียดเพิ่มเติม',
-                      uri: 'https://liff.line.me/1656332858-DgV6jA5l'
-                    },
-                    style: 'primary',
-                    color: '#0000ff',
-                    height: 'sm'
+                    type: 'text',
+                    contents: [
+                      utility.span('A: ',{
+                        weight: 'bold',
+                        size: 'xl'
+                      }),
+                      utility.span(faq.answer,{
+                        weight: 'bold',
+                        size: 'xl'
+                      }),
+                    ]
                   }
                 ]
               },

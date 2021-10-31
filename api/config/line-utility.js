@@ -11,14 +11,21 @@ const addOptions = (obj,options) => {
 module.exports = {
   message: (message, options = {}) => {
     const obj = {
-      "type": "text",
-      "text": message
+      type: 'text',
+      text
+    }
+    return addOptions(obj,options)
+  },
+  span: (text, options = {}) => {
+    const obj = {
+      type: 'span',
+      text
     }
     return addOptions(obj,options)
   },
   image: (originalUrl,previewUrl = null, options = {}) => {
     const obj = {
-      type: "image",
+      type: 'image',
       originalContentUrl: originalUrl,
       previewImageUrl: previewUrl || originalUrl
     }
@@ -63,7 +70,7 @@ module.exports = {
   },
   map: (title,address,latitude,longitude, options = {}) => {
     const obj = {
-      type: "location",
+      type: 'location',
       title,
       address,
       latitude,
