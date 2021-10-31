@@ -39,9 +39,12 @@ module.exports = {
         const data = await axios.get(`${BACKEND_API}line/users/income`,{
           headers: backendHeaders
         })
-        console.log(data.data);
-        resp.push(utility.salary(15000));
+        resp.push(utility.salary(data.data.data));
       } else if(msg === 'leave') {
+        const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{
+          headers: backendHeaders
+        })
+        console.log(data.data);
         resp.push(utility.leave());
       } else if(msg === 'document') {
         resp.push(utility.document());
