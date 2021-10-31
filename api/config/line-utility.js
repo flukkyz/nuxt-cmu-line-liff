@@ -521,97 +521,35 @@ module.exports = {
   },
   test3: () => {
     return {
-      "type": "flex",
-      "altText": "this is a flex message",
-      "contents": {
-        "type": "bubble",
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "md"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "md"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "lg"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "lg"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "xl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "xl"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "xxl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "xxl"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "3xl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "3xl"
-                }
-              ]
-            }
-          ]
+      "type": "carousel",
+      "contents": [
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "First bubble"
+              }
+            ]
+          }
+        },
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Second bubble"
+              }
+            ]
+          }
         }
-      }
+      ]
     }
   },
   test4: () => {
