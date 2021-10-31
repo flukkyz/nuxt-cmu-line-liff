@@ -10,19 +10,24 @@ const client = new line.Client({
 const BACKEND_API = `${process.env.API_URL}${process.env.API_DIR}`;
 
 const reply = (replyToken,messages) => {
-  client.replyMessage(replyToken, messages)
-  .catch((e) => {
+  client.replyMessage(replyToken, messages).catch((e) => {
+    console.log(e)
+  })
+}
+const push = (to,messages) => {
+  client.pushMessage(to, messages).catch((e) => {
     console.log(e)
   })
 }
 
 module.exports = {
   index: async (req, res) => {
-    const event = req.body.events[0];
-    const userId = event.source.userId;
+    const event = req.body.events[0]
+    const replyToken = event.replyToken
+    const userId = event.source.userId
     if (event.type === "message") {
       const msg = event.message.text
-      let resp = [];
+      let resp = []
 
       const headers = {
         'Content-Type': 'application/json',
@@ -31,18 +36,18 @@ module.exports = {
 
       try {
         if(msg === 'salary') {
-          await reply(event.replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
+          await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
           const data = await axios.get(`${BACKEND_API}line/users/income`,{headers})
           resp.push(cmuUtility.salary(data.data.data));
         } else if(msg === 'leave') {
-          await reply(event.replyToken,lineUtility.message(`กำลังโหลดข้อมูลการลา`))
+          await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการลา`))
           const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
           resp.push(cmuUtility.leave(data.data.data));
         } else if(msg === 'document') {
-          await reply(event.replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
+          await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
           resp.push(lineUtility.document());
         } else if(msg === 'faq') {
-          await reply(event.replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
+          await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
           resp.push(lineUtility.document());
         } else if(msg === 'A') {
@@ -57,7 +62,7 @@ module.exports = {
         resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`));
       }
 
-      reply(event.replyToken,resp)
+      push(userId,resp)
     } else if(event.type === "postback") {
       console.log(event.postback.data)
     }
