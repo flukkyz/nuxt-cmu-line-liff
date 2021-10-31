@@ -31,7 +31,7 @@ module.exports = {
         console.log(lineUtility.leave())
         console.log('===============');
         console.log(cmuUtility.leave(data.data.data));
-        resp.push(cmuUtility.leave(data.data.data));
+        resp.push(lineUtility.leave(data.data.data));
       } else if(msg === 'document') {
         resp.push(utility.document());
       } else {
