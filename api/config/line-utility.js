@@ -291,7 +291,7 @@ module.exports = {
       }
     }
   },
-  symbol: (symbol,usd) => {
+  symbol: (symbol,usd,thb) => {
     return {
       type: 'flex',
       altText: 'Cryptocurrency',
@@ -325,7 +325,6 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
-                  weight: 'bold',
                   contents: [
                     {
                       type: 'span',
@@ -335,34 +334,51 @@ module.exports = {
                     {
                       type: 'span',
                       text: new Intl.NumberFormat('th-th').format(usd),
+                      weight: 'bold',
                       size: 'xxl'
                     }
                   ]
                 }
               ]
-            }
-            // {
-            //   type: 'box',
-            //   layout: 'vertical',
-            //   paddingBottom: '30px',
-            //   contents: [
-            //     {
-            //       type: 'text',
-            //       weight: 'bold',
-            //       contents: [
-            //         {
-            //           type: 'span',
-            //           text: new Intl.NumberFormat('th-th').format(thb),
-            //         },
-            //         {
-            //           type: 'span',
-            //           text: ' บาท',
-            //           size: 'sm'
-            //         }
-            //       ]
-            //     }
-            //   ]
-            // },
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'ประมาณ ',
+                      size: 'sm'
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(thb),
+                    },
+                    {
+                      type: 'span',
+                      text: ' บาท',
+                      size: 'sm'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingBottom: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'ค่าประมาณที่ 1 USD = 33 บาท',
+                  size: 'xxs'
+                }
+              ]
+            },
           ]
         }
       }
