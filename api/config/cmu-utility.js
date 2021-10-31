@@ -174,12 +174,12 @@ module.exports = {
                     label: 'แสดงรายละเอียดเพิ่มเติม',
                     uri: 'https://liff.line.me/1656332858-DgV6jA5l'
                   }
-                }ม
+                },
                 {
                   type: 'button',
                   action: {
                     type: 'uri',
-                    label: 'ฤฤฤฤฤ',
+                    label: 'AAAA',
                     uri: 'https://liff.line.me/1656332858-DgV6jA5l'
                   }
                 }
