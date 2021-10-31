@@ -2,6 +2,7 @@ const cmuUtility = require('../config/cmu-utility')
 const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
+const ccxt = require('ccxt')
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -42,22 +43,22 @@ module.exports = {
           const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
           resp.push(cmuUtility.leave(data.data.data))
         } else if(msg === 'document') {
-          await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
+          resp.push(lineUtility.sticker('11537','52002746'))
+          resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
+          // await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
           resp.push(lineUtility.document())
         } else if(msg === 'faq') {
           await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
-          console.log(data.data)
           resp.push(cmuUtility.faq(data.data.data))
-        } else if(msg === 'A') {
-          resp.push(lineUtility.test2())
-        } else if(msg === 'S') {
-          resp.push(lineUtility.test3())
-        } else if(msg === 'D') {
-          resp.push(lineUtility.test4())
+        } else if(msg === 'helpdesk') {
+          resp.push(lineUtility.sticker('11537','52002746'))
+          resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
+          const data = axios.get('https://api.binance.com/api/v3/exchangeInfo')
+          console.log(data);
           resp.push(lineUtility.sticker('11537','52002773'))
-          resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์ไปเรื่องดิ`))
+          resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
         }
       } else if(event.type === "postback") {
         const postback = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
