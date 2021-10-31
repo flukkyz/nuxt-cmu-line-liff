@@ -179,10 +179,18 @@ module.exports = {
                   type: 'button',
                   action: {
                     type: 'uri',
-                    label: 'AAAA',
+                    label: 'AA',
                     uri: 'https://liff.line.me/1656332858-DgV6jA5l'
                   }
-                }
+                },
+                {
+                  type: 'button',
+                  action: {
+                    type: 'uri',
+                    label: 'VVVVV',
+                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+                  }
+                },
               ]
             },
           ]
