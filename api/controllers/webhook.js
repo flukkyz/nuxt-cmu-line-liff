@@ -49,7 +49,7 @@ module.exports = {
         } else if(msg === 'faq') {
           await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
-          resp.push(lineUtility.faq(data.data.data));
+          resp.push(cmuUtility.faq(data.data.data));
         } else if(msg === 'A') {
           resp.push(lineUtility.test2());
         } else if(msg === 'S') {
