@@ -168,6 +168,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
+                  warp: true,
                   contents: [
                     utility.span('Q: ',{
                       weight: 'bold',
@@ -186,6 +187,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
+                  warp: true,
                   contents: [
                     utility.span('A: ',{
                       weight: 'bold'
