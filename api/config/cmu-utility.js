@@ -84,18 +84,11 @@ module.exports = {
       ]
     }]
     for (const data of datas) {
-      console.log([
-        utility.message(data.leaveTypeName),
-        {
-          type: 'filler'
-        },
-        utility.message(`${data.leaveLimit} วัน`,{align: 'end'})
-      ]);
       contents.push({
         type: 'box',
         layout: 'baseline',
-        paddingStart: '30px',
-        paddingEnd: '30px',
+        paddingStart: '10px',
+        paddingEnd: '10px',
         contents: [
           utility.message(data.leaveTypeName),
           {
