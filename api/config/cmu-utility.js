@@ -123,6 +123,7 @@ module.exports = {
         }
       ]
     })
+    console.log(contents);
     return {
       type: 'flex',
       altText: 'การลา',
