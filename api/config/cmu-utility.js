@@ -91,7 +91,7 @@ module.exports = {
         paddingEnd: '30px',
         contents: [
           utility.message(data.leaveTypeName,{wrap: true, flex: 4}),
-          utility.message(`${data.leaveLimit} วัน`,{align: 'end',wrap: true, flex: 1})
+          utility.message(`${data.leaveLimit} วัน`,{align: 'end', flex: 0})
         ]
       })
     }
