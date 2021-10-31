@@ -56,6 +56,7 @@ module.exports = {
         } else if(msg === 'D') {
           resp.push(lineUtility.test4())
         } else {
+          resp.push(lineUtility.sticker('6632','11825396'))
           resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์ไปเรื่องดิ`))
         }
       } else if(event.type === "postback") {
@@ -70,6 +71,7 @@ module.exports = {
       }
     } catch (e) {
       console.log(e)
+      resp.push(lineUtility.sticker('6632','11825396'))
       resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
     }
     push(userId,resp)

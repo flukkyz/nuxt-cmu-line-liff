@@ -16,6 +16,13 @@ module.exports = {
     }
     return addOptions(obj,options)
   },
+  sticker: (packageId,stickerId) => {
+    return {
+      type: 'sticker',
+      packageId,
+      stickerId
+    }
+  },
   span: (text, options = {}) => {
     const obj = {
       type: 'span',
