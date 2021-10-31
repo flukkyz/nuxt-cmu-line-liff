@@ -78,7 +78,7 @@ export default {
       this.dataFaq = dataFaq
       this.clearData()
       this.mode = 'add'
-      if (index && index !== null) {
+      if (index !== null) {
         this.index = index
         this.mode = 'edit'
         this.form = { ...dataFaq.faqs[index] }
