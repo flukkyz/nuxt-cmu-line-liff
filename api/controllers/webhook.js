@@ -2,7 +2,6 @@ const cmuUtility = require('../config/cmu-utility')
 const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
-const ccxt = require('ccxt')
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
