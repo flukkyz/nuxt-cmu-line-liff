@@ -1,14 +1,13 @@
-const utility = require('../config/line-utility')
+const cmuUtility = require('../config/cmu-utility')
 const axios = require('axios')
 
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
-const headers = {
+const LINE_HEADERS = {
   'Content-Type': 'application/json',
   Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
 };
 
 const BACKEND_API = `${process.env.API_URL}${process.env.API_DIR}`;
-
 
 module.exports = {
   index: async (req, res) => {
@@ -18,38 +17,19 @@ module.exports = {
       const msg = event.message.text
       let resp = [];
 
-      const backendHeaders = {
+      const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userId}`
       };
 
-      if(msg === 'message') {
-        resp.push(utility.message(`${msg} รอสักครู่ เดี่ยวส่งให้นะ ...`));
-      } else if(msg === 'image') {
-        resp.push(utility.image());
-      } else if(msg === 'map') {
-        resp.push(utility.map());
-      } else if(msg === 'temp') {
-        resp.push(utility.CarouselTemplate());
-      } else if(msg === 'Quick') {
-        resp.push(utility.QuickReply(userId));
-      } else if(msg === 'test1') {
-        resp.push(utility.test1());
-      } else if(msg === 'salary') {
-        const data = await axios.get(`${BACKEND_API}line/users/income`,{
-          headers: backendHeaders
-        })
-        resp.push(utility.salary(data.data.data));
+      if(msg === 'salary') {
+        const data = await axios.get(`${BACKEND_API}line/users/income`,{headers})
+        resp.push(cmuUtility.salary(data.data.data));
       } else if(msg === 'leave') {
-        const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{
-          headers: backendHeaders
-        })
-        console.log(data.data);
-        resp.push(utility.leave());
+        const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
+        resp.push(cmuUtility.leave(data.data));
       } else if(msg === 'document') {
         resp.push(utility.document());
-      } else if(msg === 'test3') {
-        resp.push(utility.test3());
       } else {
         resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
       }
@@ -62,7 +42,7 @@ module.exports = {
             replyToken: event.replyToken,
             messages: resp
           }),
-          headers
+          headers: LINE_HEADERS
         })
       } catch (e) {
         console.log(e)

@@ -1,3 +1,4 @@
+const _ = require('lodash')
 module.exports = {
   message: (message) => {
     return {
@@ -12,20 +13,20 @@ module.exports = {
       previewImageUrl: previewUrl || originalUrl
     }
   },
-  uri: () => {
+  uri: (uri,label) => {
     return {
       type: "uri",
-      label: "CLICK Link",
-      uri: `https://15142daf4d14.ngrok.io`
+      label,
+      uri
     }
   },
-  map: () => {
+  map: (title,address,latitude,longitude) => {
     return {
       type: "location",
-      title: "LINE Company (Thailand) Limited",
-      address: "127 อาคารเกษรทาวเวอร์ ชั้น17 ถ.ราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330",
-      latitude: 13.7460089,
-      longitude: 100.5386192
+      title,
+      address,
+      latitude,
+      longitude
     }
   },
   CarouselTemplate: () => {
@@ -230,180 +231,6 @@ module.exports = {
             "separator": true,
             "separatorColor": "#000000"
           }
-        }
-      }
-    }
-  },
-  salary: (salary) => {
-    return {
-      type: 'flex',
-      altText: 'เงินเดือนปัจจุบัน',
-      contents: {
-        type: 'bubble',
-        body: {
-          type: 'box',
-          layout: 'vertical',
-          alignItems: 'center',
-          justifyContent: 'center',
-          contents: [
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'เงินเดือนปัจจุบัน'
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              paddingTop: '20px',
-              paddingBottom: '30px',
-              contents: [
-                {
-                  type: 'text',
-                  weight: 'bold',
-                  contents: [
-                    {
-                      type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(salary),
-                      size: '3xl'
-                    },
-                    {
-                      type: 'span',
-                      text: ' บาท',
-                      size: 'xl'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
-                }
-              ]
-            },
-          ]
-        }
-      }
-    }
-  },
-  leave: () => {
-    return {
-      type: 'flex',
-      altText: 'การลา',
-      contents: {
-        type: 'bubble',
-        body: {
-          type: 'box',
-          layout: 'vertical',
-          contents: [
-            {
-              type: 'box',
-              layout: 'vertical',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingBottom: '20px',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'จำนวนวันลาที่เหลือ'
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              paddingStart: '30px',
-              paddingEnd: '30px',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'ลาป่วย'
-                },
-                {
-                  type: 'filler'
-                },
-                {
-                  type: 'text',
-                  text: '1 วัน',
-                  align: 'end'
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              paddingStart: '30px',
-              paddingEnd: '30px',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'ลากิจ'
-                },
-                {
-                  type: 'filler'
-                },
-                {
-                  type: 'text',
-                  text: '1 วัน',
-                  align: 'end'
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              paddingStart: '30px',
-              paddingEnd: '30px',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'ลาพักร้อน'
-                },
-                {
-                  type: 'filler'
-                },
-                {
-                  type: 'text',
-                  text: '1 วัน',
-                  align: 'end'
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              paddingTop: '30px',
-              contents: [
-                {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
-                }
-              ]
-            },
-          ]
         }
       }
     }
