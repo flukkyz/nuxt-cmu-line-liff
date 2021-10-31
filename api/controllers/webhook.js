@@ -59,7 +59,7 @@ module.exports = {
           if(data){
             const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
             console.log();
-            resp.push(lineUtility.message(`${data.data.symbols[0].baseAsset}: ${dataPrice.data.price}`))
+            resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,10000))
           }else{
             resp.push(lineUtility.sticker('11537','52002773'))
             resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))

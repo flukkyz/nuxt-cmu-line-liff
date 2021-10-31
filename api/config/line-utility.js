@@ -291,10 +291,10 @@ module.exports = {
       }
     }
   },
-  salary: (salary) => {
+  symbol: (symbol,usd,thb) => {
     return {
       type: 'flex',
-      altText: 'เงินเดือนปัจจุบัน',
+      altText: 'Cryptocurrency',
       contents: {
         type: 'bubble',
         body: {
@@ -306,18 +306,22 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              paddingTop: '20px',
+              paddingBottom: '10px',
               contents: [
                 {
+
                   type: 'text',
-                  text: 'เงินเดือนปัจจุบัน'
+                  weight: 'bold',
+                  size: '5xl',
+                  text: symbol
                 }
               ]
             },
             {
               type: 'box',
               layout: 'vertical',
-              paddingTop: '20px',
-              paddingBottom: '30px',
+              paddingBottom: '10px',
               contents: [
                 {
                   type: 'text',
@@ -325,13 +329,13 @@ module.exports = {
                   contents: [
                     {
                       type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(salary),
-                      size: '3xl'
+                      text: '$',
+                      size: 'xl'
                     },
                     {
                       type: 'span',
-                      text: ' บาท',
-                      size: 'xl'
+                      text: new Intl.NumberFormat('th-th').format(usd),
+                      size: '3xl'
                     }
                   ]
                 }
@@ -340,17 +344,22 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              paddingBottom: '30px',
               contents: [
                 {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://payroll.mis.cmu.ac.th/'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
+                  type: 'text',
+                  weight: 'bold',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: new Intl.NumberFormat('th-th').format(thb),
+                    },
+                    {
+                      type: 'span',
+                      text: ' บาท',
+                      size: 'sm'
+                    }
+                  ]
                 }
               ]
             },
