@@ -123,7 +123,6 @@ module.exports = {
         }
       ]
     })
-    console.log(contents);
     return {
       type: 'flex',
       altText: 'การลา',
@@ -132,7 +131,7 @@ module.exports = {
         body: {
           type: 'box',
           layout: 'vertical',
-          contents
+          contents: ...contents
         }
       }
     }
