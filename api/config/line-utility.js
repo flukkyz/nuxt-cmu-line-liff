@@ -9,7 +9,7 @@ const addOptions = (obj,options) => {
 }
 
 module.exports = {
-  message: (message, options = {}) => {
+  message: (text, options = {}) => {
     const obj = {
       type: 'text',
       text
