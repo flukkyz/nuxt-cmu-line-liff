@@ -1,12 +1,12 @@
 const utility = require('../config/line-utility')
 const axios = require('axios')
-const line = require('@line/bot-sdk');
+const line = require('@line/bot-sdk')
 
 module.exports = {
   index: async (req, res) => {
     let data = req.body
 
-    const resp = [];
+    const resp = []
     if (req.file) {
       resp.push(utility.image(`${process.env.BASE_URL}${req.file.path.replace('static', '')}`))
     }else{
@@ -15,7 +15,7 @@ module.exports = {
 
     const client = new line.Client({
       channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
-    });
+    })
 
     let sendTo
     try {

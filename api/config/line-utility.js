@@ -16,28 +16,60 @@ module.exports = {
     }
     return addOptions(data,options)
   },
-  image: (originalUrl,previewUrl = null) => {
-    return {
+  image: (originalUrl,previewUrl = null, options = {}) => {
+    const data = {
       type: "image",
       originalContentUrl: originalUrl,
       previewImageUrl: previewUrl || originalUrl
     }
+    return addOptions(data,options)
   },
-  uri: (uri,label) => {
-    return {
+  uri: (uri, label, options = {}) => {
+    const data = {
       type: "uri",
       label,
       uri
     }
+    return addOptions(data,options)
   },
-  map: (title,address,latitude,longitude) => {
-    return {
+  buttonLink: (label,uri,color = '#0000ff',height='sm',options={}) => {
+    const data = {
+      type: 'button',
+      action: {
+        type: 'uri',
+        label,
+        uri
+      },
+      style: 'primary',
+      color,
+      height
+    }
+    return addOptions(data,options)
+  },
+  buttonPostback: (label,data, text='' ,options={}) => {
+    const data = {
+      type: 'button',
+      action: {
+          type: 'postback',
+          label,
+          data,
+      },
+      style: 'secondary'
+    }
+    if(!!text){
+      data.action.text = text
+    }
+    return addOptions(data,options)
+  },
+  map: (title,address,latitude,longitude, options = {}) => {
+    const data = {
       type: "location",
       title,
       address,
       latitude,
       longitude
     }
+    return addOptions(data,options)
   },
   CarouselTemplate: () => {
     return {

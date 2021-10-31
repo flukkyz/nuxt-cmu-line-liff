@@ -17,10 +17,7 @@ module.exports = {
               type: 'box',
               layout: 'vertical',
               contents: [
-                {
-                  type: 'text',
-                  text: 'เงินเดือนปัจจุบัน'
-                }
+                utility.message('เงินเดือนปัจจุบัน')
               ]
             },
             {
@@ -51,17 +48,7 @@ module.exports = {
               type: 'box',
               layout: 'vertical',
               contents: [
-                {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://payroll.mis.cmu.ac.th/'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
-                }
+                utility.buttonLink('แสดงรายละเอียดเพิ่มเติม','https://payroll.mis.cmu.ac.th/'),
               ]
             },
           ]
@@ -77,10 +64,7 @@ module.exports = {
       justifyContent: 'center',
       paddingBottom: '20px',
       contents: [
-        {
-          type: 'text',
-          text: 'จำนวนวันลาที่เหลือ'
-        }
+        utility.message('จำนวนวันลาที่เหลือ')
       ]
     }]
     for (const data of datas) {
@@ -100,17 +84,7 @@ module.exports = {
       layout: 'vertical',
       paddingTop: '30px',
       contents: [
-        {
-          type: 'button',
-          action: {
-            type: 'uri',
-            label: 'แสดงรายละเอียดเพิ่มเติม',
-            uri: 'https://hr.mis.cmu.ac.th/'
-          },
-          style: 'primary',
-          color: '#0000ff',
-          height: 'sm'
-        }
+        utility.buttonLink('แสดงรายละเอียดเพิ่มเติม','https://hr.mis.cmu.ac.th/')
       ]
     })
     return {
@@ -133,12 +107,10 @@ module.exports = {
       paddingStart: '30px',
       paddingEnd: '30px',
       contents: [
-        {
-          type: 'text',
-          text: 'FAQ',
+        utility.message('เงินเดือนปัจจุบัน',{
           align: 'center',
           size: 'xxl'
-        }
+        }),
       ]
     },
     {
@@ -147,10 +119,16 @@ module.exports = {
       alignItems: 'center',
       justifyContent: 'center',
       contents: [
-        {
-          type: 'text',
-          text: 'เลือกหัวข้อด้านล่างที่ต้องการ'
-        }
+        utility.message('คำถามที่พบบ่อย')
+      ]
+    },
+    {
+      type: 'box',
+      layout: 'vertical',
+      alignItems: 'center',
+      justifyContent: 'center',
+      contents: [
+        utility.message('เลือกหัวข้อด้านล่างที่ต้องการ',{size: 'sm'})
       ]
     }]
     for (const data of datas) {
@@ -160,16 +138,7 @@ module.exports = {
           layout: 'vertical',
           paddingTop: '5px',
           contents: [
-            {
-              type: 'button',
-              action: {
-                  type: "postback",
-                  label: data.title,
-                  data: `action=faq&id=${data._id}`,
-                  text: data.title
-              },
-              style: 'secondary'
-            }
+            utility.buttonPostback(data.title,`action=faq&id=${data._id}`, data.title)
           ]
         })
       }
@@ -186,5 +155,100 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  faqPostback: (datas) => {
+    const contents = []
+    for (const data of datas) {
+      contents.push({
+        type: 'flex',
+        altText: 'CMU e-Document',
+        contents: {
+          type: 'bubble',
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            contents: [
+              {
+                type: 'box',
+                layout: 'baseline',
+                paddingStart: '30px',
+                paddingEnd: '30px',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '1 รายการ',
+                    warp: true,
+                    size: 'xl'
+                  }
+                ]
+              },
+              {
+                type: 'box',
+                layout: 'vertical',
+                paddingTop: '30px',
+                contents: [
+                  {
+                    type: 'button',
+                    action: {
+                      type: 'uri',
+                      label: 'แสดงรายละเอียดเพิ่มเติม',
+                      uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+                    },
+                    style: 'primary',
+                    color: '#0000ff',
+                    height: 'sm'
+                  }
+                ]
+              },
+            ]
+          }
+        }
+      })
+    }
+    
+
+
+    return {
+      type: "template",
+      altText: "This is a carousel template",
+      template: {
+        type: "carousel",
+        imageAspectRatio: "rectangle",
+        imageSize: "cover",
+        columns: [{
+            thumbnailImageUrl: "https://vignette.wikia.nocookie.net/line/images/b/bb/2015-brown.png",
+            imageBackgroundColor: "#000000",
+            title: "Profile",
+            text: "description",
+            defaultAction: {
+              type: "uri",
+              label: "LINE",
+              uri: `https://liff.line.me/1656332858-DgV6jA5l`
+            },
+            actions: [{
+              type: "uri",
+              label: "Index",
+              uri: `https://liff.line.me/1656332858-DgV6jA5l`
+            }]
+          },
+          {
+            thumbnailImageUrl: "https://vignette.wikia.nocookie.net/line/images/1/10/2015-cony.png",
+            imageBackgroundColor: "#000000",
+            title: "this is menu",
+            text: "description",
+            defaultAction: {
+              type: "uri",
+              label: "LINE",
+              uri: `https://liff.line.me/1656332858-DgV6jA5l/profile`
+            },
+            actions: [{
+              type: "uri",
+              label: "Profile",
+              uri: `https://liff.line.me/1656332858-DgV6jA5l/profile`
+            }]
+          }
+        ]
+      }
+    }
+  },
 }
