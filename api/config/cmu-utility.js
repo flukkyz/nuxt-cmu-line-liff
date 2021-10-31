@@ -131,7 +131,7 @@ module.exports = {
         body: {
           type: 'box',
           layout: 'vertical',
-          contents: ...contents
+          contents: [...contents]
         }
       }
     }
