@@ -54,13 +54,12 @@ module.exports = {
           resp.push(lineUtility.sticker('11537','52002746'))
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
-          const searchSymbol = `${msg.toUpperCase()}USDT`
-          const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
-          if(data){
+          try {
+            const searchSymbol = `${msg.toUpperCase()}USDT`
+            const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
             const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
-            console.log();
             resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
-          }else{
+          } catch (error) {
             resp.push(lineUtility.sticker('11537','52002773'))
             resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
           }
