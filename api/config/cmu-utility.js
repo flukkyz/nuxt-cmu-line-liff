@@ -107,7 +107,7 @@ module.exports = {
       paddingStart: '30px',
       paddingEnd: '30px',
       contents: [
-        utility.message('เงินเดือนปัจจุบัน',{
+        utility.message('FAQ',{
           align: 'center',
           size: 'xxl'
         }),
@@ -127,6 +127,7 @@ module.exports = {
       layout: 'vertical',
       alignItems: 'center',
       justifyContent: 'center',
+      paddingTop: '10px',
       contents: [
         utility.message('เลือกหัวข้อด้านล่างที่ต้องการ',{size: 'sm'})
       ]
