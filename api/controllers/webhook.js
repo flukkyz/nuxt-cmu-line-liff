@@ -55,6 +55,7 @@ module.exports = {
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
           const searchSymbol = `${msg.toUpperCase()}`
+          console.log(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`);
           const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
           console.log(data.data);
           resp.push(lineUtility.sticker('11537','52002773'))
