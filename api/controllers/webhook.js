@@ -1,4 +1,5 @@
 const cmuUtility = require('../config/cmu-utility')
+const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
@@ -27,6 +28,8 @@ module.exports = {
         resp.push(cmuUtility.salary(data.data.data));
       } else if(msg === 'leave') {
         const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
+        console.log(lineUtility.leave())
+        console.log('===============');
         console.log(cmuUtility.leave(data.data.data));
         resp.push(cmuUtility.leave(data.data.data));
       } else if(msg === 'document') {
