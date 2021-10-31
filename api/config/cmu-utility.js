@@ -158,6 +158,7 @@ module.exports = {
         contents.push({
           type: 'box',
           layout: 'vertical',
+          paddingTop: '5px',
           contents: [
             {
               type: 'button',
@@ -167,8 +168,7 @@ module.exports = {
                   data: `faq=${data._id}`,
                   text: data.title
               },
-              style: 'secondary',
-              color: '#0000ff'
+              style: 'secondary'
             }
           ]
         })
