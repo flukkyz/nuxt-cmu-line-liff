@@ -87,8 +87,8 @@ module.exports = {
       contents.push({
         type: 'box',
         layout: 'baseline',
-        paddingStart: '10px',
-        paddingEnd: '10px',
+        paddingStart: '30px',
+        paddingEnd: '30px',
         contents: [
           utility.message(data.leaveTypeName,{wrap: true, flex: 4}),
           utility.message(`${data.leaveLimit} วัน`,{align: 'end',wrap: true, flex: 1})
