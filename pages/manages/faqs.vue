@@ -46,7 +46,7 @@
                     <v-list-item-title>
                       <span class="font-weight-bold">A:</span>
                     &nbsp;
-                      {{ faq.answer }}
+                      <span style="white-space: pre-line">{{ faq.answer }}</span>
                     </v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-action>
