@@ -205,9 +205,12 @@ module.exports = {
       })
     }
     return {
-      type: 'carousel',
+      type: 'flex',
       altText: `FAQ: ${data.title}`,
-      contents
+      contents: {
+        type: 'carousel',
+        contents
+      }
     }
   },
 }
