@@ -56,7 +56,7 @@ module.exports = {
         } else if(msg === 'D') {
           resp.push(lineUtility.test4())
         } else {
-          resp.push(lineUtility.sticker('11537','52002739'))
+          resp.push(lineUtility.sticker('11537','52002773'))
           resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์ไปเรื่องดิ`))
         }
       } else if(event.type === "postback") {
