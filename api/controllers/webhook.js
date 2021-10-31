@@ -55,7 +55,7 @@ module.exports = {
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
 
-          const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=BNBBTC`)
+          const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${msg.toUpperCase()}USDT`)
           console.log(data.data);
           resp.push(lineUtility.sticker('11537','52002773'))
           resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
