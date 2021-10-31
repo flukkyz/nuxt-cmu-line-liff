@@ -40,7 +40,7 @@
                   <v-list-item-content>
                     <v-list-item-title>
                       <span class="font-weight-bold">Question</span>
-                      <br>
+                      &nbsp;
                       {{ faq.question }}
                     </v-list-item-title>
                     <v-list-item-subtitle>
