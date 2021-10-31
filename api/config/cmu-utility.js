@@ -135,7 +135,7 @@ module.exports = {
           layout: 'vertical',
           paddingTop: '5px',
           contents: [
-            utility.buttonPostback(data.title,`action=faq&id=${data._id}`, data.title)
+            utility.buttonPostback(data.title,`action=faq&id=${data._id}&title=${data.title}`, data.title)
           ]
         })
       }
@@ -154,69 +154,60 @@ module.exports = {
     }
   },
   faqPostback: (data) => {
-    const columns = []
+    const contents = []
     for (const faq of data.faqs) {
-      columns.push({
-        type: 'flex',
-        altText: faq.question,
-        contents: {
-          type: 'bubble',
-          body: {
-            type: 'box',
-            layout: 'vertical',
-            contents: [
-              {
-                type: 'box',
-                layout: 'baseline',
-                contents: [
-                  {
-                    type: 'text',
-                    contents: [
-                      utility.span('Q: ',{
-                        weight: 'bold',
-                        size: 'xl'
-                      }),
-                      utility.span(faq.question,{
-                        weight: 'bold',
-                        size: 'xl'
-                      }),
-                    ]
-                  }
-                ]
-              },
-              {
-                type: 'box',
-                layout: 'baseline',
-                contents: [
-                  {
-                    type: 'text',
-                    contents: [
-                      utility.span('A: ',{
-                        weight: 'bold',
-                        size: 'xl'
-                      }),
-                      utility.span(faq.answer,{
-                        weight: 'bold',
-                        size: 'xl'
-                      }),
-                    ]
-                  }
-                ]
-              },
-            ]
-          }
+      contents.push({
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'box',
+              layout: 'baseline',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    utility.span('Q: ',{
+                      weight: 'bold',
+                      size: 'xl'
+                    }),
+                    utility.span(faq.question,{
+                      weight: 'bold',
+                      size: 'xl'
+                    }),
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'baseline',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    utility.span('A: ',{
+                      weight: 'bold',
+                      size: 'xl'
+                    }),
+                    utility.span(faq.answer,{
+                      weight: 'bold',
+                      size: 'xl'
+                    }),
+                  ]
+                }
+              ]
+            },
+          ]
         }
       })
     }
     return {
-      type: "template",
-      altText: "This is a carousel template",
-      template: {
-        type: "carousel",
-        imageAspectRatio: "rectangle",
-        imageSize: "cover",
-        columns
-      }
+      type: 'carousel',
+      altText: `FAQ: ${data.title}`,
+      contents
     }
   },
 }
