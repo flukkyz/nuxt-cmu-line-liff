@@ -29,11 +29,10 @@ module.exports = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${userId}`
     }
-    if (event.type === "message") {
-      const msg = event.message.text
-      let resp = []
-
-      try {
+    const resp = []
+    try {
+      if (event.type === "message") {
+        const msg = event.message.text
         if(msg === 'salary') {
           await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
           const data = await axios.get(`${BACKEND_API}line/users/income`,{headers})
@@ -59,21 +58,21 @@ module.exports = {
         } else {
           resp.push(lineUtility.message(`${msg} ยังไม่มีนะ ...`))
         }
-      } catch (e) {
-        console.log(e)
-        resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
+      } else if(event.type === "postback") {
+        const postback = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
+          return key===""?value:decodeURIComponent(value)
+        })
+        if(postback.action === 'faq') {
+          await reply(replyToken,lineUtility.message(`กำลังโหลด FAQ: ${postback.title}`))
+          const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
+          resp.push(cmuUtility.faqPostback(data.data.data))
+        }
       }
-
-      push(userId,resp)
-    } else if(event.type === "postback") {
-      const postback = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
-        return key===""?value:decodeURIComponent(value)
-      })
-      if(postback.action === 'faq') {
-        const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
-        console.log(data.data.data.faqs)
-      }
+    } catch (e) {
+      console.log(e)
+      resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
     }
+    push(userId,resp)
     res.send("HTTP POST request sent to the webhook URL!")
   }
 }
