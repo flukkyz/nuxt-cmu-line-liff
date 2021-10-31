@@ -25,14 +25,13 @@ module.exports = {
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${userId}`
+    };
     if (event.type === "message") {
       const msg = event.message.text
       let resp = []
-
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userId}`
-      };
 
       try {
         if(msg === 'salary') {
