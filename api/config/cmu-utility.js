@@ -154,9 +154,9 @@ module.exports = {
     }
   },
   faqPostback: (data) => {
-    const contents = []
+    const columns = []
     for (const faq of data.faqs) {
-      contents.push({
+      columns.push({
         type: 'flex',
         altText: faq.question,
         contents: {
@@ -208,9 +208,6 @@ module.exports = {
         }
       })
     }
-    
-
-
     return {
       type: "template",
       altText: "This is a carousel template",
@@ -218,39 +215,7 @@ module.exports = {
         type: "carousel",
         imageAspectRatio: "rectangle",
         imageSize: "cover",
-        columns: [{
-            thumbnailImageUrl: "https://vignette.wikia.nocookie.net/line/images/b/bb/2015-brown.png",
-            imageBackgroundColor: "#000000",
-            title: "Profile",
-            text: "description",
-            defaultAction: {
-              type: "uri",
-              label: "LINE",
-              uri: `https://liff.line.me/1656332858-DgV6jA5l`
-            },
-            actions: [{
-              type: "uri",
-              label: "Index",
-              uri: `https://liff.line.me/1656332858-DgV6jA5l`
-            }]
-          },
-          {
-            thumbnailImageUrl: "https://vignette.wikia.nocookie.net/line/images/1/10/2015-cony.png",
-            imageBackgroundColor: "#000000",
-            title: "this is menu",
-            text: "description",
-            defaultAction: {
-              type: "uri",
-              label: "LINE",
-              uri: `https://liff.line.me/1656332858-DgV6jA5l/profile`
-            },
-            actions: [{
-              type: "uri",
-              label: "Profile",
-              uri: `https://liff.line.me/1656332858-DgV6jA5l/profile`
-            }]
-          }
-        ]
+        columns
       }
     }
   },
