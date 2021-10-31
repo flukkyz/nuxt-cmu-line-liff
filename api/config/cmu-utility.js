@@ -94,7 +94,7 @@ module.exports = {
           {
             type: 'filler'
           },
-          utility.message(`${utility.message(data.leaveLimit)} วัน`,{align: 'end'})
+          utility.message(`${data.leaveLimit} วัน`,{align: 'end'})
         ]
       })
     }
