@@ -70,7 +70,7 @@ module.exports = {
       const postback = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
         return key===""?value:decodeURIComponent(value)
       })
-      if(postback.actions === 'faq') {
+      if(postback.action === 'faq') {
         await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
         const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
         console.log(data);
