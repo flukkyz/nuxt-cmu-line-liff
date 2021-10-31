@@ -67,10 +67,14 @@ module.exports = {
 
       push(userId,resp)
     } else if(event.type === "postback") {
-      const data = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
+      const postback = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
         return key===""?value:decodeURIComponent(value)
       })
-      console.log(data)
+      if(postback.actions === 'faq') {
+        await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
+        const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
+        console.log(data);
+      }
     }
     res.send("HTTP POST request sent to the webhook URL!")
   }
