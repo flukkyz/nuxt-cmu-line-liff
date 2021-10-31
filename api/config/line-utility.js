@@ -1,10 +1,19 @@
+const { add } = require('lodash')
 const _ = require('lodash')
+
+const addOptions = (data,options) => {
+  for (const [key, value] of Object.entries(options)) {
+    data[key] = value
+  }
+}
+
 module.exports = {
-  message: (message) => {
-    return {
+  message: (message, options = {}) => {
+    const data = {
       "type": "text",
       "text": message
     }
+    return addOptions(data,options)
   },
   image: (originalUrl,previewUrl = null) => {
     return {

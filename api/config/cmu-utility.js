@@ -84,48 +84,17 @@ module.exports = {
       ]
     }]
     for (const data of datas) {
-      console.log('-----------------------------');
-      console.log(utility.message(data.leaveTypeName));
-      console.log(utility.message(data.leaveLimit));
-      console.log('-----------------------------');
-      console.log({
-        type: 'box',
-        layout: 'baseline',
-        paddingStart: '30px',
-        paddingEnd: '30px',
-        contents: [
-          {
-            type: 'text',
-            text: utility.message(data.leaveTypeName)
-          },
-          {
-            type: 'filler'
-          },
-          {
-            type: 'text',
-            text:  `${utility.message(data.leaveLimit)} วัน`,
-            align: 'end'
-          }
-        ]
-      });
       contents.push({
         type: 'box',
         layout: 'baseline',
         paddingStart: '30px',
         paddingEnd: '30px',
         contents: [
-          {
-            type: 'text',
-            text: utility.message(data.leaveTypeName)
-          },
+          utility.message(data.leaveTypeName),
           {
             type: 'filler'
           },
-          {
-            type: 'text',
-            text:  `${utility.message(data.leaveLimit)} วัน`,
-            align: 'end'
-          }
+          utility.message(`${utility.message(data.leaveLimit)} วัน`,{align: 'end'})
         ]
       })
     }
@@ -155,7 +124,7 @@ module.exports = {
         body: {
           type: 'box',
           layout: 'vertical',
-          contents: [...contents]
+          contents
         }
       }
     }
