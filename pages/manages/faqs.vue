@@ -43,7 +43,7 @@
                       &nbsp;
                       {{ faq.question }}
                     </v-list-item-title>
-                    <v-list-item-subtitle>
+                    <v-list-item-subtitle class="mt-1">
                       <span class="font-weight-bold">Answer</span>
                       <br>
                       <span style="white-space: pre-line">{{ faq.answer }}</span>
