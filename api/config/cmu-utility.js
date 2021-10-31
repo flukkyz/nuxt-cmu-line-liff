@@ -105,7 +105,7 @@ module.exports = {
           action: {
             type: 'uri',
             label: 'แสดงรายละเอียดเพิ่มเติม',
-            uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+            uri: 'https://hr.mis.cmu.ac.th/'
           },
           style: 'primary',
           color: '#0000ff',
