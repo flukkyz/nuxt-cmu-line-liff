@@ -28,12 +28,13 @@ module.exports = {
         resp.push(cmuUtility.salary(data.data.data));
       } else if(msg === 'leave') {
         const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
-        // console.log(lineUtility.leave())
-        // console.log('===============');
-        // console.log(cmuUtility.leave(data.data.data));
         resp.push(cmuUtility.leave(data.data.data));
       } else if(msg === 'document') {
         resp.push(lineUtility.document());
+      } else if(msg === 'A') {
+        resp.push(lineUtility.test2());
+      } else if(msg === 'S') {
+        resp.push(lineUtility.test3());
       } else {
         resp.push(lineUtility.message(`${msg} ยังไม่มีนะ ...`));
       }
