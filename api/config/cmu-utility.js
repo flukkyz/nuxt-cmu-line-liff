@@ -104,6 +104,7 @@ module.exports = {
       paddingEnd: '30px',
       contents: [
         utility.message('FAQ',{
+          weight: 'bold',
           align: 'center',
           size: 'xxl'
         })
@@ -115,7 +116,9 @@ module.exports = {
       alignItems: 'center',
       justifyContent: 'center',
       contents: [
-        utility.message('คำถามที่พบบ่อย')
+        utility.message('คำถามที่พบบ่อย',{
+          weight: 'bold'
+        })
       ]
     },
     {
@@ -184,6 +187,7 @@ module.exports = {
             {
               type: 'box',
               layout: 'baseline',
+              paddingTop: '15px',
               contents: [
                 {
                   type: 'text',
