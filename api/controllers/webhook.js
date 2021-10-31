@@ -67,7 +67,10 @@ module.exports = {
 
       push(userId,resp)
     } else if(event.type === "postback") {
-      console.log(event.postback.data)
+      const data = JSON.parse('{"' + event.postback.data.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => {
+        return key===""?value:decodeURIComponent(value)
+      })
+      console.log(data)
     }
     res.send("HTTP POST request sent to the webhook URL!")
   }

@@ -165,7 +165,7 @@ module.exports = {
               action: {
                   type: "postback",
                   label: data.title,
-                  data: `faq=${data._id}`,
+                  data: `action=faq&id=${data._id}`,
                   text: data.title
               },
               style: 'secondary'
