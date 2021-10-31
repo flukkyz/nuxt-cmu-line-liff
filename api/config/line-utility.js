@@ -374,6 +374,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
+                  color: '#888888',
                   text: 'ค่าประมาณที่ 1 USD = 33 บาท',
                   size: 'xxs'
                 }
