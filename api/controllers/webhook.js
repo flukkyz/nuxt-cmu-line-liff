@@ -33,9 +33,9 @@ module.exports = {
         // console.log(cmuUtility.leave(data.data.data));
         resp.push(cmuUtility.leave(data.data.data));
       } else if(msg === 'document') {
-        resp.push(utility.document());
+        resp.push(lineUtility.document());
       } else {
-        resp.push(utility.message(`${msg} ยังไม่มีนะ ...`));
+        resp.push(lineUtility.message(`${msg} ยังไม่มีนะ ...`));
       }
 
       try {
