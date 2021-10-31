@@ -125,5 +125,64 @@ module.exports = {
         }
       }
     }
+  },
+  faq: (datas) => {
+    return {
+      type: 'flex',
+      altText: 'FAQ',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'box',
+              layout: 'baseline',
+              paddingStart: '30px',
+              paddingEnd: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'FAQ',
+                  align: 'center',
+                  size: 'xxl'
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              alignItems: 'center',
+              justifyContent: 'center',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'เลือกหัวข้อด้านล่างที่ต้องการ'
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingTop: '30px',
+              contents: [
+                {
+                  type: 'button',
+                  action: {
+                    type: 'uri',
+                    label: 'แสดงรายละเอียดเพิ่มเติม',
+                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
+                  },
+                  style: 'primary',
+                  color: '#0000ff',
+                  height: 'sm'
+                }
+              ]
+            },
+          ]
+        }
+      }
+    }
   }
 }
