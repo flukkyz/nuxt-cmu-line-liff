@@ -27,6 +27,7 @@ module.exports = {
         resp.push(cmuUtility.salary(data.data.data));
       } else if(msg === 'leave') {
         const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
+        console.log(data.data);
         resp.push(cmuUtility.leave(data.data));
       } else if(msg === 'document') {
         resp.push(utility.document());
