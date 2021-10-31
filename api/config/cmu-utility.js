@@ -174,9 +174,8 @@ module.exports = {
                       size: 'xl'
                     }),
                     utility.span(faq.question,{
-                      weight: 'bold',
                       size: 'xl'
-                    }),
+                    })
                   ]
                 }
               ]
@@ -189,13 +188,9 @@ module.exports = {
                   type: 'text',
                   contents: [
                     utility.span('A: ',{
-                      weight: 'bold',
-                      size: 'xl'
+                      weight: 'bold'
                     }),
-                    utility.span(faq.answer,{
-                      weight: 'bold',
-                      size: 'xl'
-                    }),
+                    utility.span(faq.answer),
                   ]
                 }
               ]
