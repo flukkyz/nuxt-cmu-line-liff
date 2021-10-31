@@ -28,7 +28,7 @@ module.exports = {
       } else if(msg === 'leave') {
         const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
         console.log(data.data);
-        resp.push(cmuUtility.leave(data.data));
+        resp.push(cmuUtility.leave(data.data.data));
       } else if(msg === 'document') {
         resp.push(utility.document());
       } else {
