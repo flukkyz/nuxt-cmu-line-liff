@@ -71,7 +71,7 @@ module.exports = {
       })
       if(postback.action === 'faq') {
         const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
-        console.log(data.data)
+        console.log(data.data.data.faqs)
       }
     }
     res.send("HTTP POST request sent to the webhook URL!")
