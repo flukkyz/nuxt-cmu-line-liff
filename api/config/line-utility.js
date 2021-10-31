@@ -1,39 +1,39 @@
 const { add } = require('lodash')
 const _ = require('lodash')
 
-const addOptions = (data,options) => {
+const addOptions = (obj,options) => {
   for (const [key, value] of Object.entries(options)) {
-    data[key] = value
+    obj[key] = value
   }
-  return data
+  return obj
 }
 
 module.exports = {
   message: (message, options = {}) => {
-    const data = {
+    const obj = {
       "type": "text",
       "text": message
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   image: (originalUrl,previewUrl = null, options = {}) => {
-    const data = {
+    const obj = {
       type: "image",
       originalContentUrl: originalUrl,
       previewImageUrl: previewUrl || originalUrl
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   uri: (uri, label, options = {}) => {
-    const data = {
+    const obj = {
       type: "uri",
       label,
       uri
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   buttonLink: (label,uri,color = '#0000ff',height='sm',options={}) => {
-    const data = {
+    const obj = {
       type: 'button',
       action: {
         type: 'uri',
@@ -44,10 +44,10 @@ module.exports = {
       color,
       height
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   buttonPostback: (label,data, text='' ,options={}) => {
-    const data = {
+    const obj = {
       type: 'button',
       action: {
           type: 'postback',
@@ -57,19 +57,19 @@ module.exports = {
       style: 'secondary'
     }
     if(!!text){
-      data.action.text = text
+      obj.action.text = text
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   map: (title,address,latitude,longitude, options = {}) => {
-    const data = {
+    const obj = {
       type: "location",
       title,
       address,
       latitude,
       longitude
     }
-    return addOptions(data,options)
+    return addOptions(obj,options)
   },
   CarouselTemplate: () => {
     return {
