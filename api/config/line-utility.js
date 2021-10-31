@@ -5,6 +5,7 @@ const addOptions = (data,options) => {
   for (const [key, value] of Object.entries(options)) {
     data[key] = value
   }
+  return data
 }
 
 module.exports = {
