@@ -36,7 +36,7 @@ module.exports = {
       } else if(msg === 'test1') {
         resp.push(utility.test1());
       } else if(msg === 'salary') {
-        const data = axios.get(`${BACKEND_API}line/users/income`,{
+        const data = await axios.get(`${BACKEND_API}line/users/income`,{
           headers: backendHeaders
         })
         console.log(data.data);
