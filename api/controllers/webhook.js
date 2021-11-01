@@ -51,7 +51,7 @@ module.exports = {
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
           resp.push(cmuUtility.faq(data.data.data))
         } else if(msg === 'helpdesk') {
-          resp.push(lineUtility.sticker('11538','51626525'))
+          resp.push(lineUtility.sticker('11538','51626518'))
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
           try {
