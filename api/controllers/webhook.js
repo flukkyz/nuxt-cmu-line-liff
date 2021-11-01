@@ -45,13 +45,13 @@ module.exports = {
           resp.push(lineUtility.sticker('11537','52002746'))
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
           // await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
-          resp.push(lineUtility.document())
+          // resp.push(lineUtility.document())
         } else if(msg === 'faq') {
           await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
           resp.push(cmuUtility.faq(data.data.data))
         } else if(msg === 'helpdesk') {
-          resp.push(lineUtility.sticker('11537','52002746'))
+          resp.push(lineUtility.sticker('11538','51626525'))
           resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
           try {
