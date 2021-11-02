@@ -7,13 +7,17 @@
       <v-row>
         <v-col>
           <v-textarea
-            v-model="form.title"
+            v-model="form.content"
             autocomplete="off"
             autofocus
             outlined
             hint="กรอกข้อความปัญหาการใช้งาน"
-            :rules="rules.title"
+            :rules="rules.content"
             required
+          />
+          <v-checkbox
+            v-model="form.admin_reply"
+            label="ต้องการให้เจ้าหน้าที่ตอบกลับ"
           />
           <v-btn color="primary" x-large block type="submit" :disabled="oneClick">
             ส่ง
@@ -34,10 +38,13 @@ export default {
       oneClick: false,
       rules: {
         content: [
-          v => !!v || 'กรุณากรอกคำถาม'
+          v => !!v || 'กรุณากรอกกรอกข้อความปัญหาการใช้งาน'
         ]
       },
-      form: {}
+      form: {
+        content: '',
+        admin_reply: false
+      }
     }
   },
   created () {
@@ -70,8 +77,13 @@ export default {
         window.location = authen.data
       }
     },
-    close () {
-      liff.closeWindow()
+    save () {
+      if (this.$refs.form.validate()) {
+        this.$overlay.showLoading()
+        this.oneClick = true
+        alert(this.form.content)
+        liff.closeWindow()
+      }
     }
   }
 }
