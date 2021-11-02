@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" v-model="valid" @submit.prevent="save">
     <v-container fluid>
-      <h3 class="text-center teal--text fonr-weight-light">
+      <h3 class="text-center teal--text fonr-weight-light my-5">
         แจ้งปัญหาการใช้งาน
       </h3>
       <v-row>
@@ -12,6 +12,7 @@
             autofocus
             rows="10"
             filled
+            flat
             shaped
             hint="กรอกข้อความปัญหาการใช้งาน"
             :rules="rules.content"
