@@ -23,11 +23,12 @@
             label="ต้องการให้เจ้าหน้าที่ตอบกลับ"
           />
           <v-btn color="primary" x-large block type="submit" :disabled="oneClick">
-            ส่ง
+            แจ้งปัญหา
           </v-btn>
         </v-col>
       </v-row>
     </v-container>
+    <dialogs-confirm @confirm="confirmSave" />
   </v-form>
 </template>
 
@@ -80,24 +81,45 @@ export default {
         window.location = authen.data
       }
     },
-    async save () {
+    save () {
       if (this.$refs.form.validate()) {
-        this.$overlay.showLoading()
-        this.oneClick = true
-        // save admin
-        //
-        //
-        const formData = new FormData()
-        formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณสำหรับการแจ้งปัญหาการใช้งาน`)
-        formData.append('send_type', 'select')
-        formData.append('users', [this.profile.userId])
-        formData.append('announce_img', null)
-        try {
-          await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-          liff.closeWindow()
-        } catch (e) {
-          this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
-        }
+        this.$bus.$emit('open-confirm-dialog', null, {
+          header: {
+            icon: 'fas fa-question-circle',
+            text: 'ยืนยันการแจ้งปัญหาการใช้งาน'
+          },
+          detail: {
+            text: 'ยืนยันความถูกต้องของข้อความที่ต้องการแจ้งปัญหา'
+          },
+          yesBtn: {
+            icon: 'fas fa-paper-plane',
+            color: 'primary',
+            text: 'แจ้งปัญหา'
+          },
+          noBtn: {
+            icon: 'fas fa-times',
+            color: 'error',
+            text: 'No'
+          }
+        })
+      }
+    },
+    async confirmSave () {
+      this.$overlay.showLoading()
+      this.oneClick = true
+      // save admin
+      //
+      //
+      const formData = new FormData()
+      formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
+      formData.append('send_type', 'select')
+      formData.append('users', [this.profile.userId])
+      formData.append('announce_img', null)
+      try {
+        await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
+        liff.closeWindow()
+      } catch (e) {
+        this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
       }
     }
   }
