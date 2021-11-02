@@ -27,6 +27,9 @@
           </v-btn>
         </v-col>
       </v-row>
+      <v-btn outlined @click="close">
+        ปิด
+      </v-btn>
     </v-container>
     <dialogs-confirm @confirm="confirmSave" />
   </v-form>
@@ -86,7 +89,7 @@ export default {
         this.$bus.$emit('open-confirm-dialog', null, {
           header: {
             icon: 'fas fa-question-circle',
-            text: 'ยืนยันการแจ้งปัญหาการใช้งาน'
+            text: 'ยืนยันการแจ้งปัญหา'
           },
           detail: {
             text: 'ยืนยันความถูกต้องของข้อความที่ต้องการแจ้งปัญหา'
@@ -99,7 +102,7 @@ export default {
           noBtn: {
             icon: 'fas fa-times',
             color: 'error',
-            text: 'No'
+            text: 'ยกเลิก'
           }
         })
       }
@@ -117,10 +120,13 @@ export default {
       formData.append('announce_img', null)
       try {
         await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-        liff.closeWindow()
+        this.close()
       } catch (e) {
         this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
       }
+    },
+    close () {
+      liff.closeWindow()
     }
   }
 }
