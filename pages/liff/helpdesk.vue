@@ -80,11 +80,27 @@ export default {
         window.location = authen.data
       }
     },
-    save () {
+    async save () {
       if (this.$refs.form.validate()) {
         this.$overlay.showLoading()
         this.oneClick = true
-        alert(this.form.content)
+        // save admin
+        //
+        //
+        const formData = new FormData()
+          formData.append('txt', '')
+          formData.append('send_type', 'select')
+          formData.append('users', [profile.userId])
+          formData.append('announce_img', null)
+        }
+        try {
+          const result = await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
+          if (result) {
+            this.$notifier.showMessage({ title: 'ปรับปรุงข้อมูลสำเร็จ', content: `ปรับปรุงข้อมูล${this.modelName}สำเร็จ`, color: 'success' })
+          }
+        } catch (e) {
+          this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
+        }
         liff.closeWindow()
       }
     }
