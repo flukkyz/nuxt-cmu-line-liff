@@ -10,7 +10,9 @@
             v-model="form.content"
             autocomplete="off"
             autofocus
-            outlined
+            rows="10"
+            filled
+            shaped
             hint="กรอกข้อความปัญหาการใช้งาน"
             :rules="rules.content"
             required
