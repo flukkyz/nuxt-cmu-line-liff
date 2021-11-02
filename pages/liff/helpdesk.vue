@@ -27,9 +27,11 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-btn outlined @click="close">
-        ปิด
-      </v-btn>
+      <div class="mt-8 mb-3 text-center">
+        <v-btn outlined @click="close">
+          ปิด
+        </v-btn>
+      </div>
     </v-container>
     <dialogs-confirm @confirm="confirmSave" />
   </v-form>
