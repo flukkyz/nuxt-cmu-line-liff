@@ -29,6 +29,7 @@ export default {
   layout: 'empty',
   data () {
     return {
+      profile: null,
       valid: true,
       oneClick: false,
       rules: {
@@ -42,16 +43,16 @@ export default {
   created () {
     this.$overlay.showLoading()
   },
-  // async beforeMount () {
-  //   await liff.init({ liffId: process.env.liffID })
-  //   if (liff.isInClient()) {
-  //     this.getLineProfile()
-  //   } else if (liff.isLoggedIn()) {
-  //     this.getLineProfile()
-  //   } else {
-  //     liff.login({ redirectUri: window.location.href })
-  //   }
-  // },
+  async beforeMount () {
+    await liff.init({ liffId: process.env.liffID })
+    if (liff.isInClient()) {
+      this.getLineProfile()
+    } else if (liff.isLoggedIn()) {
+      this.getLineProfile()
+    } else {
+      liff.login({ redirectUri: window.location.href })
+    }
+  },
   methods: {
     async getLineProfile () {
       const profile = await liff.getProfile()
