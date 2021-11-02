@@ -88,20 +88,16 @@ export default {
         //
         //
         const formData = new FormData()
-          formData.append('txt', '')
-          formData.append('send_type', 'select')
-          formData.append('users', [profile.userId])
-          formData.append('announce_img', null)
-        }
+        formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณสำหรับการแจ้งปัญหาการใช้งาน`)
+        formData.append('send_type', 'select')
+        formData.append('users', [this.profile.userId])
+        formData.append('announce_img', null)
         try {
-          const result = await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-          if (result) {
-            this.$notifier.showMessage({ title: 'ปรับปรุงข้อมูลสำเร็จ', content: `ปรับปรุงข้อมูล${this.modelName}สำเร็จ`, color: 'success' })
-          }
+          await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
+          liff.closeWindow()
         } catch (e) {
           this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
         }
-        liff.closeWindow()
       }
     }
   }
