@@ -60,7 +60,7 @@ module.exports = {
     if (checkUser.data.status === 'ok') {
       const resp = []
       try {
-        const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`)
+        const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         console.log('------------------------');
         console.log(chatStatusData.data);
         console.log('------------------------');
