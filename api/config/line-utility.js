@@ -315,19 +315,19 @@ module.exports = {
                   weight: 'bold',
                   size: '5xl',
                   text: symbol
+                },
+                {
+                  type: 'text',
+                  weight: 'bold',
+                  size: '2xl',
+                  text: 'grgreger'
                 }
-                // {
-                //   type: 'text',
-                //   weight: 'bold',
-                //   size: '2xl',
-                //   text: name
-                // }
               ]
             },
             {
               type: 'box',
               layout: 'vertical',
-              paddingBottom: '10px',
+              paddingBottom: '5px',
               contents: [
                 {
                   type: 'text',
@@ -350,15 +350,11 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              paddingBottom: '15px',
               contents: [
                 {
                   type: 'text',
                   contents: [
-                    {
-                      type: 'span',
-                      text: 'ประมาณ ',
-                      size: 'sm'
-                    },
                     {
                       type: 'span',
                       weight: 'bold',
