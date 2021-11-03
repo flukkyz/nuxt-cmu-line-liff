@@ -26,9 +26,7 @@ export default {
   async beforeMount () {
     const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}`)
     this.authen = authen
-    window.location = 'https://oauth.cmu.ac.th/v2/Authorize.aspx?response_type=code&client_id=rpEMTy5zwWwVtnXhMcpTbj7w5Q3sRb6JR9ytH0Fu&redirect_uri=https%3A%2F%2Fliff.line.me%2F1656332858-DgV6jA5l%2Fauth%2F&scope=cmuitaccount.basicinfo&state=admin'
-
-    // window.location = authen.data
+    window.location = authen.data
   },
   methods: {
     login () {

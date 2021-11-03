@@ -55,7 +55,8 @@ export default {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
-            this.$router.push({ name: this.$route.query.state })
+            window.close()
+            // this.$router.push({ name: this.$route.query.state })
           })
         } else {
           liff.login()
