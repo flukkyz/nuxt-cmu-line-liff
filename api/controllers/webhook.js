@@ -28,6 +28,12 @@ const getContent = (messageId) => {
     stream.on('error', (e) => {
       console.log(e)
     })
+    stream.on('end', (e) => {
+      console.log('END')
+      console.log('END')
+      console.log('END')
+      console.log('END')
+    })
   })
 }
 
