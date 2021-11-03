@@ -55,6 +55,9 @@ module.exports = {
     //   await getContent(event.message.id)
     // }
 
+    console.log('------------------------');
+    console.log(`${process.env.BACKEND_API}users/lineid/${userId}`);
+
     const checkUser = await axios.get(`${process.env.BACKEND_API}users/lineid/${userId}`)
     console.log('------------------------');
     console.log(checkUser.data);
