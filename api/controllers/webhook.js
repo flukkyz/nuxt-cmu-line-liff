@@ -56,16 +56,16 @@ module.exports = {
     // }
 
     console.log('------------------------');
-    console.log(`${process.env.BACKEND_API}users/lineid/${userId}`);
+    console.log(`${BACKEND_API}users/lineid/${userId}`);
 
-    const checkUser = await axios.get(`${process.env.BACKEND_API}users/lineid/${userId}`)
+    const checkUser = await axios.get(`${BACKEND_API}users/lineid/${userId}`)
     console.log('------------------------');
     console.log(checkUser.data);
     console.log('------------------------');
     if (checkUser.data.status === 'ok') {
       const resp = []
       try {
-        const chatStatusData = await axios.get(`${process.env.BACKEND_API}line/users/chat`)
+        const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`)
         if(chatStatusData.data.chat){
           // save message chat
           // get helpdesk id
