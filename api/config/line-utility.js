@@ -1,32 +1,89 @@
+const { add } = require('lodash')
+const _ = require('lodash')
+
+const addOptions = (obj,options) => {
+  for (const [key, value] of Object.entries(options)) {
+    obj[key] = value
+  }
+  return obj
+}
+
 module.exports = {
-  message: (message) => {
+  message: (text, options = {}) => {
+    const obj = {
+      type: 'text',
+      text
+    }
+    return addOptions(obj,options)
+  },
+  sticker: (packageId,stickerId) => {
     return {
-      "type": "text",
-      "text": message
+      type: 'sticker',
+      packageId,
+      stickerId
     }
   },
-  image: (originalUrl,previewUrl = null) => {
-    return {
-      type: "image",
+  span: (text, options = {}) => {
+    const obj = {
+      type: 'span',
+      text
+    }
+    return addOptions(obj,options)
+  },
+  image: (originalUrl,previewUrl = null, options = {}) => {
+    const obj = {
+      type: 'image',
       originalContentUrl: originalUrl,
       previewImageUrl: previewUrl || originalUrl
     }
+    return addOptions(obj,options)
   },
-  uri: () => {
-    return {
+  uri: (uri, label, options = {}) => {
+    const obj = {
       type: "uri",
-      label: "CLICK Link",
-      uri: `https://15142daf4d14.ngrok.io`
+      label,
+      uri
     }
+    return addOptions(obj,options)
   },
-  map: () => {
-    return {
-      type: "location",
-      title: "LINE Company (Thailand) Limited",
-      address: "127 อาคารเกษรทาวเวอร์ ชั้น17 ถ.ราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330",
-      latitude: 13.7460089,
-      longitude: 100.5386192
+  buttonLink: (label,uri,color = '#0000ff',height='sm',options={}) => {
+    const obj = {
+      type: 'button',
+      action: {
+        type: 'uri',
+        label,
+        uri
+      },
+      style: 'primary',
+      color,
+      height
     }
+    return addOptions(obj,options)
+  },
+  buttonPostback: (label,data, text='' ,options={}) => {
+    const obj = {
+      type: 'button',
+      action: {
+          type: 'postback',
+          label,
+          data,
+      },
+      style: 'secondary'
+    }
+    if(!!text){
+      obj.action.text = text
+    }
+    return addOptions(obj,options)
+  },
+  map: (title,address,latitude,longitude, options = {}) => {
+    const obj = {
+      type: 'location',
+      title,
+      address,
+      latitude,
+      longitude
+    }
+    return addOptions(obj,options)
   },
   CarouselTemplate: () => {
     return {
@@ -234,10 +291,10 @@ module.exports = {
       }
     }
   },
-  salary: (salary) => {
+  symbol: (symbol,usd,thb) => {
     return {
       type: 'flex',
-      altText: 'เงินเดือนปัจจุบัน',
+      altText: 'Cryptocurrency',
       contents: {
         type: 'bubble',
         body: {
@@ -249,32 +306,36 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              paddingTop: '20px',
+              paddingBottom: '10px',
               contents: [
                 {
+
                   type: 'text',
-                  text: 'เงินเดือนปัจจุบัน'
+                  weight: 'bold',
+                  size: '5xl',
+                  text: symbol
                 }
               ]
             },
             {
               type: 'box',
               layout: 'vertical',
-              paddingTop: '20px',
-              paddingBottom: '30px',
+              paddingBottom: '10px',
               contents: [
                 {
                   type: 'text',
-                  weight: 'bold',
                   contents: [
                     {
                       type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(salary),
-                      size: '3xl'
+                      text: '$',
+                      size: 'xl'
                     },
                     {
                       type: 'span',
-                      text: ' บาท',
-                      size: 'xl'
+                      text: new Intl.NumberFormat('th-th').format(usd),
+                      weight: 'bold',
+                      size: 'xxl'
                     }
                   ]
                 }
@@ -285,15 +346,37 @@ module.exports = {
               layout: 'vertical',
               contents: [
                 {
-                  type: 'button',
-                  action: {
-                    type: 'uri',
-                    label: 'แสดงรายละเอียดเพิ่มเติม',
-                    uri: 'https://liff.line.me/1656332858-DgV6jA5l'
-                  },
-                  style: 'primary',
-                  color: '#0000ff',
-                  height: 'sm'
+                  type: 'text',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'ประมาณ ',
+                      size: 'sm'
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(thb),
+                    },
+                    {
+                      type: 'span',
+                      text: ' บาท',
+                      size: 'sm'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingBottom: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  color: '#888888',
+                  text: 'ค่าประมาณที่ 1 USD = 33 บาท',
+                  size: 'xxs'
                 }
               ]
             },
@@ -302,7 +385,8 @@ module.exports = {
       }
     }
   },
-  leave: () => {
+  leave: (data) => {
+    
     return {
       type: 'flex',
       altText: 'การลา',
@@ -473,93 +557,72 @@ module.exports = {
       "type": "flex",
       "altText": "this is a flex message",
       "contents": {
-        "type": "bubble",
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
+        "type": "carousel",
+        "contents": [
+          {
+            "type": "bubble",
+            "body": {
               "type": "box",
-              "layout": "baseline",
+              "layout": "vertical",
               "contents": [
                 {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "md"
-                },
-                {
                   "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "md"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "lg"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "lg"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "xl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "xl"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "xxl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "xxl"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "icon",
-                  "url": "https://example.com/flex/images/icon.png",
-                  "size": "3xl"
-                },
-                {
-                  "type": "text",
-                  "text": "The quick brown fox jumps over the lazy dog",
-                  "size": "3xl"
+                  "text": "First bubble"
                 }
               ]
             }
+          },
+          {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Second bubble"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  test4: () => {
+    return {
+      "type": "template",
+      "altText": "This is a buttons template",
+      "template": {
+          "type": "buttons",
+          "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+          "imageAspectRatio": "rectangle",
+          "imageSize": "cover",
+          "imageBackgroundColor": "#FFFFFF",
+          "title": "Menu",
+          "text": "Please select",
+          "defaultAction": {
+              "type": "uri",
+              "label": "View detail",
+              "uri": "http://example.com/page/123"
+          },
+          "actions": [
+              {
+                "type": "postback",
+                "label": "Buy",
+                "data": "action=buy&itemid=123"
+              },
+              {
+                "type": "postback",
+                "label": "Add to cart",
+                "data": "action=add&itemid=123"
+              },
+              {
+                "type": "uri",
+                "label": "View detail",
+                "uri": "http://example.com/page/123"
+              }
           ]
-        }
       }
     }
   }

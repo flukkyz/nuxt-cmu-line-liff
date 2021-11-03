@@ -39,15 +39,15 @@
                 <v-list-item v-for="(faq,i) in item.faqs" :key="`${item._id}-${i}`">
                   <v-list-item-content>
                     <v-list-item-title>
-                      <span class="font-weight-bold">Q:</span>
-                    &nbsp;
+                      <span class="font-weight-bold">Question</span>
+                      &nbsp;
                       {{ faq.question }}
                     </v-list-item-title>
-                    <v-list-item-title>
-                      <span class="font-weight-bold">A:</span>
-                    &nbsp;
-                      {{ faq.answer }}
-                    </v-list-item-title>
+                    <v-list-item-subtitle class="mt-1">
+                      <span class="font-weight-bold">Answer</span>
+                      <br>
+                      <span style="white-space: pre-line">{{ faq.answer }}</span>
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
                     <div class="d-flex">

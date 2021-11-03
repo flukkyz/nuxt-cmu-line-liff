@@ -138,6 +138,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   data () {
     return {
       tab: null,
@@ -255,6 +256,7 @@ export default {
       } catch (e) {
         this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
       }
+      this.clearData()
       this.$overlay.hide()
     }
   }
