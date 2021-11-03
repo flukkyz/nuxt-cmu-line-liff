@@ -314,14 +314,14 @@ module.exports = {
                   type: 'text',
                   weight: 'bold',
                   size: '5xl',
-                  text: symbol
-                },
-                {
-                  type: 'text',
-                  weight: 'bold',
-                  size: '2xl',
-                  text: 'grgreger'
+                  text: name
                 }
+                // {
+                //   type: 'text',
+                //   weight: 'bold',
+                //   size: '2xl',
+                //   text: 'grgreger'
+                // }
               ]
             },
             {
