@@ -22,7 +22,7 @@ const push = (to,messages) => {
 }
 
 const getContent = (messageId) => {
-  let writeStream = fs.createWriteStream('secret.jpg');
+  let writeStream = fs.createWriteStream('./static/uploads/chats/secret.jpg');
   client.getMessageContent(messageId).then((stream) => {
     stream.on('data', (chunk) => {
       console.log(chunk);

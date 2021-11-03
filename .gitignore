@@ -92,3 +92,5 @@ sw.*
 
 static/uploads/announces/* 
 !static/uploads/announces/.gitkeep 
+static/uploads/chats/* 
+!static/uploads/chats/.gitkeep 
