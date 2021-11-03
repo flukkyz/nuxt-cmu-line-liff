@@ -11,7 +11,8 @@ const client = new line.Client({
 const BACKEND_API = `${process.env.API_URL}${process.env.API_DIR}`
 
 const headersCoin = {
-  'X-CMC_PRO_API_KEY': `c06d8809-22a8-4471-b7a4-d4f99d275c91`
+  Accept: 'application/json',
+  'X-CMC_PRO_API_KEY': 'c06d8809-22a8-4471-b7a4-d4f99d275c91'
 }
 
 const reply = (replyToken,messages) => {
