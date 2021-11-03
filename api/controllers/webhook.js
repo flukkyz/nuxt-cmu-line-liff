@@ -96,6 +96,9 @@ module.exports = {
                 if(dataUSD.data.status.error_code === 0){
                   const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=THB`,{headers: headersCoin})
                   resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data.data[msg.toUpperCase()].name,dataUSD.data.data[msg.toUpperCase()].quote.USD.price,dataTHB.data.data[msg.toUpperCase()].quote.THB.price,dataUSD.data.data[msg.toUpperCase()].quote.USD.percent_change_24h))
+                }else{
+                  resp.push(lineUtility.sticker('11537','52002751'))
+                  resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
                 }
               } catch (error) {
                 console.log(error);
