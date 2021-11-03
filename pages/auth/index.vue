@@ -1,6 +1,11 @@
 <template>
   <div class="pt-16">
     <div v-if="register">
+      <h1 class="display-1 text-center teal--text mt-5">
+        ลงทะเบียนสำเร็จ
+      </h1>
+    </div>
+    <div v-else>
       <v-row justify="center" class="mt-16">
         <v-col cols="8">
           <v-progress-linear
@@ -13,13 +18,6 @@
       </v-row>
       <h1 class="display-1 text-center teal--text mt-5">
         Waiting for Authentication
-      </h1>
-    </div>
-    <div v-else>
-      <h1 class="display-1 text-center teal--text mt-5">
-        ลงทะเบียนสำเร็จ
-        <br>
-        {{ $route.query.state }}
       </h1>
     </div>
   </div>
@@ -69,7 +67,10 @@ export default {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
-            window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
+            this.register = true
+            setTimeout(() => {
+              window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
+            }, 1000)
           })
         } else {
           liff.login()
