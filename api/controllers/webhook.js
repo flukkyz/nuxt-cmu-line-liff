@@ -95,8 +95,8 @@ module.exports = {
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
                   const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=THB`,{headers: headersCoin})
-                  console.log(dataUSD.data.data[msg.toUpperCase()]);
-                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data.data[msg.toUpperCase()].name,dataUSD.data.data[msg.toUpperCase()].quote['USD'].price,dataTHB.data.data[msg.toUpperCase()].quote['THB'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].percent_change_24h))
+                  console.log(dataUSD.data.data[msg.toUpperCase()].quote);
+                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data.data[msg.toUpperCase()].name,dataUSD.data.data[msg.toUpperCase()].quote.USD.price,dataTHB.data.data[msg.toUpperCase()].quote.THB.price,dataUSD.data[msg.toUpperCase()].quote.THB.percent_change_24h))
                 }
               } catch (error) {
                 console.log(error);
