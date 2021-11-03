@@ -56,6 +56,7 @@ module.exports = {
     // }
 
     const checkUser = await axios.get(`${process.env.BACKEND_API}users/lineid/${userId}`)
+    console.log(checkUser.data);
     if (checkUser.data.status === 'ok') {
       const resp = []
       try {
