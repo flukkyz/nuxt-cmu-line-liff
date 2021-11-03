@@ -309,7 +309,7 @@ module.exports = {
               alignItems: 'center',
               justifyContent: 'center',
               paddingTop: '20px',
-              paddingBottom: '10px',
+              paddingBottom: '20px',
               contents: [
                 {
 
