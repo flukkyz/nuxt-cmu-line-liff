@@ -82,7 +82,7 @@ export default {
         }
         this.$overlay.hide()
       } else {
-        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.name}`)
+        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path}`)
         window.location = authen.data
       }
     },

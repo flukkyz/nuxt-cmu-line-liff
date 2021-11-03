@@ -69,7 +69,7 @@ export default {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
-            window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
+            window.location = `https://liff.line.me/${process.env.liffID}${this.$route.query.state}`
           })
         } else {
           liff.login()
