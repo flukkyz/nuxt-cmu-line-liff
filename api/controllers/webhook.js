@@ -55,17 +55,15 @@ module.exports = {
     //   await getContent(event.message.id)
     // }
 
-    console.log('------------------------');
-    console.log(`${BACKEND_API}users/lineid/${userId}`);
 
     const checkUser = await axios.get(`${BACKEND_API}users/lineid/${userId}`)
-    console.log('------------------------');
-    console.log(checkUser.data);
-    console.log('------------------------');
     if (checkUser.data.status === 'ok') {
       const resp = []
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`)
+        console.log('------------------------');
+        console.log(chatStatusData.data);
+        console.log('------------------------');
         if(chatStatusData.data.chat){
           // save message chat
           // get helpdesk id
