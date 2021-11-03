@@ -386,8 +386,7 @@ module.exports = {
                   contents: [
                     {
                       type: 'span',
-                      text: 'ราคาเปลี่ยน 24 ชม. ',
-                      size: 'sm'
+                      text: 'ราคาเปลี่ยน 24 ชม. '
                     },
                     {
                       type: 'span',
