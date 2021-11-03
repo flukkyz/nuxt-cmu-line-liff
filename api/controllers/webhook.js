@@ -98,6 +98,7 @@ module.exports = {
                   resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data[msg.toUpperCase()].name,dataUSD.data[msg.toUpperCase()].quote['USD'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].percent_change_24h))
                 }
               } catch (error) {
+                console.log(error);
                 resp.push(lineUtility.sticker('11537','52002773'))
                 resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
               }
