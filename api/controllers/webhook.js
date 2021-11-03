@@ -27,7 +27,7 @@ const getContent = (messageId) => {
     stream.on('data', (chunk) => {
       console.log(chunk);
     })
-    writeStream.pipe(writeStream)
+    stream.pipe(writeStream)
     stream.on('error', (e) => {
       console.log(e)
     })
