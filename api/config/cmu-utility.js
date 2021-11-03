@@ -171,7 +171,8 @@ module.exports = {
               contents: [
                 utility.message('Question',{
                   weight: 'bold',
-                  size: 'xl'
+                  size: 'xl',
+                  color: '#0000ff'
                 }),
                 utility.message(faq.question,{
                   wrap: true,
@@ -185,7 +186,8 @@ module.exports = {
               paddingTop: '15px',
               contents: [
                 utility.message('Answer',{
-                  weight: 'bold'
+                  weight: 'bold',
+                  color: '#0000ff'
                 }),
                 utility.message(faq.answer,{
                   wrap: true
