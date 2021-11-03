@@ -291,7 +291,7 @@ module.exports = {
       }
     }
   },
-  symbol: (symbol,usd,thb) => {
+  symbol: (symbol,name,usd,thb,percent24) => {
     return {
       type: 'flex',
       altText: 'Cryptocurrency',
@@ -315,6 +315,13 @@ module.exports = {
                   weight: 'bold',
                   size: '5xl',
                   text: symbol
+                },
+                {
+
+                  type: 'text',
+                  weight: 'bold',
+                  size: '2xl',
+                  text: name
                 }
               ]
             },
@@ -375,8 +382,19 @@ module.exports = {
                 {
                   type: 'text',
                   color: '#888888',
-                  text: 'ค่าประมาณที่ 1 USD = 33 บาท',
-                  size: 'xxs'
+                  size: 'xxs',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'ราคาเปลี่ยน 24 ชม. ',
+                      size: 'sm'
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: `${new Intl.NumberFormat('th-th',{minimumFractionDigits: 2,maximumFractionDigits: 2}).format(percent24)} %`
+                    }
+                  ]
                 }
               ]
             },

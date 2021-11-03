@@ -77,17 +77,22 @@ module.exports = {
             } else if(msg === 'document') {
               resp.push(lineUtility.sticker('11537','52002746'))
               resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
-              // await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
               // resp.push(lineUtility.document())
             } else if(msg === 'faq') {
               const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
               resp.push(cmuUtility.faq(data.data.data))
             } else {
               try {
-                const searchSymbol = `${msg.toUpperCase()}USDT`
-                const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
-                const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
-                resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
+                // const searchSymbol = `${msg.toUpperCase()}USDT`
+                // const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
+                // const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
+                // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
+
+                const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=USD`)
+                if(dataUSD.status.error_code === 0){
+                  const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=THB`)
+                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data[msg.toUpperCase()].name,dataUSD.data[msg.toUpperCase()].quote['USD'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].percent_change_24h))
+                }
               } catch (error) {
                 resp.push(lineUtility.sticker('11537','52002773'))
                 resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
