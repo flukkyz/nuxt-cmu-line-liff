@@ -1,18 +1,30 @@
 <template>
   <div class="pt-16">
-    <v-row justify="center" class="mt-16">
-      <v-col cols="8">
-        <v-progress-linear
-          color="deep-purple accent-4"
-          indeterminate
-          rounded
-          height="6"
-        />
-      </v-col>
-    </v-row>
-    <h1 class="display-1 text-center teal--text mt-5">
-      Waiting for Authentication
-    </h1>
+    <div v-if="register">
+      <v-row justify="center" class="mt-16">
+        <v-col cols="8">
+          <v-progress-linear
+            color="deep-purple accent-4"
+            indeterminate
+            rounded
+            height="6"
+          />
+        </v-col>
+      </v-row>
+      <h1 class="display-1 text-center teal--text mt-5">
+        Waiting for Authentication
+      </h1>
+    </div>
+    <div v-else>
+      <h1 class="display-1 text-center teal--text mt-5">
+        ลงทะเบียนสำเร็จ
+      </h1>
+      <div class="mt-10 mb-3 text-center">
+        <v-btn outlined @click="close">
+          ปิด
+        </v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +34,11 @@ export default {
   middleware: 'guest',
   validate ({ query }) {
     return query.code && query.state
+  },
+  data () {
+    return {
+      register: false
+    }
   },
   head () {
     return {
@@ -62,6 +79,11 @@ export default {
           liff.login()
         }
       })
+    }
+  },
+  methods: {
+    close () {
+      window.close()
     }
   }
 }
