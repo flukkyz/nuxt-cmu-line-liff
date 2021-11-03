@@ -91,12 +91,11 @@ module.exports = {
                 // const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
                 // const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
                 // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
-console.log(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=USD`);
+
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=USD`,{headers: headersCoin})
-                console.log(dataUSD.data);
-                if(dataUSD.status.error_code === 0){
+                if(dataUSD.data.status.error_code === 0){
                   const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=THB`,{headers: headersCoin})
-                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data[msg.toUpperCase()].name,dataUSD.data[msg.toUpperCase()].quote['USD'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].percent_change_24h))
+                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data.data[msg.toUpperCase()].name,dataUSD.data.data[msg.toUpperCase()].quote['USD'].price,dataTHB.data.data[msg.toUpperCase()].quote['THB'].price,dataUSD.data[msg.toUpperCase()].quote['THB'].percent_change_24h))
                 }
               } catch (error) {
                 console.log(error);
