@@ -171,6 +171,11 @@ export default {
         icon: 'fas fa-cogs',
         items: [
           {
+            url: 'settings-categories',
+            icon: 'fas fa-cubes',
+            text: 'ประเภทการแจ้งปัญหา'
+          },
+          {
             url: 'settings-users',
             icon: 'fas fa-users-cog',
             text: 'ผู้ใช้งาน'
