@@ -2,6 +2,7 @@ const cmuUtility = require('../config/cmu-utility')
 const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
+const fs = require('fs')
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -21,10 +22,12 @@ const push = (to,messages) => {
 }
 
 const getContent = (messageId) => {
+  let writeStream = fs.createWriteStream('secret.jpg');
   client.getMessageContent(messageId).then((stream) => {
     stream.on('data', (chunk) => {
       console.log(chunk);
     })
+    writeStream.pipe(writeStream)
     stream.on('error', (e) => {
       console.log(e)
     })
