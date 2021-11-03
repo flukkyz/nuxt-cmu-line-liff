@@ -167,7 +167,7 @@ module.exports = {
           contents: [
             {
               type: 'box',
-              layout: 'baseline',
+              layout: 'vertical',
               contents: [
                 utility.message('Question',{
                   weight: 'bold',
@@ -181,7 +181,7 @@ module.exports = {
             },
             {
               type: 'box',
-              layout: 'baseline',
+              layout: 'vertical',
               paddingTop: '15px',
               contents: [
                 utility.message('Answer',{
