@@ -25,9 +25,27 @@ module.exports = {
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
+    console.log(event.source);
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${userId}`
+    }
+    try {
+      const urlCheckIsUser = `${process.env.BACKEND_API}users/lineid/${userId}`
+      const user = await this.$axios.$get(urlCheckIsUser)
+      this.datas = user
+      if (user.status === 'ok') {
+        this.profile = {
+          ...profile,
+          ...user.data
+        }
+        this.$overlay.hide()
+      } else {
+        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
+        window.location = authen.data
+      }
+    } catch (error) {
+      
     }
     const resp = []
     try {
@@ -50,9 +68,6 @@ module.exports = {
           await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
           const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
           resp.push(cmuUtility.faq(data.data.data))
-        } else if(msg === 'helpdesk') {
-          resp.push(lineUtility.sticker('11538','51626518'))
-          resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
         } else {
           try {
             const searchSymbol = `${msg.toUpperCase()}USDT`

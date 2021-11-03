@@ -1,6 +1,28 @@
 const _ = require('lodash')
 const utility = require('./line-utility')
 module.exports = {
+  register: () => {
+    return {
+      type: 'template',
+      altText: 'Register',
+      template: {
+          type: 'buttons',
+          thumbnailImageUrl: `${process.env.BASE_URL}/images/logo.png`,
+          imageAspectRatio: 'rectangle',
+          imageSize: 'cover',
+          imageBackgroundColor: '#FFFFFF',
+          title: 'ลงทะเบียนเข้าใช้งาน',
+          text: 'กรุณาลงทะเบียนก่อนการเข้าใช้งานในครั้งแรก',
+          actions: [
+            {
+                type: 'uri',
+                label: 'ลงทะเบียน',
+                uri: `https://liff.line.me/${process.env.LIFF_ID}/profile`
+            },
+          ]
+      }
+    }
+  },
   salary: (salary) => {
     return {
       type: 'flex',
