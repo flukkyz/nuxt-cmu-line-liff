@@ -69,7 +69,7 @@ export default {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
-            window.location = `https://liff.line.me/1656332858-DgV6jA5l/${this.$route.query.state}`
+            window.location = 'https://liff.line.me/1656332858-DgV6jA5l/profile'
             // this.$router.push({ name: this.$route.query.state })
           })
         } else {
