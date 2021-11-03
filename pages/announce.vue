@@ -13,6 +13,7 @@
         background-color="transparent"
         color="basil"
         grow
+        @change="changeTab"
       >
         <v-tab>
           <v-icon left>
@@ -196,6 +197,14 @@ export default {
       const index = this.form.users.indexOf(item.lineid)
       if (index >= 0) { this.form.users.splice(index, 1) }
     },
+    changeTab () {
+      this.clearData()
+      setTimeout(() => {
+        if (this.$refs.form) {
+          this.$refs.form.resetValidation()
+        }
+      })
+    },
     clearData () {
       this.form = {
         txt: '',
@@ -235,8 +244,14 @@ export default {
       try {
         const result = await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
         if (result) {
-          this.$notifier.showMessage({ title: 'ปรับปรุงข้อมูลสำเร็จ', content: `ปรับปรุงข้อมูล${this.modelName}สำเร็จ`, color: 'success' })
+          this.$notifier.showMessage({ title: 'ประกาศสำเร็จ', content: `ประกาศ${this.tab === 0 ? 'ข้อความ' : 'รูปภาพ'}สำเร็จ`, color: 'success' })
         }
+        this.clearData()
+        setTimeout(() => {
+          if (this.$refs.form) {
+            this.$refs.form.resetValidation()
+          }
+        })
       } catch (e) {
         this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
       }
