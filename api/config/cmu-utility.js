@@ -12,7 +12,7 @@ module.exports = {
           imageSize: 'cover',
           imageBackgroundColor: '#FFFFFF',
           title: 'ลงทะเบียนเข้าใช้งาน',
-          text: 'กรุณาลงทะเบียนก่อนการเข้าใช้งานในครั้งแรก',
+          text: 'กรุณาลงทะเบียนในการเข้าใช้งานครั้งแรก',
           actions: [
             {
                 type: 'uri',
