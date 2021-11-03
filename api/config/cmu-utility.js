@@ -169,19 +169,14 @@ module.exports = {
               type: 'box',
               layout: 'baseline',
               contents: [
-                {
-                  type: 'text',
+                utility.message('Question',{
+                  weight: 'bold',
+                  size: 'xl'
+                }),
+                utility.message(faq.question,{
                   wrap: true,
-                  contents: [
-                    utility.span('Q: ',{
-                      weight: 'bold',
-                      size: 'xl'
-                    }),
-                    utility.span(faq.question,{
-                      size: 'xl'
-                    })
-                  ]
-                }
+                  size: 'xl'
+                })
               ]
             },
             {
@@ -189,16 +184,12 @@ module.exports = {
               layout: 'baseline',
               paddingTop: '15px',
               contents: [
-                {
-                  type: 'text',
-                  wrap: true,
-                  contents: [
-                    utility.span('A: ',{
-                      weight: 'bold'
-                    }),
-                    utility.span(faq.answer),
-                  ]
-                }
+                utility.message('Answer',{
+                  weight: 'bold'
+                }),
+                utility.message(faq.answer,{
+                  wrap: true
+                })
               ]
             },
           ]
