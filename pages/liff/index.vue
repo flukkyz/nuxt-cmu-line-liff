@@ -1,6 +1,9 @@
 <template>
   <div class="d-flex h-100 fill">
     <v-img src="/images/logo.png" contain max-width="250" class="my-auto mx-auto" />
+    <p>
+      {{ $route.name }}
+    </p>
   </div>
 </template>
 
