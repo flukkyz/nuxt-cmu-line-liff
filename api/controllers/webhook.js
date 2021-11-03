@@ -61,9 +61,6 @@ module.exports = {
       const resp = []
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
-        console.log('------------------------');
-        console.log(chatStatusData.data);
-        console.log('------------------------');
         if(chatStatusData.data.chat){
           // save message chat
           // get helpdesk id
@@ -72,11 +69,9 @@ module.exports = {
           if (event.type === "message") {
             const msg = event.message.text
             if(msg === 'salary') {
-              await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลเงินเดือน`))
               const data = await axios.get(`${BACKEND_API}line/users/income`,{headers})
               resp.push(cmuUtility.salary(data.data.data))
             } else if(msg === 'leave') {
-              await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการลา`))
               const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
               resp.push(cmuUtility.leave(data.data.data))
             } else if(msg === 'document') {
@@ -85,7 +80,6 @@ module.exports = {
               // await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ E-Document`))
               // resp.push(lineUtility.document())
             } else if(msg === 'faq') {
-              await reply(replyToken,lineUtility.message(`กำลังโหลดข้อมูลการ FAQ`))
               const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
               resp.push(cmuUtility.faq(data.data.data))
             } else {
@@ -104,7 +98,6 @@ module.exports = {
               return key===""?value:decodeURIComponent(value)
             })
             if(postback.action === 'faq') {
-              await reply(replyToken,lineUtility.message(`กำลังโหลด FAQ: ${postback.title}`))
               const data = await axios.get(`${BACKEND_API}line/faqs/${postback.id}`,{headers})
               resp.push(cmuUtility.faqPostback(data.data.data))
             }
@@ -115,9 +108,9 @@ module.exports = {
         resp.push(lineUtility.sticker('11537','52002739'))
         resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
       }
-      push(userId,resp)
+      reply(replyToken,resp)
     }else{
-      push(userId,cmuUtility.register)
+      reply(replyToken,cmuUtility.register)
     }
     res.send("HTTP POST request sent to the webhook URL!")
   }
