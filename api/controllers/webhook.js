@@ -20,6 +20,17 @@ const push = (to,messages) => {
   })
 }
 
+const getContent = (messageId) => {
+  client.getMessageContent(messageId).then((stream) => {
+    stream.on('data', (chunk) => {
+      console.log(chunk);
+    })
+    stream.on('error', (e) => {
+      console.log(e)
+    })
+  })
+}
+
 module.exports = {
   index: async (req, res) => {
     const event = req.body.events[0]
@@ -30,23 +41,27 @@ module.exports = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${userId}`
     }
-    try {
-      const urlCheckIsUser = `${process.env.BACKEND_API}users/lineid/${userId}`
-      const user = await this.$axios.$get(urlCheckIsUser)
-      this.datas = user
-      if (user.status === 'ok') {
-        this.profile = {
-          ...profile,
-          ...user.data
-        }
-        this.$overlay.hide()
-      } else {
-        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-        window.location = authen.data
-      }
-    } catch (error) {
-      
+
+    if(event.message.type === 'image'){
+      await getContent(event.message.id)
     }
+    // try {
+    //   const urlCheckIsUser = `${process.env.BACKEND_API}users/lineid/${userId}`
+    //   const user = await this.$axios.$get(urlCheckIsUser)
+    //   this.datas = user
+    //   if (user.status === 'ok') {
+    //     this.profile = {
+    //       ...profile,
+    //       ...user.data
+    //     }
+    //     this.$overlay.hide()
+    //   } else {
+    //     const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
+    //     window.location = authen.data
+    //   }
+    // } catch (error) {
+      
+    // }
     const resp = []
     try {
       if (event.type === "message") {
