@@ -312,17 +312,17 @@ module.exports = {
               paddingBottom: '20px',
               contents: [
                 {
+                  type: 'text',
+                  weight: 'bold',
+                  size: 'xl',
+                  text: name
+                },
+                {
 
                   type: 'text',
                   weight: 'bold',
-                  size: '5xl',
+                  size: '4xl',
                   text: symbol
-                },
-                {
-                  type: 'text',
-                  weight: 'bold',
-                  size: 'xxl',
-                  text: name
                 }
               ]
             },
