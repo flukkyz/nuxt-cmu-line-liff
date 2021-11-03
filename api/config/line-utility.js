@@ -315,13 +315,13 @@ module.exports = {
                   weight: 'bold',
                   size: '5xl',
                   text: symbol
+                },
+                {
+                  type: 'text',
+                  weight: 'bold',
+                  size: '2xl',
+                  text: name
                 }
-                // {
-                //   type: 'text',
-                //   weight: 'bold',
-                //   size: '2xl',
-                //   text: name
-                // }
               ]
             },
             {
