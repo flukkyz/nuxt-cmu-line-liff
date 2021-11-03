@@ -18,6 +18,8 @@
     <div v-else>
       <h1 class="display-1 text-center teal--text mt-5">
         ลงทะเบียนสำเร็จ
+        <br>
+        {{ $route.query.state }}
       </h1>
     </div>
   </div>
