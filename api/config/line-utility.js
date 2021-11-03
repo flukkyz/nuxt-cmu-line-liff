@@ -315,19 +315,11 @@ module.exports = {
                   weight: 'bold',
                   size: '5xl',
                   text: symbol
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'vertical',
-              paddingTop: '20px',
-              paddingBottom: '10px',
-              contents: [
+                },
                 {
                   type: 'text',
                   weight: 'bold',
-                  size: 'xl',
+                  size: 'xxl',
                   text: name
                 }
               ]
