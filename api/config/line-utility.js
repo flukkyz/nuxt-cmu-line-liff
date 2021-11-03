@@ -306,6 +306,8 @@ module.exports = {
             {
               type: 'box',
               layout: 'vertical',
+              alignItems: 'center',
+              justifyContent: 'center',
               paddingTop: '20px',
               paddingBottom: '10px',
               contents: [
