@@ -1,8 +1,8 @@
 const _ = require('lodash')
 const utility = require('./line-utility')
 module.exports = {
-  register: () => {
-    return {
+  register: [
+      {
       type: 'template',
       altText: 'Register',
       template: {
@@ -22,7 +22,7 @@ module.exports = {
           ]
       }
     }
-  },
+  ],
   salary: (salary) => {
     return {
       type: 'flex',
