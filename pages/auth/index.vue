@@ -19,11 +19,6 @@
       <h1 class="display-1 text-center teal--text mt-5">
         ลงทะเบียนสำเร็จ
       </h1>
-      <div class="mt-10 mb-3 text-center">
-        <v-btn outlined @click="close">
-          ปิด
-        </v-btn>
-      </div>
     </div>
   </div>
 </template>
@@ -72,18 +67,13 @@ export default {
             this.profile = profile
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
-            window.close()
+            window.location = `https://liff.line.me/1656332858-DgV6jA5l${this.$route.query.state}`
             // this.$router.push({ name: this.$route.query.state })
           })
         } else {
           liff.login()
         }
       })
-    }
-  },
-  methods: {
-    close () {
-      window.close()
     }
   }
 }
