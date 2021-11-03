@@ -315,14 +315,13 @@ module.exports = {
                   weight: 'bold',
                   size: '5xl',
                   text: symbol
-                },
-                {
-
-                  type: 'text',
-                  weight: 'bold',
-                  size: '2xl',
-                  text: name
                 }
+                // {
+                //   type: 'text',
+                //   weight: 'bold',
+                //   size: '2xl',
+                //   text: name
+                // }
               ]
             },
             {
@@ -387,12 +386,12 @@ module.exports = {
                     {
                       type: 'span',
                       text: 'ราคาเปลี่ยน 24 ชม. '
-                    },
-                    {
-                      type: 'span',
-                      weight: 'bold',
-                      text: `${new Intl.NumberFormat('th-th',{minimumFractionDigits: 2,maximumFractionDigits: 2}).format(percent24)} %`
                     }
+                    // {
+                    //   type: 'span',
+                    //   weight: 'bold',
+                    //   text: `${new Intl.NumberFormat('th-th',{minimumFractionDigits: 2,maximumFractionDigits: 2}).format(percent24)} %`
+                    // }
                   ]
                 }
               ]
