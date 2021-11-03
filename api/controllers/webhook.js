@@ -25,7 +25,8 @@ module.exports = {
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
-    console.log(event.source);
+    console.log(event);
+    console.log(event.type);
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${userId}`
