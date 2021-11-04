@@ -44,9 +44,9 @@
               </v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-              <p class="grey--text mb-0">
+              <!-- <p class="grey--text mb-0">
                 {{ $dateText(item.createdAt) }}
-              </p>
+              </p> -->
             </v-list-item-action>
           </v-list-item>
         </template>
