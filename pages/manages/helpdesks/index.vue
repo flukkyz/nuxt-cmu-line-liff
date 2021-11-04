@@ -47,7 +47,7 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    <v-badge dot>
+                    <v-badge dot color="warning">
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </v-badge>
                   </v-list-item-title>
