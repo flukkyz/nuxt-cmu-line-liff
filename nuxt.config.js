@@ -63,6 +63,7 @@ export default {
     // '~/plugins/liff.js',
     '~/plugins/lodash.js',
     '~/plugins/head-util.js',
+    '~/plugins/lang.js',
     '~/plugins/helpers.js',
     '~/plugins/breadcrumbs.js',
     '~/plugins/notifier.js',

@@ -48,7 +48,7 @@
             </v-list-item-content>
             <v-list-item-action>
               <p class="grey--text mb-0">
-                {{ $dateText() }}
+                {{ $dateText(item.createdAt) }}
               </p>
             </v-list-item-action>
           </v-list-item>
