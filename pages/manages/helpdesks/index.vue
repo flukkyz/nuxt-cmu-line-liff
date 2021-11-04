@@ -47,7 +47,9 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
+                    <v-badge>
+                      {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
+                    </v-badge>
                   </v-list-item-title>
                   <v-list-item-subtitle class="mt-1">
                     <v-icon x-small>
