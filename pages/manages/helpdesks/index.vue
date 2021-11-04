@@ -22,9 +22,14 @@
           itemsPerPageOptions: [10,20,50,100,300,500]
         }"
       >
-        <template #[`item.name`]="{ item }">
-          {{ item.firstname }}
-          {{ item.lastname }}
+        <template #[`item.helpdesk`]="{ item }">
+          <v-list-item @click="$router.push(localePath({name: 'manages-helpdesks-id',params: {id: item._id}}))">
+            <v-list-item-content>
+              <v-list-item-title>Single-line item</v-list-item-title>
+              <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+              <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
         </template>
       </v-data-table>
     </v-card>
@@ -40,21 +45,7 @@ export default {
       search: '',
       headers: [
         {
-          text: 'Name',
-          value: 'name'
-        },
-        {
-          text: 'หน่วยงาน',
-          value: 'organizationname'
-        },
-        {
-          text: 'E-mail',
-          value: 'email'
-        },
-        {
-          text: 'ผู้ดูแลระบบ',
-          class: 'text-right',
-          value: 'role'
+          value: 'helpdesk'
         }
       ],
       datas: null
