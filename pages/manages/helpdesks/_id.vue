@@ -1,7 +1,10 @@
 <template>
   <div>
     helpdesks
+    <pre>
+
     {{ data }}
+    </pre>
   </div>
 </template>
 
