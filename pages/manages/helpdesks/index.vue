@@ -29,7 +29,8 @@
                 <template #activator="{ on, attrs }">
                   <v-icon
                     v-bind="attrs"
-                    large=" item.admin_reply ? 'primary' : 'success'"
+                    large
+                    :color=" item.admin_reply ? 'primary' : 'success'"
                     v-on="on"
                   >
                     {{ item.admin_reply ? 'far fa-comments' : 'far fa-comment-alt' }}
