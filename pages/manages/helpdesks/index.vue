@@ -1,7 +1,7 @@
 <template>
   <div v-if="datas" class="mt-10 mb-5">
     <h2>
-      <span class="fas fa-users-cog" />
+      <span class="fas fa-info-circle" />
       การแจ้งปัญหาของผู้ใช้งาน
     </h2>
     <v-card class="mt-5">

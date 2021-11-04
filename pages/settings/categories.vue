@@ -11,7 +11,7 @@
           </v-btn>
         </div>
         <h2>
-          <span class="fas fa-question-circle" />
+          <span class="fas fa-cubes" />
           จัดการข้อมูล{{ modelName }}
         </h2>
         <v-card class="mt-5">
