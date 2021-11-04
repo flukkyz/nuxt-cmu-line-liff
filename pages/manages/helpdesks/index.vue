@@ -46,14 +46,16 @@
                   </v-tooltip>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>Single-line item</v-list-item-title>
+                  <v-list-item-title class="title">
+                    {{ 'gergrg' }}
+                  </v-list-item-title>
                   <v-list-item-subtitle>
-                    <v-icon small>
+                    <v-icon x-small>
                       fas fa-sitemap
                     </v-icon>
                     {{ 'department' }}
                     &nbsp;
-                    <v-icon small>
+                    <v-icon x-small>
                       far fa-envelope
                     </v-icon>
                     {{ 'department' }}
