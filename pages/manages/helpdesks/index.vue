@@ -39,7 +39,7 @@
                         :color=" item.admin_reply ? 'primary' : 'success'"
                         v-on="on"
                       >
-                        {{ item.admin_reply ? 'fas fa-comments' : 'fas fa-comment-alt' }}
+                        {{ item.admin_reply ? `${item.mode === 'start' ? 'fas' : 'far'} fa-comments` : 'fas fa-comment-alt' }}
                       </v-icon>
                     </template>
                     <span>{{ item.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
