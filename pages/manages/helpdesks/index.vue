@@ -48,8 +48,7 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    {{ mode }}
-                    <v-badge v-if="mode === 'wait'" dot color="warning">
+                    <v-badge v-if="item.mode === 'wait'" dot color="warning">
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </v-badge>
                     <span v-else>
