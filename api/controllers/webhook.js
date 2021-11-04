@@ -65,7 +65,9 @@ module.exports = {
       const resp = []
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
+        console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
+          console.log('true');
           const data = await axios.put(`${BACKEND_API}line/helpdesk/message/${chatStatusData.data._id}`,{headers})
           resp.push(cmuUtility.salary(data.data.data))
           // notify to admin
