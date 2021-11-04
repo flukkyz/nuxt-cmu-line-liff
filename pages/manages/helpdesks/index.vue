@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       modelName: 'ผู้ใช้งาน',
-      api: `${process.env.apiUrl}${process.env.apiDirectory}users`,
+      api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       search: '',
       headers: [
         {
@@ -63,28 +63,9 @@ export default {
   async fetch () {
     try {
       const datas = await this.$axios.$get(`${this.api}`)
-      this.datas = datas.data.map((ele) => {
-        return {
-          ...ele,
-          isAdmin: ele.role === 'admin'
-        }
-      })
+      this.datas = datas.data
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
-    }
-  },
-  methods: {
-    async switchRole (item) {
-      item.role = item.role === 'admin' ? 'member' : 'admin'
-      try {
-        const result = await this.$axios.$put(`${this.api}/${item._id}`, item)
-        await this.$fetch()
-        if (result) {
-          this.$notifier.showMessage({ title: 'ปรับปรุงข้อมูลสำเร็จ', content: `ปรับปรุงข้อมูล${this.modelName}สำเร็จ`, color: 'success' })
-        }
-      } catch (e) {
-        this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
-      }
     }
   }
 }
