@@ -39,7 +39,7 @@
                         :color=" item.admin_reply ? 'primary' : 'success'"
                         v-on="on"
                       >
-                        {{ item.admin_reply ? 'far fa-comments' : 'far fa-comment-alt' }}
+                        {{ item.admin_reply ? 'fas fa-comments' : 'fas fa-comment-alt' }}
                       </v-icon>
                     </template>
                     <span>{{ item.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
@@ -47,18 +47,18 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    {{ 'gergrg' }}
+                    {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                   </v-list-item-title>
                   <v-list-item-subtitle class="mt-1">
                     <v-icon x-small>
                       fas fa-sitemap
                     </v-icon>
-                    {{ 'department' }}
+                    {{ item.user_detail[0].organizationname }}
                     &nbsp;
                     <v-icon x-small>
                       far fa-envelope
                     </v-icon>
-                    {{ 'department' }}
+                    {{ item.user_detail[0].email }}
                   </v-list-item-subtitle>
                   <v-list-item-subtitle class="info--text mt-3 caption">
                     {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
