@@ -118,6 +118,68 @@ module.exports = {
       }
     }
   },
+  document: (unread) => {
+    return {
+      type: 'flex',
+      altText: 'CMU e-Document',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'box',
+              layout: 'vertical',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingBottom: '20px',
+              contents: [
+                utility.message('หนังสือเข้าที่ยังไม่ได้อ่าน')
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'baseline',
+              paddingStart: '30px',
+              paddingEnd: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    utility.span(new Intl.NumberFormat('th-th').format(unread),{
+                      weight: 'bold'
+                    }),
+                    utility.span(' รายการ')
+                  ],
+                  align: 'center',
+                  size: 'xl'
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingTop: '30px',
+              contents: [
+                {
+                  type: 'button',
+                  action: {
+                    type: 'uri',
+                    label: 'แสดงรายละเอียดเพิ่มเติม',
+                    uri: 'https://edoc.cmu.ac.th/'
+                  },
+                  style: 'primary',
+                  color: '#0000ff',
+                  height: 'sm'
+                }
+              ]
+            },
+          ]
+        }
+      }
+    }
+  },
   faq: (datas) => {
     const contents = [{
       type: 'box',

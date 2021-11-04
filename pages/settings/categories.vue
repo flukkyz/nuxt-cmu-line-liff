@@ -1,5 +1,5 @@
 <template>
-  <div v-if="datas" class="my-5">
+  <div v-if="datas" class="mt-10 mb-5">
     <v-row justify="center">
       <v-col md="8">
         <div class="float-right mt-1">

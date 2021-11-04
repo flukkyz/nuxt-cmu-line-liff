@@ -79,9 +79,8 @@ module.exports = {
               const data = await axios.get(`${BACKEND_API}line/users/leavehistory`,{headers})
               resp.push(cmuUtility.leave(data.data.data))
             } else if(msg === 'document') {
-              resp.push(lineUtility.sticker('11537','52002746'))
-              resp.push(lineUtility.message('อยู่ในระหว่างปรับปรุงส่วนนี้'))
-              // resp.push(lineUtility.document())
+              const data = await axios.get(`${BACKEND_API}line/users/edoc`,{headers})
+              resp.push(cmuUtility.document(data.data.data))
             } else if(msg === 'faq') {
               const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
               resp.push(cmuUtility.faq(data.data.data))

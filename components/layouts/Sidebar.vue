@@ -137,7 +137,7 @@ export default {
       this.sideItems.push({
         url: { name: 'manages-helpdesks' },
         icon: 'fas fa-info-circle',
-        text: 'Helpdesks'
+        text: 'การแจ้งปัญหาของผู้ใช้งาน'
       })
       this.sideItems.push({
         group: 'รายงาน',

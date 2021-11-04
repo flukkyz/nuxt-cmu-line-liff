@@ -1,5 +1,5 @@
 <template>
-  <div v-if="datas" class="my-5">
+  <div v-if="datas" class="mt-10 mb-5">
     <div class="float-right mt-1">
       <v-btn small elevation="0" outlined color="info" @click="onAdd">
         <v-icon class="mr-1" x-small>

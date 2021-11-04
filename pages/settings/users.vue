@@ -1,5 +1,5 @@
 <template>
-  <div v-if="datas" class="my-5">
+  <div v-if="datas" class="mt-10 mb-5">
     <h2>
       <span class="fas fa-users-cog" />
       จัดการข้อมูล{{ modelName }}
@@ -18,6 +18,9 @@
         :headers="headers"
         :items="datas"
         :search="search"
+        :footer-props="{
+          itemsPerPageOptions: [10,20,50,100,300,500]
+        }"
       >
         <template #[`item.name`]="{ item }">
           {{ item.firstname }}
