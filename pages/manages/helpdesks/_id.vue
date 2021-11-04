@@ -18,7 +18,8 @@ export default {
       const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
       this.data = data.data
       await this.$axios.$put(`${this.api}/status/${this.$route.params.id}`, {
-        mode: 'read'
+        mode: 'read',
+        category_id: '6183732a6f433335811186c3'
       })
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
