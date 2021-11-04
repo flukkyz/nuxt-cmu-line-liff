@@ -68,7 +68,9 @@ module.exports = {
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
           console.log(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`);
-          const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{headers})
+          const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
+            content: event.message.text
+          },{headers})
           // notify to admin
         }else{
           if (event.type === "message") {
