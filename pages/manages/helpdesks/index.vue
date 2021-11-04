@@ -49,7 +49,7 @@
                   <v-list-item-title class="title">
                     {{ 'gergrg' }}
                   </v-list-item-title>
-                  <v-list-item-subtitle>
+                  <v-list-item-subtitle class="mt-1">
                     <v-icon x-small>
                       fas fa-sitemap
                     </v-icon>
