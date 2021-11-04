@@ -18,6 +18,7 @@
         :headers="headers"
         :items="datas"
         :search="search"
+        hide-default-header
         :footer-props="{
           itemsPerPageOptions: [10,20,50,100,300,500]
         }"
