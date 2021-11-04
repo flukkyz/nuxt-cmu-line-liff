@@ -112,7 +112,7 @@ export default {
     async confirmSave () {
       this.$overlay.showLoading()
       this.oneClick = true
-      await this.$axios.$post(`${process.env.apiUrl}${process.env.apiDirectory}line/helpdesk`, this.form, {
+      await this.$axios.$post(`${process.env.apiUrl}${process.env.apiDirectory}line/helpdesks`, this.form, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${this.profile.userId}`
