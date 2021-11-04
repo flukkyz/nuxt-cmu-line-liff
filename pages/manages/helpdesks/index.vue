@@ -49,7 +49,7 @@
                   <v-list-item-title class="title">
                     {{ 'gergrg' }}
                   </v-list-item-title>
-                  <v-list-item-subtitle class="mt-1">
+                  <v-list-item-subtitle class="mt-1 info--text">
                     <v-icon x-small>
                       fas fa-sitemap
                     </v-icon>
@@ -60,7 +60,7 @@
                     </v-icon>
                     {{ 'department' }}
                   </v-list-item-subtitle>
-                  <v-list-item-subtitle class="info--text mt-3 caption">
+                  <v-list-item-subtitle class="teal--text mt-3 caption">
                     {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
