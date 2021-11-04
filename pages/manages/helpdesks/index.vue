@@ -39,7 +39,7 @@
                         :color=" item.admin_reply ? 'primary' : 'success'"
                         v-on="on"
                       >
-                        {{ item.admin_reply ? `${item.mode === 'start' ? 'fas' : 'far'} fa-comments` : 'fas fa-comment-alt' }}
+                        {{ item.admin_reply ? `${item.mode === 'start' ? 'fas' : 'far'} fa-comments` : `${item.mode === 'read' ? 'fas' : 'far'} fa-comment-alt` }}
                       </v-icon>
                     </template>
                     <span>{{ item.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
@@ -47,9 +47,12 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title class="title">
-                    <v-badge dot color="warning">
+                    <v-badge v-if="mode === 'wait'" dot color="warning">
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </v-badge>
+                    <span v-else>
+                      {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
+                    </span>
                   </v-list-item-title>
                   <v-list-item-subtitle class="mt-1">
                     <v-icon x-small>
