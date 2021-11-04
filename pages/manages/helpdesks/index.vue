@@ -22,36 +22,44 @@
           itemsPerPageOptions: [10,20,50,100,300,500]
         }"
       >
-        <template #[`item.helpdesk`]="{ item }">
-          <v-list-item @click="$router.push(localePath({name: 'manages-helpdesks-id',params: {id: item._id}}))">
-            <v-list-item-icon>
-              <v-tooltip top>
-                <template #activator="{ on, attrs }">
-                  <v-icon
-                    v-bind="attrs"
-                    large
-                    :color=" item.admin_reply ? 'primary' : 'success'"
-                    v-on="on"
-                  >
-                    {{ item.admin_reply ? 'far fa-comments' : 'far fa-comment-alt' }}
-                  </v-icon>
-                </template>
-                <span>{{ item.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
-              </v-tooltip>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Single-line item</v-list-item-title>
-              <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
-              <v-list-item-subtitle class="grey--text mt-3 caption">
-                {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-            <v-list-item-action class="align-self-start">
-              <p class="grey--text mb-0">
-                {{ $dateText(item.createdAt,'medium','long') }}
-              </p>
-            </v-list-item-action>
-          </v-list-item>
+        <template #body="props">
+          <tr
+            v-for="(item, index) in props.items"
+            :id="`table-item-${item.id}`"
+            :key="index"
+          >
+            <td>
+              <v-list-item @click="$router.push(localePath({name: 'manages-helpdesks-id',params: {id: item._id}}))">
+                <v-list-item-icon>
+                  <v-tooltip top>
+                    <template #activator="{ on, attrs }">
+                      <v-icon
+                        v-bind="attrs"
+                        large
+                        :color=" item.admin_reply ? 'primary' : 'success'"
+                        v-on="on"
+                      >
+                        {{ item.admin_reply ? 'far fa-comments' : 'far fa-comment-alt' }}
+                      </v-icon>
+                    </template>
+                    <span>{{ item.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
+                  </v-tooltip>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>Single-line item</v-list-item-title>
+                  <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+                  <v-list-item-subtitle class="grey--text mt-3 caption">
+                    {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-action class="align-self-start">
+                  <p class="grey--text mb-0">
+                    {{ $dateText(item.createdAt,'medium','long') }}
+                  </p>
+                </v-list-item-action>
+              </v-list-item>
+            </td>
+          </tr>
         </template>
       </v-data-table>
     </v-card>
