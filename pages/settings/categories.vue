@@ -12,38 +12,42 @@
       <span class="fas fa-question-circle" />
       จัดการข้อมูล{{ modelName }}
     </h2>
-    <v-card class="mt-5">
-      <v-card-title>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          :label="`ค้นหา${modelName}`"
-          single-line
-          hide-details
-        />
-      </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="datas"
-        :search="search"
-        item-key="_id"
-      >
-        <template #[`item.edit`]="{ item }">
-          <div class="text-right mr-4">
-            <v-icon color="warning" small @click="onEdit(item)">
-              fas fa-edit
-            </v-icon>
-          </div>
-        </template>
-        <template #[`item.delete`]="{ item }">
-          <div class="text-right mr-4">
-            <v-icon color="error" small @click="onDelete(item)">
-              fas fa-trash
-            </v-icon>
-          </div>
-        </template>
-      </v-data-table>
-    </v-card>
+    <v-row>
+      <v-col md="8">
+        <v-card class="mt-5">
+          <v-card-title>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              :label="`ค้นหา${modelName}`"
+              single-line
+              hide-details
+            />
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="datas"
+            :search="search"
+            item-key="_id"
+          >
+            <template #[`item.edit`]="{ item }">
+              <div class="text-right mr-4">
+                <v-icon color="warning" small @click="onEdit(item)">
+                  fas fa-edit
+                </v-icon>
+              </div>
+            </template>
+            <template #[`item.delete`]="{ item }">
+              <div class="text-right mr-4">
+                <v-icon color="error" small @click="onDelete(item)">
+                  fas fa-trash
+                </v-icon>
+              </div>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-col>
+    </v-row>
     <forms-category @add="saveAdd" @edit="saveEdit" />
     <dialogs-delete @delete="saveDelete" />
   </div>
