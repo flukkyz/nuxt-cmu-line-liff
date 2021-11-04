@@ -60,12 +60,12 @@
                     </v-icon>
                     {{ 'department' }}
                   </v-list-item-subtitle>
-                  <v-list-item-subtitle class="รืดน--text mt-3 caption">
+                  <v-list-item-subtitle class="info--text mt-3 caption">
                     {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action class="align-self-start">
-                  <p class="grey--text mb-0">
+                  <p class="grey--text caption mb-0">
                     {{ $dateText(item.createdAt,'medium','long') }}
                   </p>
                 </v-list-item-action>
