@@ -66,8 +66,8 @@ module.exports = {
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         if(chatStatusData.data.chat){
-          // save message chat
-          // get helpdesk id
+          const data = await axios.put(`${BACKEND_API}line/helpdesk/message/${chatStatusData.data._id}`,{headers})
+          resp.push(cmuUtility.salary(data.data.data))
           // notify to admin
         }else{
           if (event.type === "message") {
