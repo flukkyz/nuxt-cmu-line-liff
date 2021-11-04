@@ -112,9 +112,12 @@ export default {
     async confirmSave () {
       this.$overlay.showLoading()
       this.oneClick = true
-      // save admin
-      //
-      //
+      await this.$axios.$post(`${process.env.apiUrl}${process.env.apiDirectory}line/helpdesk`, this.form, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.profile.userId}`
+        }
+      })
       const formData = new FormData()
       formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
       formData.append('send_type', 'select')
