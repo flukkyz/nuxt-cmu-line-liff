@@ -1,19 +1,19 @@
 <template>
   <div v-if="datas" class="my-5">
-    <div class="float-right mt-1">
-      <v-btn small elevation="0" outlined color="info" @click="onAdd">
-        <v-icon class="mr-1" x-small>
-          fas fa-plus
-        </v-icon>
-        เพิ่ม{{ modelName }}
-      </v-btn>
-    </div>
-    <h2>
-      <span class="fas fa-question-circle" />
-      จัดการข้อมูล{{ modelName }}
-    </h2>
-    <v-row>
+    <v-row justify="center">
       <v-col md="8">
+        <div class="float-right mt-1">
+          <v-btn small elevation="0" outlined color="info" @click="onAdd">
+            <v-icon class="mr-1" x-small>
+              fas fa-plus
+            </v-icon>
+            เพิ่ม{{ modelName }}
+          </v-btn>
+        </div>
+        <h2>
+          <span class="fas fa-question-circle" />
+          จัดการข้อมูล{{ modelName }}
+        </h2>
         <v-card class="mt-5">
           <v-card-title>
             <v-text-field
