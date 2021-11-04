@@ -140,14 +140,6 @@ export default {
         text: 'Helpdesks'
       })
       this.sideItems.push({
-        url: { name: 'manages-faqs' },
-        icon: 'fas fa-question-circle',
-        text: 'คำถามที่พบบ่อย (FAQ)'
-      })
-      this.sideItems.push({
-        divider: true
-      })
-      this.sideItems.push({
         group: 'รายงาน',
         icon: 'fas fa-list-alt',
         items: [
@@ -170,6 +162,11 @@ export default {
         group: 'ตั้งค่า',
         icon: 'fas fa-cogs',
         items: [
+          {
+            url: { name: 'settings-faqs' },
+            icon: 'fas fa-question-circle',
+            text: 'คำถามที่พบบ่อย (FAQ)'
+          },
           {
             url: 'settings-categories',
             icon: 'fas fa-cubes',
