@@ -17,7 +17,7 @@ export default {
     try {
       const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
       this.data = data.data
-      await this.$axios.$put(`${this.api}/status/${this.$route.params.id}`, {
+      await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
         mode: 'read',
         category_id: '6183732a6f433335811186c3'
       })
