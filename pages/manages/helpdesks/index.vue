@@ -47,8 +47,8 @@
               </v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-              <p class="grey--text mb-0">
-                {{ $dateText(item.createdAt) }}
+              <p class="grey--text mb-0 align-self-start">
+                {{ $dateText(item.createdAt,'medium','long') }}
               </p>
             </v-list-item-action>
           </v-list-item>
@@ -67,7 +67,8 @@ export default {
       search: '',
       headers: [
         {
-          value: 'helpdesk'
+          value: 'helpdesk',
+          class: 'pa-0'
         }
       ],
       datas: null
