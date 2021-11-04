@@ -47,8 +47,18 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>Single-line item</v-list-item-title>
-                  <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
-                  <v-list-item-subtitle class="grey--text mt-3 caption">
+                  <v-list-item-subtitle>
+                    <v-icon small>
+                      fas fa-sitemap
+                    </v-icon>
+                    {{ 'department' }}
+                    &nbsp;
+                    <v-icon small>
+                      far fa-envelope
+                    </v-icon>
+                    {{ 'department' }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle class="รืดน--text mt-3 caption">
                     {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
