@@ -46,8 +46,8 @@
                 {{ item.message[0].content.length > 100 ? `${item.message[0].content.substring(0, 100)}...` : item.message[0].content }}
               </v-list-item-subtitle>
             </v-list-item-content>
-            <v-list-item-action>
-              <p class="grey--text mb-0 align-self-start">
+            <v-list-item-action class="align-self-start">
+              <p class="grey--text mb-0">
                 {{ $dateText(item.createdAt,'medium','long') }}
               </p>
             </v-list-item-action>
@@ -68,7 +68,7 @@ export default {
       headers: [
         {
           value: 'helpdesk',
-          class: 'pa-0'
+          class: 'px-0 ma-0'
         }
       ],
       datas: null
