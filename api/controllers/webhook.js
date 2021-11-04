@@ -123,7 +123,9 @@ module.exports = {
         resp.push(lineUtility.sticker('11537','52002739'))
         resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
       }
-      reply(replyToken,resp)
+      if(resp.length > 0){
+        reply(replyToken,resp)
+      }
     }else{
       reply(replyToken,cmuUtility.register)
     }
