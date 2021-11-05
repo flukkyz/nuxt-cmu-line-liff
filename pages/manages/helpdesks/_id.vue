@@ -82,7 +82,8 @@
         <div v-for="msg in data.message" :key="`msg-${msg._id}`">
           <div class="d-flex">
             <v-card :id="`msg-list-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
-              <v-card-title class="pb-0" :class="msg.is_admin ? 'text-right' : ''">
+              <v-spacer v-if="msg.is_admin" />
+              <v-card-title class="pb-0">
                 {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
               </v-card-title>
               <v-card-text class="pa-2">
