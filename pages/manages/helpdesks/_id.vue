@@ -109,7 +109,14 @@
             />
           </v-col>
           <v-col cols="3">
-            <v-btn color="primary" x-large block type="submit" :disabled="!msgBox">
+            <v-btn
+              color="primary"
+              x-large
+              block
+              type="submit"
+              :disabled="!msgBox || sending"
+              :loading="sending"
+            >
               ส่ง
             </v-btn>
             <v-btn outlined block @click="close">
@@ -131,7 +138,8 @@ export default {
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
       data: null,
-      msgBox: ''
+      msgBox: '',
+      sending: false
     }
   },
   async mounted () {
@@ -185,6 +193,7 @@ export default {
     },
     async sendChat () {
       const massage = this.msgBox
+      this.sending = true
       this.msgBox = ''
       try {
         await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
@@ -204,6 +213,7 @@ export default {
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
+      this.sending = false
     }
   }
 }
