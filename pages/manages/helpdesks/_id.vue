@@ -137,7 +137,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <dialogs-confirm @confirm="confirmSave" />
+        <!-- <dialogs-confirm @confirm="confirmSave" /> -->
       </v-form>
     </div>
   </div>
