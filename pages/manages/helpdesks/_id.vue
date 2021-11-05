@@ -101,7 +101,7 @@
               v-model="msgBox"
               autocomplete="off"
               autofocus
-              rows="4"
+              rows="3"
               filled
               flat
               outlined
@@ -127,7 +127,7 @@
             <v-btn
               outlined
               color="red"
-              class="mt-3"
+              class="mt-4"
               block
               :loading="sending"
             >
