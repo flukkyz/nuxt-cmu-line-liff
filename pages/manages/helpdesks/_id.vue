@@ -119,6 +119,9 @@
               :disabled="!msgBox || sending"
               :loading="sending"
             >
+              <v-icon small left>
+                fas fa-paper-plane
+              </v-icon>
               ส่ง
             </v-btn>
             <v-btn
@@ -127,8 +130,10 @@
               class="mt-3"
               block
               :loading="sending"
-              @click="close"
             >
+              <v-icon small left>
+                fas fa-door-open
+              </v-icon>
               จบการสนทนา
             </v-btn>
           </v-col>
