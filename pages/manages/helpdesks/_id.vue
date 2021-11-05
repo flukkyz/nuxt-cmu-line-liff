@@ -37,9 +37,6 @@
             </v-icon>
             {{ data.user_detail[0].email }}
           </v-list-item-subtitle>
-          <v-list-item-subtitle class="info--text mt-3 caption">
-            {{ data.message[0].content.length > 100 ? `${data.message[0].content.substring(0, 100)}...` : data.message[0].content }}
-          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action class="align-self-start">
           <p class="grey--text caption mb-0">
@@ -51,9 +48,9 @@
 
     <v-card class="grey lighten-4" elevation="0">
       <v-card-text>
-        <p>
+        <v-card-subtitle>
           {{ data.message[0].content }}
-        </p>
+        </v-card-subtitle>
       </v-card-text>
     </v-card>
 
