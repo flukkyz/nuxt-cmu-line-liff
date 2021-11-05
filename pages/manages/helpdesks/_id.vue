@@ -114,9 +114,11 @@ export default {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
       await this.fetchData()
-      // await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-      //   mode: 'wait'
-      // })
+      if (this.data.mode === 'start') {
+        this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
+          duration: 0
+        })
+      }
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
