@@ -102,7 +102,6 @@
               autocomplete="off"
               autofocus
               rows="3"
-              filled
               flat
               outlined
               @keypress.enter="sendChat"
