@@ -1,6 +1,6 @@
 <template>
   <div v-if="data" class="mt-10 mb-5">
-    <div v-if="data.mode === 'read'" class="">
+    <div v-if="['wait','read'].includes(data.mode)" class="">
       <v-list color="grey lighten-4 mb-5">
         <v-list-item>
           <v-list-item-icon>
