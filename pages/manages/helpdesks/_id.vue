@@ -54,7 +54,7 @@
       </v-card-text>
     </v-card>
 
-    <v-radio-group @change="setCategory">
+    <v-radio-group row @change="setCategory">
       <v-radio
         v-for="category in categories"
         :key="`category-${category._id}`"
