@@ -77,7 +77,7 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="data.mode === 'start'" class="chat-box">
+    <div v-else-if="data.mode === 'start'" ref="chat" class="chat-box">
       <div v-for="msg in data.message" :key="`msg-${msg._id}`">
         <div class="d-flex">
           <v-card :id="`msg-box-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
@@ -147,7 +147,7 @@ export default {
         await this.fetchData()
         this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
           duration: 0,
-          container: '.chat-box'
+          container: this.$refs.chat
         })
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
