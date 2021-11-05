@@ -81,9 +81,9 @@
       <div class="chat-list">
         <div v-for="msg in data.message" :key="`msg-${msg._id}`">
           <div class="d-flex">
-            <v-card :id="`msg-box-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
+            <v-card :id="`msg-list-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
               <v-card-title class="pb-0" :class="msg.is_admin ? 'text-right' : ''">
-                {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+                {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
               </v-card-title>
               <v-card-text class="pa-2">
                 <v-card-subtitle class="pt-0">
@@ -98,7 +98,7 @@
         <v-row>
           <v-col>
             <v-textarea
-              v-model="msg"
+              v-model="msgBox"
               autocomplete="off"
               autofocus
               rows="3"
@@ -130,7 +130,7 @@ export default {
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
       data: null,
-      msg: ''
+      msgBox: ''
     }
   },
   async mounted () {
@@ -139,7 +139,7 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       if (this.data.mode === 'start') {
-        this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
+        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
           duration: 0,
           container: '.chat-list'
         })
@@ -174,7 +174,7 @@ export default {
           mode: 'start'
         })
         await this.fetchData()
-        this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
+        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
           duration: 0,
           container: '.chat-list'
         })
@@ -185,11 +185,17 @@ export default {
     async sendChat () {
       try {
         await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
-          content: this.msg
+          content: this.msgBox
         })
+        const formData = new FormData()
+        formData.append('txt', this.msgBox)
+        formData.append('send_type', 'select')
+        formData.append('users', [this.data.user_detail[0].lineid])
+        formData.append('announce_img', null)
+        await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
         await this.fetchData()
-        this.msg = ''
-        this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
+        this.msgBox = ''
+        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
           duration: 0,
           container: '.chat-list'
         })
