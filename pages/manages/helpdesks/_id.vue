@@ -161,7 +161,7 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       if (this.data.mode === 'start') {
-        await this.refershChat(0)
+        await this.refershChat(true, 0)
         setInterval(async () => {
           await this.refershChat(false)
         }, 2000)
@@ -195,7 +195,7 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'start'
         })
-        await this.refershChat(0)
+        await this.refershChat(true, 0)
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
