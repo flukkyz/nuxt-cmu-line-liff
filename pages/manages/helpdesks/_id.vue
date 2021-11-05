@@ -101,7 +101,7 @@
               v-model="msgBox"
               autocomplete="off"
               autofocus
-              rows="3"
+              rows="4"
               filled
               flat
               outlined
@@ -114,13 +114,21 @@
               color="primary"
               x-large
               block
+              depressed
               type="submit"
               :disabled="!msgBox || sending"
               :loading="sending"
             >
               ส่ง
             </v-btn>
-            <v-btn outlined block :loading="sending" @click="close">
+            <v-btn
+              outlined
+              color="grey"
+              class="mt-3"
+              block
+              :loading="sending"
+              @click="close"
+            >
               จบการสนทนา
             </v-btn>
           </v-col>
@@ -224,5 +232,8 @@ export default {
 .chat-list{
   height: 60vh;
   overflow: scroll;
+}
+textarea {
+  resize: none;
 }
 </style>
