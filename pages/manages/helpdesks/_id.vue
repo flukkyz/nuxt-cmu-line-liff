@@ -79,10 +79,10 @@
     <div v-else-if="data.mode === 'start'" class="">
       <div v-for="msg in data.message" :key="`msg-${msg._id}`">
         <div class="d-flex">
-          <p class="mb-0" :class="msg.is_admin ? 'text-right' : ''">
-            {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-          </p>
           <v-card class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
+            <p class="mb-0" :class="msg.is_admin ? 'text-right' : ''">
+              {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+            </p>
             <v-card-text class="pa-2">
               <v-card-subtitle>
                 {{ msg.content }}
