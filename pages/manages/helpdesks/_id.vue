@@ -1,52 +1,51 @@
 <template>
   <div v-if="data" class="mt-10 mb-5">
-    <div v-if="['wait','read'].includes(data.mode)" class="">
-      <v-list color="grey lighten-4 mb-5">
-        <v-list-item>
-          <v-list-item-icon>
-            <v-tooltip top>
-              <template #activator="{ on, attrs }">
-                <v-icon
-                  v-bind="attrs"
-                  large
-                  :color=" data.admin_reply ? 'primary' : 'success'"
-                  v-on="on"
-                >
-                  {{ data.admin_reply ? `${data.mode === 'start' ? 'fas' : 'far'} fa-comments` : `${data.mode === 'read' ? 'fas' : 'far'} fa-comment-alt` }}
-                </v-icon>
-              </template>
-              <span>{{ data.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
-            </v-tooltip>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title class="title">
-              <v-badge v-if="data.mode === 'wait'" dot color="warning">
-                {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-              </v-badge>
-              <span v-else>
-                {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-              </span>
-            </v-list-item-title>
-            <v-list-item-subtitle class="mt-1">
-              <v-icon x-small>
-                fas fa-sitemap
+    <v-list color="grey lighten-4 mb-5">
+      <v-list-item>
+        <v-list-item-icon>
+          <v-tooltip top>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                large
+                :color=" data.admin_reply ? 'primary' : 'success'"
+                v-on="on"
+              >
+                {{ data.admin_reply ? `${data.mode === 'start' ? 'fas' : 'far'} fa-comments` : `${data.mode === 'read' ? 'fas' : 'far'} fa-comment-alt` }}
               </v-icon>
-              {{ data.user_detail[0].organizationname }}
+            </template>
+            <span>{{ data.admin_reply ? 'ต้องการให้ตอบกลับ' : 'ข้อเสนอแนะ' }}</span>
+          </v-tooltip>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            <v-badge v-if="data.mode === 'wait'" dot color="warning">
+              {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+            </v-badge>
+            <span v-else>
+              {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+            </span>
+          </v-list-item-title>
+          <v-list-item-subtitle class="mt-1">
+            <v-icon x-small>
+              fas fa-sitemap
+            </v-icon>
+            {{ data.user_detail[0].organizationname }}
                     &nbsp;
-              <v-icon x-small>
-                far fa-envelope
-              </v-icon>
-              {{ data.user_detail[0].email }}
-            </v-list-item-subtitle>
-          </v-list-item-content>
-          <v-list-item-action class="align-self-start">
-            <p class="grey--text caption mb-0">
-              {{ $dateText(data.createdAt,'medium','long') }}
-            </p>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
-
+            <v-icon x-small>
+              far fa-envelope
+            </v-icon>
+            {{ data.user_detail[0].email }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
+        <v-list-item-action class="align-self-start">
+          <p class="grey--text caption mb-0">
+            {{ $dateText(data.createdAt,'medium','long') }}
+          </p>
+        </v-list-item-action>
+      </v-list-item>
+    </v-list>
+    <div v-if="['wait','read'].includes(data.mode)" class="">
       <v-card class="grey lighten-4 mb-3" elevation="0">
         <v-card-text>
           <v-card-subtitle>
@@ -80,8 +79,11 @@
     <div v-else-if="data.mode === 'start'" class="">
       <div v-for="msg in data.message" :key="`msg-${msg._id}`">
         <div class="d-flex">
-          <v-card class="grey lighten-4 mb-3" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
-            <v-card-text>
+          <p class="mb-0" :class="msg.is_admin ? 'text-right' : ''">
+            {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+          </p>
+          <v-card class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
+            <v-card-text class="pa-2">
               <v-card-subtitle>
                 {{ msg.content }}
               </v-card-subtitle>
