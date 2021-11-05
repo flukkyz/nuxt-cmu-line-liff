@@ -146,7 +146,8 @@ export default {
         })
         await this.fetchData()
         this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
-          duration: 0
+          duration: 0,
+          container: '.chat-box'
         })
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
