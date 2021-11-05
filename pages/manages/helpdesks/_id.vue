@@ -113,9 +113,9 @@ export default {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
       await this.fetchData()
-      await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-        mode: 'wait'
-      })
+      // await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+      //   mode: 'wait'
+      // })
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
