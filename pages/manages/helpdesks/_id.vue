@@ -65,7 +65,7 @@
       />
     </v-radio-group>
 
-    <v-btn x-large elevation="0" depressed color="success">
+    <v-btn x-large elevation="0" class="mt-10" depressed color="success">
       เปิดการสนทนา
     </v-btn>
 
