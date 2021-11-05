@@ -84,7 +84,7 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-        mode: 'read'
+        mode: 'start'
       })
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
