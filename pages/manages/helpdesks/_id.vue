@@ -54,7 +54,7 @@
       </v-card-text>
     </v-card>
 
-    <v-radio-group v-model="radioGroup">
+    <v-radio-group @change="setCategory">
       <v-radio
         v-for="category in categories"
         :key="`category-${category._id}`"
@@ -82,18 +82,29 @@ export default {
     try {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
-      const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
-      this.data = data.data[0]
-      console.log(this.data)
-      await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-        mode: 'wait',
-        category_id: '6183732a6f433335811186c3'
-      })
-      // await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
-      //   content: 'start start start start start start start start start start start start start start '
-      // })
+      await this.fetchData()
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+    }
+  },
+  methods: {
+    async fetchData () {
+      try {
+        const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
+        this.data = data.data[0]
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
+    },
+    async setCategory (val) {
+      try {
+        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+          mode: 'read',
+          category_id: val
+        })
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
     }
   }
 }
