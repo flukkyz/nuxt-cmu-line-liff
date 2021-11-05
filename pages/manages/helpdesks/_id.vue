@@ -105,6 +105,7 @@
               filled
               flat
               outlined
+              @keypress.enter="sendChat"
             />
           </v-col>
           <v-col cols="3">
