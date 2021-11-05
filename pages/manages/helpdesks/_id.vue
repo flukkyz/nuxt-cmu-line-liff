@@ -109,7 +109,7 @@
             />
           </v-col>
           <v-col cols="3">
-            <v-btn color="primary" x-large block type="submit" :disabled="oneClick">
+            <v-btn color="primary" x-large block type="submit" :disabled="!msgBox">
               ส่ง
             </v-btn>
             <v-btn outlined block @click="close">
@@ -184,18 +184,19 @@ export default {
       }
     },
     async sendChat () {
+      const massage = this.msgBox
+      this.msgBox = ''
       try {
         await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
-          content: this.msgBox
+          content: massage
         })
         const formData = new FormData()
-        formData.append('txt', this.msgBox)
+        formData.append('txt', massage)
         formData.append('send_type', 'select')
         formData.append('users', [this.data.user_detail[0].lineid])
         formData.append('announce_img', null)
         await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
         await this.fetchData()
-        this.msgBox = ''
         this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
           duration: 0,
           container: '.chat-list'
