@@ -78,8 +78,8 @@
       </v-btn>
     </div>
     <div v-else-if="data.mode === 'start'" class="">
-      <div v-for="msg in data.message" :key="`msg-${msg._id}`" class="w-70">
-        <div class="d-flex">
+      <div v-for="msg in data.message" :key="`msg-${msg._id}`">
+        <div class="d-flex w-70">
           <v-card class="grey lighten-4 mb-3" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
             <v-card-text>
               <v-card-subtitle>
