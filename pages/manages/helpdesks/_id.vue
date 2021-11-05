@@ -165,7 +165,7 @@ export default {
         await this.refershChat(0)
         setInterval(async () => {
           await this.refershChat()
-        }, 2000)
+        }, 1000)
       }
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
