@@ -1,6 +1,6 @@
 <template>
   <div v-if="data" class="mt-10 mb-5">
-    <v-list>
+    <v-list color="grey lighten-4">
       <v-list-item>
         <v-list-item-icon>
           <v-tooltip top>
@@ -65,7 +65,14 @@
       />
     </v-radio-group>
 
-    <v-btn x-large elevation="0" class="mt-10" depressed color="success">
+    <v-btn
+      x-large
+      elevation="0"
+      class="mt-10"
+      depressed
+      color="success"
+      @click="openChat"
+    >
       เปิดการสนทนา
     </v-btn>
 
@@ -110,6 +117,16 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'read',
           category_id: val
+        })
+        await this.fetchData()
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
+    },
+    async openChat () {
+      try {
+        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+          mode: 'start'
         })
         await this.fetchData()
       } catch (e) {
