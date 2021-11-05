@@ -77,19 +77,21 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="data.mode === 'start'" class="chat-box">
-      <div v-for="msg in data.message" :key="`msg-${msg._id}`">
-        <div class="d-flex">
-          <v-card :id="`msg-box-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
-            <v-card-title class="pb-0" :class="msg.is_admin ? 'text-right' : ''">
-              {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-            </v-card-title>
-            <v-card-text class="pa-2">
-              <v-card-subtitle class="pt-0">
-                {{ msg.content }}
-              </v-card-subtitle>
-            </v-card-text>
-          </v-card>
+    <div v-else-if="data.mode === 'start'" class="chat">
+      <div class="chat-list">
+        <div v-for="msg in data.message" :key="`msg-${msg._id}`">
+          <div class="d-flex">
+            <v-card :id="`msg-box-${msg._id}`" class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
+              <v-card-title class="pb-0" :class="msg.is_admin ? 'text-right' : ''">
+                {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
+              </v-card-title>
+              <v-card-text class="pa-2">
+                <v-card-subtitle class="pt-0">
+                  {{ msg.content }}
+                </v-card-subtitle>
+              </v-card-text>
+            </v-card>
+          </div>
         </div>
       </div>
       <v-form ref="form" v-model="valid" @submit.prevent="save">
@@ -99,10 +101,9 @@
               v-model="msg"
               autocomplete="off"
               autofocus
-              rows="10"
+              rows="3"
               filled
               outlined
-              flat
               shaped
             />
           </v-col>
@@ -139,7 +140,7 @@ export default {
       if (this.data.mode === 'start') {
         this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
           duration: 0,
-          container: '.chat-box'
+          container: '.chat-list'
         })
       }
     } catch (e) {
@@ -174,7 +175,7 @@ export default {
         await this.fetchData()
         this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
           duration: 0,
-          container: '.chat-box'
+          container: '.chat-list'
         })
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
@@ -185,7 +186,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chat-box{
+.chat-list{
   height: 60vh;
   overflow: scroll;
 }
