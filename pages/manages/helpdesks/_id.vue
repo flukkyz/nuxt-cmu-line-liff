@@ -49,6 +49,14 @@
       </v-list-item>
     </v-list>
 
+    <v-card class="grey lighten-4" elevation="0">
+      <v-card-text>
+        <p>
+          {{ data.message[0].content }}
+        </p>
+      </v-card-text>
+    </v-card>
+
     <pre>
     {{ data }}
     </pre>
