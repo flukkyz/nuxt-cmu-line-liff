@@ -103,13 +103,13 @@
               autofocus
               rows="3"
               filled
+              flat
               outlined
-              shaped
             />
           </v-col>
           <v-col cols="3">
             <v-btn color="primary" x-large block type="submit" :disabled="oneClick">
-              แจ้งปัญหา
+              ส่ง
             </v-btn>
             <v-btn outlined block @click="close">
               จบการสนทนา
