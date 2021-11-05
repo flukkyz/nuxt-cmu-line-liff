@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="data">
     <v-list>
       <v-list-item>
         <v-list-item-icon>
