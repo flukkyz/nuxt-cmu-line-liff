@@ -96,19 +96,14 @@
         <v-row>
           <v-col>
             <v-textarea
-              v-model="form.content"
+              v-model="msg"
               autocomplete="off"
               autofocus
               rows="10"
               filled
+              outlined
               flat
               shaped
-              hint="กรอกข้อความปัญหาการใช้งาน"
-              required
-            />
-            <v-checkbox
-              v-model="form.admin_reply"
-              label="ต้องการให้เจ้าหน้าที่ตอบกลับ"
             />
           </v-col>
           <v-col cols="3">
