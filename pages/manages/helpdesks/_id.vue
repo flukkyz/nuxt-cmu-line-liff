@@ -223,7 +223,7 @@ export default {
         await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
         await this.fetchData()
         this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
-          duration: 0,
+          duration: 200,
           container: '.chat-list'
         })
       } catch (e) {
