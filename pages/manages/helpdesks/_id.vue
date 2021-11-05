@@ -24,9 +24,9 @@ export default {
         mode: 'read',
         category_id: '6183732a6f433335811186c3'
       })
-      await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
-        content: 'start start start start start start start start start start start start start start '
-      })
+      // await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
+      //   content: 'start start start start start start start start start start start start start start '
+      // })
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
