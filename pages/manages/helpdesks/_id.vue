@@ -152,7 +152,8 @@ export default {
       categories: null,
       data: null,
       msgBox: '',
-      sending: false
+      sending: false,
+      lastMsgListId: null
     }
   },
   async mounted () {
@@ -161,9 +162,9 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       if (this.data.mode === 'start') {
-        await this.refershChat(true, 0)
+        await this.refershChat(0)
         setInterval(async () => {
-          await this.refershChat(false)
+          await this.refershChat()
         }, 2000)
       }
     } catch (e) {
@@ -195,14 +196,15 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'start'
         })
-        await this.refershChat(true, 0)
+        await this.refershChat(0)
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
     },
-    async refershChat (scroll = true, duration = 200) {
+    async refershChat (duration = 200) {
       await this.fetchData()
-      if (scroll) {
+      if (this.data.message.lastItem._id !== this.lastMsgListId) {
+        this.lastMsgListId = this.data.message.lastItem._id
         this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
           duration,
           container: '.chat-list'
