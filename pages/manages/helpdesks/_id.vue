@@ -82,7 +82,6 @@
           <v-card class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
             <v-card-title :class="msg.is_admin ? 'text-right' : ''">
               {{ `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-              title
             </v-card-title>
             <v-card-text class="pa-2">
               <v-card-subtitle>
