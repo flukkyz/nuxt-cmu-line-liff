@@ -1,6 +1,6 @@
 <template>
-  <div v-if="data" class="mt-10 mb-5">
-    <v-list color="grey lighten-4 mb-5">
+  <div v-if="data" class="my-5">
+    <v-list color="grey lighten-4 mb-3">
       <v-list-item>
         <v-list-item-icon>
           <v-tooltip top>
@@ -46,7 +46,7 @@
       </v-list-item>
     </v-list>
     <div v-if="['wait','read'].includes(data.mode)" class="">
-      <v-card class="grey lighten-4 mb-3" elevation="0">
+      <v-card class="grey lighten-4 mt-2 mb-3" elevation="0">
         <v-card-text>
           <v-card-subtitle>
             {{ data.message[0].content }}
@@ -157,7 +157,7 @@ export default {
 
 <style lang="scss" scoped>
 .chat-box{
-  height: 70vh;
+  height: 60vh;
   overflow: scroll;
 }
 </style>
