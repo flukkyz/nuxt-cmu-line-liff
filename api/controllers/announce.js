@@ -36,7 +36,7 @@ module.exports = {
     }
     
     try {
-      if(sendTo.length === 1){
+      if(sendTo && sendTo.length === 1){
         await client.pushMessage(resp)
       }else{
         if(data.send_type === 'all'){
