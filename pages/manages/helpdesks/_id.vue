@@ -77,7 +77,7 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="data.mode === 'start'" class="chat">
+    <div v-else-if="['start','leave'].includes(data.mode)" class="chat">
       <div class="chat-list">
         <div v-for="msg in data.message" :key="`msg-${msg._id}`">
           <div class="d-flex">
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <v-form ref="form" v-model="valid" @submit.prevent="sendChat">
+      <v-form v-if="data.mode === 'start'" ref="form" v-model="valid" @submit.prevent="sendChat">
         <v-row>
           <v-col>
             <v-textarea
@@ -129,6 +129,7 @@
               class="mt-4"
               block
               :loading="sending"
+              @click="leaveChat"
             >
               <v-icon small left>
                 fas fa-door-open
@@ -137,7 +138,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <!-- <dialogs-confirm @confirm="confirmSave" /> -->
+        <dialogs-confirm @confirm="confirmLeaveChat" />
       </v-form>
     </div>
   </div>
@@ -153,7 +154,14 @@ export default {
       data: null,
       msgBox: '',
       sending: false,
-      lastMsgListId: null
+      lastMsgListId: null,
+      loopLoadChat: null
+    }
+  },
+  beforeDestroy () {
+    if (this.loopLoadChat) {
+      clearInterval(this.loopLoadChat)
+      this.loopLoadChat = null
     }
   },
   async mounted () {
@@ -163,7 +171,7 @@ export default {
       await this.fetchData()
       if (this.data.mode === 'start') {
         await this.refershChat(0)
-        setInterval(async () => {
+        this.loopLoadChat = setInterval(async () => {
           await this.refershChat()
         }, 1000)
       }
@@ -230,6 +238,40 @@ export default {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
       this.sending = false
+    },
+    leaveChat () {
+      this.$bus.$emit('open-confirm-dialog', null, {
+        header: {
+          icon: 'fas fa-question-circle',
+          text: 'ออกจากการสนทนา'
+        },
+        detail: {
+          text: `ยืนยันการออกจากการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+        },
+        yesBtn: {
+          icon: 'fas fa-door-open',
+          color: 'red',
+          text: 'ออกจากการสนทนา'
+        },
+        noBtn: {
+          icon: 'fas fa-comments',
+          color: 'info',
+          text: 'สนทนาต่อ'
+        }
+      })
+    },
+    async confirmLeaveChat () {
+      if (this.loopLoadChat) {
+        clearInterval(this.loopLoadChat)
+        this.loopLoadChat = null
+      }
+      try {
+        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+          mode: 'leave'
+        })
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
     }
   }
 }
