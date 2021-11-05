@@ -54,6 +54,15 @@
       </v-card-text>
     </v-card>
 
+    <v-radio-group v-model="radioGroup">
+      <v-radio
+        v-for="category in categories"
+        :key="`category-${category._id}`"
+        :label="category.name"
+        :value="category._id"
+      />
+    </v-radio-group>
+
     <pre>
     {{ data }}
     </pre>
@@ -65,11 +74,14 @@ export default {
   data () {
     return {
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
+      categories: null,
       data: null
     }
   },
   async mounted () {
     try {
+      const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
+      this.categories = categories.data
       const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
       this.data = data.data[0]
       console.log(this.data)
