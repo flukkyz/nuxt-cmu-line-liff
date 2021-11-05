@@ -77,7 +77,7 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="['start','leave'].includes(data.mode)" class="chat">
+    <div v-else-if="['start','leave'].includes(data.mode)" class="chat grey lighten-5">
       <div class="chat-list">
         <div v-for="msg in data.message" :key="`msg-${msg._id}`">
           <div class="d-flex">
