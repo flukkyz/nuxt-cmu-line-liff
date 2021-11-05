@@ -170,10 +170,7 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       if (this.data.mode === 'start') {
-        await this.refershChat(0)
-        this.loopLoadChat = setInterval(async () => {
-          await this.refershChat()
-        }, 1000)
+        await this.startChat()
       }
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
@@ -204,10 +201,16 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'start'
         })
-        await this.refershChat(0)
+        await this.startChat()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
+    },
+    async startChat () {
+      await this.refershChat(0)
+      this.loopLoadChat = setInterval(async () => {
+        await this.refershChat()
+      }, 1000)
     },
     async refershChat (duration = 200) {
       await this.fetchData()
