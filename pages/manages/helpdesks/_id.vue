@@ -66,6 +66,7 @@
       </v-radio-group>
 
       <v-btn
+        v-if="data.admin_reply"
         x-large
         elevation="0"
         class="mt-10"
