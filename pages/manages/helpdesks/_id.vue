@@ -165,6 +165,9 @@ export default {
           duration: 0,
           container: '.chat-list'
         })
+        setInterval(async () => {
+          await this.fetchData()
+        }, 2000)
       }
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
