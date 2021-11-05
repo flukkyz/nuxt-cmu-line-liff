@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data">
+  <div v-if="data" class="mt-10 mb-5">
     <v-list>
       <v-list-item>
         <v-list-item-icon>
@@ -56,7 +56,7 @@
 
     <label for="">ประเภทปัญหาที่แจ้ง</label>
     ประเภทปัญหาที่แจ้ง
-    <v-radio-group row class="mt-0" @change="setCategory">
+    <v-radio-group row class="mt-0" hide-details @change="setCategory">
       <v-radio
         v-for="category in categories"
         :key="`category-${category._id}`"
@@ -64,6 +64,10 @@
         :value="category._id"
       />
     </v-radio-group>
+
+    <v-btn x-large elevation="0" depressed color="success">
+      เปิดการสนทนา
+    </v-btn>
 
     <pre>
     {{ data }}
