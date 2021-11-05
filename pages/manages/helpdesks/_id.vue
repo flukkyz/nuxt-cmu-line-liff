@@ -106,6 +106,7 @@
               flat
               outlined
               @keypress.enter="sendChat"
+              @keyup="msgBox = msgBox.trim()"
             />
           </v-col>
           <v-col cols="3">
@@ -119,7 +120,7 @@
             >
               ส่ง
             </v-btn>
-            <v-btn outlined block @click="close">
+            <v-btn outlined block :loading="sending" @click="close">
               จบการสนทนา
             </v-btn>
           </v-col>
