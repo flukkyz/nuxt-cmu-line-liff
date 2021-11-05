@@ -161,12 +161,9 @@ export default {
       this.categories = categories.data
       await this.fetchData()
       if (this.data.mode === 'start') {
-        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
-          duration: 0,
-          container: '.chat-list'
-        })
+        await this.refershChat(0)
         setInterval(async () => {
-          await this.fetchData()
+          await this.refershChat(false)
         }, 2000)
       }
     } catch (e) {
@@ -198,13 +195,18 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'start'
         })
-        await this.fetchData()
-        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
-          duration: 0,
-          container: '.chat-list'
-        })
+        await this.refershChat(0)
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
+    },
+    async refershChat (scroll = true, duration = 200) {
+      await this.fetchData()
+      if (scroll) {
+        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
+          duration,
+          container: '.chat-list'
+        })
       }
     },
     async sendChat () {
@@ -221,11 +223,7 @@ export default {
         formData.append('users', [this.data.user_detail[0].lineid])
         formData.append('announce_img', null)
         await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-        await this.fetchData()
-        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
-          duration: 200,
-          container: '.chat-list'
-        })
+        await this.refershChat()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
