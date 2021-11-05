@@ -77,7 +77,7 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="data.mode === 'start'" class="">
+    <div v-else-if="data.mode === 'start'" class="chat-box">
       <div v-for="msg in data.message" :key="`msg-${msg._id}`">
         <div class="d-flex">
           <v-card class="grey lighten-4 mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto' : ''" elevation="0">
@@ -154,3 +154,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.chat-box{
+  height: 70vh;
+  overflow: scroll;
+}
+</style>
