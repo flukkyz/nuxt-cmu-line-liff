@@ -126,7 +126,7 @@
             </v-btn>
             <v-btn
               outlined
-              color="grey"
+              color="red"
               class="mt-3"
               block
               :loading="sending"
