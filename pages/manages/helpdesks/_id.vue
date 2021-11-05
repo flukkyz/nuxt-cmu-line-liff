@@ -272,9 +272,11 @@ export default {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
         })
+        await this.fetchData()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
+      this.$overlay.hide()
     }
   }
 }
