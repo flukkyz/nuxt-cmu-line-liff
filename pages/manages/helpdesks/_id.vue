@@ -92,6 +92,36 @@
           </v-card>
         </div>
       </div>
+      <v-form ref="form" v-model="valid" @submit.prevent="save">
+        <v-row>
+          <v-col>
+            <v-textarea
+              v-model="form.content"
+              autocomplete="off"
+              autofocus
+              rows="10"
+              filled
+              flat
+              shaped
+              hint="กรอกข้อความปัญหาการใช้งาน"
+              required
+            />
+            <v-checkbox
+              v-model="form.admin_reply"
+              label="ต้องการให้เจ้าหน้าที่ตอบกลับ"
+            />
+          </v-col>
+          <v-col cols="3">
+            <v-btn color="primary" x-large block type="submit" :disabled="oneClick">
+              แจ้งปัญหา
+            </v-btn>
+            <v-btn outlined block @click="close">
+              จบการสนทนา
+            </v-btn>
+          </v-col>
+        </v-row>
+        <dialogs-confirm @confirm="confirmSave" />
+      </v-form>
     </div>
   </div>
 </template>
