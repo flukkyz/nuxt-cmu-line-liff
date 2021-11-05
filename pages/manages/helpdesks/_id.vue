@@ -86,7 +86,7 @@
                 {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
               </v-card-title>
               <v-card-text class="pa-2">
-                <v-card-subtitle :class="msg.is_admin ? 'py-3' : 'pt-0 pb-3'">
+                <v-card-subtitle :class="msg.is_admin ? 'py-2' : 'pt-0 pb-2'">
                   {{ msg.content }}
                 </v-card-subtitle>
               </v-card-text>
