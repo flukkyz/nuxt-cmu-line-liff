@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <v-form ref="form" v-model="valid" @submit.prevent="save">
+      <v-form ref="form" v-model="valid" @submit.prevent="sendChat">
         <v-row>
           <v-col>
             <v-textarea
@@ -129,7 +129,8 @@ export default {
       valid: true,
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
-      data: null
+      data: null,
+      msg: ''
     }
   },
   async mounted () {
@@ -173,6 +174,21 @@ export default {
           mode: 'start'
         })
         await this.fetchData()
+        this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
+          duration: 0,
+          container: '.chat-list'
+        })
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
+    },
+    async sendChat () {
+      try {
+        await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
+          content: this.msg
+        })
+        await this.fetchData()
+        this.msg = ''
         this.$vuetify.goTo(`#msg-box-${this.data.message.lastItem._id}`, {
           duration: 0,
           container: '.chat-list'
