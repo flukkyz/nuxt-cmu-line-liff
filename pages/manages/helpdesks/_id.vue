@@ -125,6 +125,7 @@
 export default {
   data () {
     return {
+      valid: true,
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
       data: null
