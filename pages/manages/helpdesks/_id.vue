@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <v-form v-if="data.mode === 'start'" ref="form" v-model="valid" @submit.prevent="sendChat">
+      <v-form v-if="data.mode === 'start' && data.admin_id === $auth.user._id" ref="form" v-model="valid" @submit.prevent="sendChat">
         <v-row>
           <v-col>
             <v-textarea
@@ -197,13 +197,17 @@ export default {
       }
     },
     async openChat () {
-      try {
-        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-          mode: 'start'
-        })
-        await this.startChat()
-      } catch (e) {
-        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      await this.fetchData()
+      if (!this.data.admin_id) {
+        try {
+          await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+            mode: 'start'
+          })
+          await this.startChat()
+          await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
+        } catch (e) {
+          this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+        }
       }
     },
     async startChat () {
@@ -211,7 +215,6 @@ export default {
       this.loopLoadChat = setInterval(async () => {
         await this.refershChat()
       }, 1000)
-      await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
     },
     async refershChat (duration = 200) {
       await this.fetchData()
