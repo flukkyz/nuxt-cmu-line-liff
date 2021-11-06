@@ -211,6 +211,7 @@ export default {
       this.loopLoadChat = setInterval(async () => {
         await this.refershChat()
       }, 1000)
+      await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
     },
     async refershChat (duration = 200) {
       await this.fetchData()
@@ -230,17 +231,20 @@ export default {
         await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
           content: massage
         })
-        const formData = new FormData()
-        formData.append('txt', massage)
-        formData.append('send_type', 'select')
-        formData.append('users', [this.data.user_detail[0].lineid])
-        formData.append('announce_img', null)
-        await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
+        await this.pushMessageBack(massage)
         await this.refershChat()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
       this.sending = false
+    },
+    async pushMessageBack (message) {
+      const formData = new FormData()
+      formData.append('txt', message)
+      formData.append('send_type', 'select')
+      formData.append('users', [this.data.user_detail[0].lineid])
+      formData.append('announce_img', null)
+      await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
     },
     leaveChat () {
       this.$bus.$emit('open-confirm-dialog', null, {
@@ -273,6 +277,7 @@ export default {
           mode: 'leave'
         })
         await this.fetchData()
+        await this.pushMessageBack('ปิดการสนทนา ขอบคุณสำหรับคำแนะนำในการใช้งาน')
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
