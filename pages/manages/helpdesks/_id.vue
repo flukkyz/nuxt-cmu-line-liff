@@ -193,7 +193,7 @@ export default {
     },
     async openChat () {
       await this.fetchData()
-      if (!this.data.admin_id) {
+      if (this.data.admin_id === this.$auth.user._id) {
         try {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
