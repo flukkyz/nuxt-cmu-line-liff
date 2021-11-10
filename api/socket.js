@@ -6,7 +6,11 @@ let io = null
 app.all('/', (req, res) => {
   if (!server) {
     server = res.connection.server
-    io = socket(server)
+    io = socket(server, {
+      cors: {
+        origin: '*',
+      }
+    })
     
     io.on('connection', function (socket) {
       // connected io success
