@@ -36,13 +36,18 @@ module.exports = {
     }
     
     try {
-      if(data.send_type === 'all'){
-        await client.broadcast(resp)
+      if(sendTo && sendTo.length === 1){
+        await client.pushMessage(sendTo[0],resp)
       }else{
-        await client.multicast(sendTo,resp)
+        if(data.send_type === 'all'){
+          await client.broadcast(resp)
+        }else{
+          await client.multicast(sendTo,resp)
+        }
       }
       res.json({status: 'ok'})
     } catch (e) {
+      console.log(e);
       res.status(500).json({
         message: 'Cannot POST API #2 '+e
       })
