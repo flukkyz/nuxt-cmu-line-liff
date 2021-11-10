@@ -14,13 +14,6 @@ app.all('/', (req, res) => {
 
       socket.on('disconnect', () => {
         console.log(`user ${socket.id} disconnected`);
-      });
-    
-      socket.on('sendMessage', (msg) => {
-        io.emit('sendMessage', '1111'+msg)
-      })
-      socket.on('abc', (msg) => {
-        io.emit('abc', 'abc '+msg)
       })
     })
 

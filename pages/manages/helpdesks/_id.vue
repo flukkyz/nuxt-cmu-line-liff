@@ -79,9 +79,9 @@
     </div>
     <div v-else-if="['start','leave'].includes(data.mode)" class="chat grey lighten-5 pa-3">
       <div class="chat-list">
-        <div v-for="msg in data.message" :key="`msg-${msg._id}`">
+        <div v-for="(msg,i) in msgLists" :key="`msg-${i}`">
           <div class="d-flex">
-            <v-card :id="`msg-list-${msg._id}`" class="mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
+            <v-card :id="`msg-list-${i}`" class="mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
               <v-card-title v-if="!msg.is_admin" class="pb-0 body-1 font-weight-bold">
                 {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
               </v-card-title>
@@ -152,16 +152,11 @@ export default {
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
       data: null,
+      msgLists: [],
       msgBox: '',
       sending: false,
-      lastMsgListId: null,
-      loopLoadChat: null
-    }
-  },
-  beforeDestroy () {
-    if (this.loopLoadChat) {
-      clearInterval(this.loopLoadChat)
-      this.loopLoadChat = null
+      socket: null,
+      lastMsgListId: null
     }
   },
   async mounted () {
@@ -210,23 +205,33 @@ export default {
         }
       }
     },
-    async startChat () {
-      await this.refershChat(0)
-      this.loopLoadChat = setInterval(async () => {
-        await this.refershChat()
-      }, 1000)
+    startChat () {
+      this.msgLists = [...this.data.message]
+      this.socket = this.$io(process.env.baseUrl)
+      this.refershChat(0)
+      this.socket.on(this.data._id, (msg) => {
+        this.msgLists.push({
+          is_admin: false,
+          content: msg
+        })
+        this.refershChat()
+      })
     },
-    async refershChat (duration = 200) {
-      await this.fetchData()
-      if (this.data.message.lastItem._id !== this.lastMsgListId) {
-        this.lastMsgListId = this.data.message.lastItem._id
-        this.$vuetify.goTo(`#msg-list-${this.data.message.lastItem._id}`, {
+    refershChat (duration = 200) {
+      if (this.msgLists.length - 1 !== this.lastMsgListId) {
+        this.lastMsgListId = this.msgLists.length - 1
+        this.$vuetify.goTo(`#msg-list-${this.msgLists.length - 1}`, {
           duration,
           container: '.chat-list'
         })
       }
     },
     async sendChat () {
+      this.msgLists.push({
+        is_admin: true,
+        content: this.msgBox
+      })
+      this.refershChat()
       const massage = this.msgBox
       this.sending = true
       this.msgBox = ''
@@ -235,7 +240,6 @@ export default {
           content: massage
         })
         await this.pushMessageBack(massage)
-        await this.refershChat()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
@@ -271,10 +275,7 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      if (this.loopLoadChat) {
-        clearInterval(this.loopLoadChat)
-        this.loopLoadChat = null
-      }
+      this.socket.disconnect()
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'

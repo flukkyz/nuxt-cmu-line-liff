@@ -3,6 +3,7 @@ const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
 const fs = require('fs')
+const { io } = require("socket.io-client");
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -67,10 +68,14 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
-          console.log(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`);
-          const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
-            content: event.message.text
-          },{headers})
+          const socket = io(process.env.BASE_URL);
+          socket.on(chatStatusData.data._id, (msg) => {
+            socket.disconnect()
+          })
+          socket.emit(chatStatusData.data._id, event.message.text)
+          // const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
+          //   content: event.message.text
+          // },{headers})
           // notify to admin
         }else{
           if (event.type === "message") {
