@@ -198,7 +198,7 @@ export default {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          await this.startChat()
+          this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
         } catch (e) {
           this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
