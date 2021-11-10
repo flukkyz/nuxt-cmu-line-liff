@@ -168,6 +168,7 @@ export default {
         await this.startChat()
       }
     } catch (e) {
+      console.log(e)
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
   },
