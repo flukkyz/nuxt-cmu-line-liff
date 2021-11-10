@@ -50,7 +50,8 @@ export default {
   },
 
   serverMiddleware: [
-    '~/api/server'
+    '~/api/server',
+    '~/api/socket'
   ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -72,7 +73,8 @@ export default {
     '~/plugins/v-mask.js',
     '~/plugins/thai-bath-text.js',
     '~/plugins/v-uppercase.js',
-    '~/plugins/base64-to-blob.js'
+    '~/plugins/base64-to-blob.js',
+    '~/plugins/socket.io.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
