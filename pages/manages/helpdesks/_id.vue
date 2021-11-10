@@ -116,8 +116,7 @@
               block
               depressed
               type="submit"
-              :disabled="!msgBox || sending"
-              :loading="sending"
+              :disabled="!msgBox"
             >
               <v-icon small left>
                 fas fa-paper-plane
@@ -129,7 +128,6 @@
               color="red"
               class="mt-4"
               block
-              :loading="sending"
               @click="leaveChat"
             >
               <v-icon small left>
@@ -155,7 +153,7 @@ export default {
       data: null,
       msgLists: [],
       msgBox: '',
-      sending: false,
+      // sending: false,
       socket: null,
       lastMsgListId: null
     }
@@ -235,7 +233,7 @@ export default {
       })
       this.refershChat()
       const massage = this.msgBox
-      this.sending = true
+      // this.sending = true
       this.msgBox = ''
       try {
         await this.$axios.$put(`${this.api}/message/${this.$route.params.id}`, {
@@ -245,7 +243,7 @@ export default {
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
-      this.sending = false
+      // this.sending = false
     },
     async pushMessageBack (message) {
       const formData = new FormData()
