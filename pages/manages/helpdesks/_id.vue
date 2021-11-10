@@ -220,6 +220,7 @@ export default {
     refershChat (duration = 200) {
       if (this.msgLists.length - 1 !== this.lastMsgListId) {
         this.lastMsgListId = this.msgLists.length - 1
+        console.log(`#msg-list-${this.msgLists.length - 1}`)
         this.$vuetify.goTo(`#msg-list-${this.msgLists.length - 1}`, {
           duration,
           container: '.chat-list'
