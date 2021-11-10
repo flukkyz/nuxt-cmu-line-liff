@@ -8,9 +8,6 @@
       <v-btn elevation="0" outlined color="primary" type="submit">
         Send
       </v-btn>
-      <v-btn color="success" @click="startChat">
-        start chat
-      </v-btn>
     </v-form>
   </div>
 </template>
@@ -27,14 +24,12 @@ export default {
   },
 
   mounted () {
+    this.socket = this.$io(process.env.baseUrl)
+    this.socket.on('abc', (msg) => {
+      this.messages.push(msg)
+    })
   },
   methods: {
-    startChat () {
-      this.socket = this.$io(process.env.baseUrl)
-      this.socket.on('abc', (msg) => {
-        this.messages.push(msg)
-      })
-    },
     save () {
       this.socket.emit('abc', this.message)
       this.message = ''
