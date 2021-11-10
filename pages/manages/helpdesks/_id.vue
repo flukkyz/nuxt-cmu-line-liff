@@ -221,10 +221,12 @@ export default {
       if (this.msgLists.length - 1 !== this.lastMsgListId) {
         this.lastMsgListId = this.msgLists.length - 1
         console.log(`#msg-list-${this.msgLists.length - 1}`)
-        this.$vuetify.goTo(`#msg-list-${this.msgLists.length - 1}`, {
-          duration,
-          container: '.chat-list'
-        })
+        setTimeout(() => {
+          this.$vuetify.goTo(`#msg-list-${this.msgLists.length - 1}`, {
+            duration,
+            container: '.chat-list'
+          })
+        }, 10)
       }
     },
     async sendChat () {
