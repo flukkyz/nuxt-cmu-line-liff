@@ -144,6 +144,7 @@
 </template>
 
 <script>
+const WebSocketClient = require('websocket').client
 export default {
   data () {
     return {
@@ -209,13 +210,44 @@ export default {
       this.msgLists = [...this.data.message]
       this.socket = this.$io(process.env.baseUrl)
       this.refershChat(0)
-      this.socket.on(this.data._id, (msg) => {
-        this.msgLists.push({
-          is_admin: false,
-          content: msg
-        })
-        this.refershChat()
+      const client = new WebSocketClient()
+
+      client.on('connectFailed', function (error) {
+        console.log('Connect Error: ' + error.toString())
       })
+
+      client.on('connect', function (connection) {
+        console.log('WebSocket Client Connected')
+        connection.on('error', function (error) {
+          console.log('Connection Error: ' + error.toString())
+        })
+        connection.on('close', function () {
+          console.log('echo-protocol Connection Closed')
+        })
+        connection.on('message', function (message) {
+          if (message.type === 'utf8') {
+            console.log("Received: '" + message.utf8Data + "'")
+          }
+        })
+
+        function sendNumber () {
+          if (connection.connected) {
+            const number = Math.round(Math.random() * 0xFFFFFF)
+            connection.sendUTF(number.toString())
+            setTimeout(sendNumber, 1000)
+          }
+        }
+        sendNumber()
+      })
+
+      client.connect('ws://10.110.1.68:8889/', 'protocol')
+      // this.socket.on(this.data._id, (msg) => {
+      //   this.msgLists.push({
+      //     is_admin: false,
+      //     content: msg
+      //   })
+      //   this.refershChat()
+      // })
     },
     refershChat (duration = 200) {
       if (this.msgLists.length - 1 !== this.lastMsgListId) {
