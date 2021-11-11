@@ -50,8 +50,8 @@ export default {
   },
 
   serverMiddleware: [
-    '~/api/server',
-    '~/api/socket'
+    '~/api/server'
+    // '~/api/socket'
   ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css

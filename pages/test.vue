@@ -18,21 +18,33 @@ export default {
     return {
       message: '',
       valid: true,
-      socket: null,
+      connection: null,
       messages: ['123', '1236']
     }
   },
 
   mounted () {
-    this.socket = this.$socket(process.env.baseUrl)
-    this.socket.on('sendMessage', (msg) => {
-      this.messages.push(msg)
-    })
+    console.log('Starting connection to WebSocket Server')
+    this.connection = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+
+    this.connection.onmessage = function (event) {
+      console.log(event)
+    }
+
+    this.connection.onopen = function (event) {
+      console.log(event)
+      console.log('Successfully connected to the echo websocket server...')
+    }
   },
   methods: {
     save () {
-      this.socket.emit('sendMessage', this.message)
-      this.message = ''
+      console.log('Hello')
+      console.log(this.connection)
+      this.connection.send(JSON.stringify({
+        id: '12121212',
+        type: 'text',
+        message: this.message
+      }))
     }
   }
 

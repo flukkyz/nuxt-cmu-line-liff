@@ -14,17 +14,14 @@ app.all('/', (req, res) => {
     
     io.on('connection', function (socket) {
       // connected io success
-      console.log('connected : ID =>', socket.id)
-
+      console.log('Connected : ID =>', socket.id)
+      
       socket.on('disconnect', () => {
-        console.log(`user ${socket.id} disconnected`);
+        console.log('Disconnected : ID =>', socket.id)
       });
     
       socket.on('sendMessage', (msg) => {
-        io.emit('sendMessage', '1111'+msg)
-      })
-      socket.on('abc', (msg) => {
-        io.emit('abc', 'abc '+msg)
+        io.emit('sendMessage', msg)
       })
     })
 

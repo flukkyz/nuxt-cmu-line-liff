@@ -25,13 +25,13 @@ export default {
 
   mounted () {
     this.socket = this.$io(process.env.baseUrl)
-    this.socket.on('abc', (msg) => {
+    this.socket.on('sendMessage', (msg) => {
       this.messages.push(msg)
     })
   },
   methods: {
     save () {
-      this.socket.emit('abc', this.message)
+      this.socket.emit('sendMessage', this.message)
       this.message = ''
     }
   }

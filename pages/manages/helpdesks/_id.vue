@@ -144,7 +144,6 @@
 </template>
 
 <script>
-const WebSocketClient = require('websocket').client
 export default {
   data () {
     return {
@@ -193,12 +192,12 @@ export default {
       }
     },
     async openChat () {
-      await this.fetchData()
       if (this.data.admin_id === this.$auth.user._id) {
         try {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
+          await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
         } catch (e) {
@@ -208,39 +207,17 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
-      this.socket = this.$io(process.env.baseUrl)
+      this.socket = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+
+      this.socket.onmessage = function (event) {
+        console.log(event)
+        this.msgLists.push({
+          is_admin: false,
+          content: 'test'
+        })
+        this.refershChat()
+      }
       this.refershChat(0)
-      const client = new WebSocketClient()
-
-      client.on('connectFailed', function (error) {
-        console.log('Connect Error: ' + error.toString())
-      })
-
-      client.on('connect', function (connection) {
-        console.log('WebSocket Client Connected')
-        connection.on('error', function (error) {
-          console.log('Connection Error: ' + error.toString())
-        })
-        connection.on('close', function () {
-          console.log('echo-protocol Connection Closed')
-        })
-        connection.on('message', function (message) {
-          if (message.type === 'utf8') {
-            console.log("Received: '" + message.utf8Data + "'")
-          }
-        })
-
-        function sendNumber () {
-          if (connection.connected) {
-            const number = Math.round(Math.random() * 0xFFFFFF)
-            connection.sendUTF(number.toString())
-            setTimeout(sendNumber, 1000)
-          }
-        }
-        sendNumber()
-      })
-
-      client.connect('ws://10.110.1.68:8889/', 'protocol')
       // this.socket.on(this.data._id, (msg) => {
       //   this.msgLists.push({
       //     is_admin: false,
