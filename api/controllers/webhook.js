@@ -3,7 +3,7 @@ const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
 const fs = require('fs')
-const { io } = require("socket.io-client");
+// const { io } = require("socket.io-client");
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -47,6 +47,7 @@ const getContent = (messageId) => {
 
 module.exports = {
   index: async (req, res) => {
+    const ws = new WebSocket('ws://10.110.1.68:8889', 'protocol')
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
@@ -68,11 +69,19 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
-          const socket = io(process.env.BASE_URL);
-          socket.on(chatStatusData.data._id, (msg) => {
-            socket.disconnect()
-          })
-          socket.emit(chatStatusData.data._id, event.message.text)
+
+          ws.send(JSON.stringify({
+            id: chatStatusData.data._id,
+            type: 'text',
+            message: event.message.text
+          }))
+
+          // const socket = io(process.env.BASE_URL);
+          // socket.on(chatStatusData.data._id, (msg) => {
+          //   socket.disconnect()
+          // })
+          // socket.emit(chatStatusData.data._id, event.message.text)
+
           // const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
           //   content: event.message.text
           // },{headers})

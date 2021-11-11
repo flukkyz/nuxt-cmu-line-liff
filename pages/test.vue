@@ -9,6 +9,12 @@
         Send
       </v-btn>
     </v-form>
+    1
+    <pre>
+    {{ dddd }}
+
+    </pre>
+    1
   </div>
 </template>
 
@@ -18,6 +24,7 @@ export default {
     return {
       message: '',
       valid: true,
+      dddd: '2222222222222222222',
       connection: null,
       messages: ['123', '1236']
     }
@@ -27,16 +34,23 @@ export default {
     console.log('Starting connection to WebSocket Server')
     this.connection = new WebSocket('ws://10.110.1.68:8889', 'protocol')
 
-    this.connection.onmessage = function (event) {
-      console.log(event)
+    this.connection.onmessage = (event) => {
+      try {
+        this.dddd = JSON.parse(event.data)
+      } catch (error) {
+
+      }
     }
 
-    this.connection.onopen = function (event) {
+    this.connection.onopen = (event) => {
       console.log(event)
       console.log('Successfully connected to the echo websocket server...')
     }
   },
   methods: {
+    aaaa (event) {
+      console.log(event)
+    },
     save () {
       console.log('Hello')
       console.log(this.connection)

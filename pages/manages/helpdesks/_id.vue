@@ -209,13 +209,17 @@ export default {
       this.msgLists = [...this.data.message]
       this.socket = new WebSocket('ws://10.110.1.68:8889', 'protocol')
 
-      this.socket.onmessage = function (event) {
-        console.log(event)
-        this.msgLists.push({
-          is_admin: false,
-          content: 'test'
-        })
-        this.refershChat()
+      this.socket.onmessage = (event) => {
+        try {
+          const eventData = JSON.parse(event.data)
+          this.msgLists.push({
+            is_admin: false,
+            content: eventData.message
+          })
+          this.refershChat()
+        } catch (error) {
+
+        }
       }
       this.refershChat(0)
       // this.socket.on(this.data._id, (msg) => {
@@ -286,7 +290,7 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      this.socket.disconnect()
+      // this.socket.disconnect()
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
