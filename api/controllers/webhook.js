@@ -73,7 +73,7 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
-          console.log();
+          console.log('IS CHAT');
           const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
           wsClient.onopen = (event) => {
             console.log(event)
