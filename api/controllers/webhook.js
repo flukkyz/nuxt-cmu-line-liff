@@ -75,7 +75,6 @@ module.exports = {
           console.log('IS CHAT');
           const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
           wsClient.onopen = (event) => {
-            console.log(event)
             console.log('Successfully connected to the echo websocket server...')
           }
           wsClient.onmessage = (event) => {
