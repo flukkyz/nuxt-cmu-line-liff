@@ -8,7 +8,11 @@ const path = '/webhook'
 router.get(`${path}/`, (req,res) => {
 res.send('111111111111111')
 })
-router.post(`${path}/`, webhookController.index)
+router.post(`${path}/`, (req,res) => {
+res.json({a:111})
+})
+
+// router.post(`${path}/`, webhookController.index)
 
 
 //-----------------------------------------
