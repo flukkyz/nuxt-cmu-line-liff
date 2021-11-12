@@ -46,17 +46,17 @@ const getContent = (messageId) => {
   })
 }
 
-const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-wsClient.onopen = (event) => {
-  console.log(event)
-  console.log('Successfully connected to the echo websocket server...')
-}
-wsClient.onmessage = (event) => {
-  console.log(event)
-}
 
 module.exports = {
   index: async (req, res) => {
+    const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+    wsClient.onopen = (event) => {
+      console.log(event)
+      console.log('Successfully connected to the echo websocket server...')
+    }
+    wsClient.onmessage = (event) => {
+      console.log(event)
+    }
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
