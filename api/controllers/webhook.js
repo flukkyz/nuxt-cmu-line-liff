@@ -62,15 +62,18 @@ module.exports = {
     // if(event.message.type === 'image'){
     //   await getContent(event.message.id)
     // }
-
-
+    console.log('HOOK');
+    
+    
     const checkUser = await axios.get(`${BACKEND_API}users/lineid/${userId}`)
     if (checkUser.data.status === 'ok') {
+      console.log('IS USER');
       const resp = []
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
+          console.log();
           const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
           wsClient.onopen = (event) => {
             console.log(event)
