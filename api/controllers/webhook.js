@@ -3,7 +3,6 @@ const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
 const fs = require('fs')
-// const { io } = require("socket.io-client");
 // const ws = require('ws');
 
 const client = new line.Client({

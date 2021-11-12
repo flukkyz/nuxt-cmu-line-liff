@@ -73,8 +73,7 @@ export default {
     '~/plugins/v-mask.js',
     '~/plugins/thai-bath-text.js',
     '~/plugins/v-uppercase.js',
-    '~/plugins/base64-to-blob.js',
-    '~/plugins/socket.io.js'
+    '~/plugins/base64-to-blob.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
