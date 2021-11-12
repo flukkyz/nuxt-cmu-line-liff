@@ -4,6 +4,7 @@ const axios = require('axios')
 const line = require('@line/bot-sdk')
 const fs = require('fs')
 // const { io } = require("socket.io-client");
+const ws = require('ws');
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -44,7 +45,8 @@ const getContent = (messageId) => {
     })
   })
 }
-var ws = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+
+const ws = new ws('ws://localhost:3000', 'protocol')
 ws.onopen = (event) => {
   console.log(event)
   console.log('Successfully connected to the echo websocket server...')
