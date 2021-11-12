@@ -6,9 +6,11 @@ const router = express.Router()
 const path = '/webhook'
 
 router.get(`${path}/`, (req,res) => {
+  console.log('dddddget');
 res.send('111111111111111')
 })
 router.post(`${path}/`, (req,res) => {
+  console.log('ddddd');
 res.json({a:111})
 })
 
