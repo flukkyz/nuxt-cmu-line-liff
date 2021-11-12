@@ -5,6 +5,9 @@ const router = express.Router()
 
 const path = '/webhook'
 
+router.get(`${path}/`, (req,res) => {
+res.send('111111111111111')
+})
 router.post(`${path}/`, webhookController.index)
 
 
