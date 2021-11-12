@@ -44,7 +44,7 @@ const getContent = (messageId) => {
     })
   })
 }
-const ws = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+var ws = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 ws.onopen = (event) => {
   console.log(event)
   console.log('Successfully connected to the echo websocket server...')
