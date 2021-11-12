@@ -56,7 +56,6 @@ wsClient.onmessage = (event) => {
 
 module.exports = {
   index: async (req, res) => {
-    console.log('HOOK');
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
@@ -73,11 +72,9 @@ module.exports = {
     
     const checkUser = await axios.get(`${BACKEND_API}users/lineid/${userId}`)
     if (checkUser.data.status === 'ok') {
-      console.log('IS USER');
       const resp = []
       try {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
-        console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
           wsClient.send(JSON.stringify({

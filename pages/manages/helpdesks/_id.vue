@@ -216,6 +216,7 @@ export default {
 
       this.socket.onmessage = (event) => {
         console.log(event)
+        console.log(event.data)
         try {
           const eventData = JSON.parse(event.data)
           this.msgLists.push({
@@ -248,6 +249,11 @@ export default {
       }
     },
     async sendChat () {
+      this.socket.send(JSON.stringify({
+        id: '0',
+        type: 'text',
+        message: 'ok'
+      }))
       this.msgLists.push({
         is_admin: true,
         content: this.msgBox
