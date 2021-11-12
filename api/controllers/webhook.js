@@ -47,7 +47,7 @@ const getContent = (messageId) => {
 
 module.exports = {
   index: async (req, res) => {
-    const ws = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+    const ws = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId

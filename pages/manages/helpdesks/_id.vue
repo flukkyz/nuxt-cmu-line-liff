@@ -207,7 +207,7 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
-      this.socket = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+      this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 
       this.socket.onmessage = (event) => {
         try {

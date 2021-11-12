@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+const ws = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 ws.onmessage = function (event) {
   console.log(event)
 }

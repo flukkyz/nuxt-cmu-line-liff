@@ -32,7 +32,7 @@ export default {
 
   mounted () {
     console.log('Starting connection to WebSocket Server')
-    this.connection = new WebSocket('ws://10.110.1.68:8889', 'protocol')
+    this.connection = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 
     this.connection.onmessage = (event) => {
       try {
