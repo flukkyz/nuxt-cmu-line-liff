@@ -209,7 +209,13 @@ export default {
       this.msgLists = [...this.data.message]
       this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 
+      this.socket.onopen = (event) => {
+        console.log(event)
+        console.log('Successfully connected to the echo websocket server...')
+      }
+
       this.socket.onmessage = (event) => {
+        console.log(event)
         try {
           const eventData = JSON.parse(event.data)
           this.msgLists.push({
