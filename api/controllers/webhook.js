@@ -46,12 +46,12 @@ const getContent = (messageId) => {
   })
 }
 
-const client = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-client.onopen = (event) => {
+const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+wsClient.onopen = (event) => {
   console.log(event)
   console.log('Successfully connected to the echo websocket server...')
 }
-this.socket.onmessage = (event) => {
+wsClient.onmessage = (event) => {
   console.log(event)
 }
 
@@ -79,7 +79,7 @@ module.exports = {
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
 
-          client.send(JSON.stringify({
+          wsClient.send(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
             message: event.message.text
