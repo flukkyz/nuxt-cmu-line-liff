@@ -50,6 +50,7 @@ const getContent = (messageId) => {
 
 module.exports = {
   index: async (req, res) => {
+    console.log('HOOK');
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
@@ -62,7 +63,6 @@ module.exports = {
     // if(event.message.type === 'image'){
     //   await getContent(event.message.id)
     // }
-    console.log('HOOK');
     
     
     const checkUser = await axios.get(`${BACKEND_API}users/lineid/${userId}`)
