@@ -46,8 +46,8 @@ const getContent = (messageId) => {
   })
 }
 
-const ws = new ws('ws://localhost:3000', 'protocol')
-ws.onopen = (event) => {
+const client = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+client.onopen = (event) => {
   console.log(event)
   console.log('Successfully connected to the echo websocket server...')
 }
@@ -79,7 +79,7 @@ module.exports = {
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
 
-          ws.send(JSON.stringify({
+          client.send(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
             message: event.message.text
