@@ -3,7 +3,7 @@ const lineUtility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
 const fs = require('fs')
-// const ws = require('ws');
+const ws = require('ws');
 
 const client = new line.Client({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -73,19 +73,19 @@ module.exports = {
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
-          // const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-          // wsClient.onopen = (event) => {
-          //   console.log(event)
-          //   console.log('Successfully connected to the echo websocket server...')
-          // }
-          // wsClient.onmessage = (event) => {
-          //   console.log(event.data)
-          // }
-          // wsClient.send(JSON.stringify({
-          //   id: chatStatusData.data._id,
-          //   type: 'text',
-          //   message: event.message.text
-          // }))
+          const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+          wsClient.onopen = (event) => {
+            console.log(event)
+            console.log('Successfully connected to the echo websocket server...')
+          }
+          wsClient.onmessage = (event) => {
+            console.log(event.data)
+          }
+          wsClient.send(JSON.stringify({
+            id: chatStatusData.data._id,
+            type: 'text',
+            message: event.message.text
+          }))
 
           // const socket = io(process.env.BASE_URL);
           // socket.on(chatStatusData.data._id, (msg) => {
