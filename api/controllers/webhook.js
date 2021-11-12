@@ -45,6 +45,13 @@ const getContent = (messageId) => {
   })
 }
 
+const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+wsClient.onopen = (event) => {
+  console.log('Successfully connected to the echo websocket server...')
+}
+wsClient.onmessage = (event) => {
+  console.log(event.data)
+}
 
 
 module.exports = {
@@ -73,13 +80,6 @@ module.exports = {
         console.log(chatStatusData.data);
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
-          const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-          wsClient.onopen = (event) => {
-            console.log('Successfully connected to the echo websocket server...')
-          }
-          wsClient.onmessage = (event) => {
-            console.log(event.data)
-          }
           wsClient.send(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
