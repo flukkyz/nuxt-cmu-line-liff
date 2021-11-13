@@ -45,7 +45,7 @@ const getContent = (messageId) => {
   })
 }
 
-let wsClient
+let wsClient = nul
 const sendSocket = (sendData) => {
   if(!wsClient){
     wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
