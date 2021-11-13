@@ -91,7 +91,7 @@ export default {
   async beforeMount () {
     try {
       const noti = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}helpdesks/status/wait`)
-      console.log(noti)
+      this.noti = noti.data
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
