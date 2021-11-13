@@ -118,6 +118,32 @@ export default {
           Authorization: `Bearer ${this.profile.userId}`
         }
       })
+      const socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+
+      socket.onopen = (event) => {
+        console.log(event)
+        console.log('Successfully connected to the echo websocket server...')
+      }
+
+      socket.onmessage = (event) => {
+        console.log(event)
+        console.log(event.data)
+        try {
+          const eventData = JSON.parse(event.data)
+          this.msgLists.push({
+            is_admin: false,
+            content: eventData.message
+          })
+          this.refershChat()
+        } catch (error) {
+
+        }
+      }
+      socket.send(JSON.stringify({
+        id: send.data._id,
+        type: 'action',
+        message: 'wait'
+      }))
       console.log(send)
       const formData = new FormData()
       formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
