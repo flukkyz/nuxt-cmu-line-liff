@@ -33,12 +33,12 @@
       <template v-else>
         <template v-if="$auth.loggedIn">
           <v-badge
-            :content="noti"
             :value="noti"
+            class="mr-5"
             color="warning"
             overlap
           >
-            <v-icon class="mr-5" :to="localePath({name: 'manages-helpdesks'})">
+            <v-icon :to="localePath({name: 'manages-helpdesks'})">
               fas fa-bell
             </v-icon>
           </v-badge>
