@@ -77,6 +77,7 @@
         elevation="0"
         class="mt-10"
         depressed
+        :disabled="!data.category_detail"
         color="success"
         @click="openChat"
       >
@@ -201,7 +202,7 @@ export default {
         const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
         this.data = data.data[0]
         console.log(this.data)
-        if (this.data.category_detail) {
+        if (this.data.category_detail && this.data.category_detail.length > 0) {
           this.categoryRadio = this.data.category_detail[0]._id
           console.log(this.categoryRadio)
         }
