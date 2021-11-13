@@ -45,14 +45,18 @@ const getContent = (messageId) => {
   })
 }
 
-
+let wsClient
 const sendSocket = (sendData) => {
-  const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-  wsClient.onopen = (event) => {
+  if(!wsClient){
+    wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+    wsClient.onopen = (event) => {
+      wsClient.send(sendData)
+    }
+    wsClient.onmessage = (event) => {
+      console.log('MESSAGE DATA',event.data)
+    }
+  }else{
     wsClient.send(sendData)
-  }
-  wsClient.onmessage = (event) => {
-    console.log('MESSAGE DATA',event.data)
   }
 }
 

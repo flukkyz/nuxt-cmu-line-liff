@@ -217,6 +217,16 @@ export default {
             message: action
           }))
         }
+        this.socket.onmessage = (event) => {
+          const eventData = JSON.parse(event.data)
+          if (eventData.type === 'text') {
+            this.msgLists.push({
+              is_admin: false,
+              content: eventData.message
+            })
+            this.refershChat()
+          }
+        }
       } else {
         this.socket.send(JSON.stringify({
           id: this.data._id,
