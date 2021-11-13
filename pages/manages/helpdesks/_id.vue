@@ -60,6 +60,7 @@
         <v-radio
           v-for="category in categories"
           :key="`category-${category._id}`"
+          v-model="categoryRadio"
           :label="category.name"
           :value="category._id"
         />
@@ -150,6 +151,7 @@ export default {
       valid: true,
       api: `${process.env.apiUrl}${process.env.apiDirectory}helpdesks`,
       categories: null,
+      categoryRadio: null,
       data: null,
       msgLists: [],
       subscribe: null,
@@ -193,6 +195,9 @@ export default {
       try {
         const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
         this.data = data.data[0]
+        if (this.data.category_detail) {
+          this.categoryRadio = this.data.category_detail._id
+        }
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
