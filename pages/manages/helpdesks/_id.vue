@@ -197,6 +197,7 @@ export default {
         this.data = data.data[0]
         if (this.data.category_detail) {
           this.categoryRadio = this.data.category_detail._id
+          console.log(this.categoryRadio)
         }
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
