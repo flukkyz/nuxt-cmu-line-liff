@@ -77,7 +77,7 @@
         elevation="0"
         class="mt-10"
         depressed
-        :disabled="!data.category_detail"
+        :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
         color="success"
         @click="openChat"
       >
