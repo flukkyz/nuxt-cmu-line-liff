@@ -83,7 +83,7 @@ module.exports = {
 
           let wsClient = socket()
           while (!wsClient) {
-            let wsClient = socket()
+            wsClient = socket()
             
           }
           wsClient.send(JSON.stringify({
