@@ -153,12 +153,23 @@ export default {
       msgLists: [],
       msgBox: '',
       // sending: false,
-      socket: null,
       lastMsgListId: null
     }
   },
-  async mounted () {
+  created () {
     this.connectSocket()
+    this.$bus.$on('socket-receive', (data) => {
+      this.msgLists.push({
+        is_admin: false,
+        content: data.message
+      })
+      this.refershChat()
+    })
+  },
+  beforeDestroy () {
+    this.$bus.$off('socket-receive')
+  },
+  async mounted () {
     try {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
@@ -191,49 +202,17 @@ export default {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
     },
-    connectSocket () {
-      this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-      this.socket.onopen = () => {
-        console.log('Socket Connected')
-      }
-
-      this.socket.onmessage = (e) => {
-        console.log('Message:', e.data)
-        try {
-          const eventData = JSON.parse(e.data)
-          if (eventData.type === 'text') {
-            this.msgLists.push({
-              is_admin: false,
-              content: eventData.message
-            })
-            this.refershChat()
-          }
-        } catch (error) { }
-      }
-
-      this.socket.onclose = (e) => {
-        console.log('Socket is closed. Reconnect will be now.', e.reason)
-        setTimeout(() => {
-          this.connectSocket()
-        }, 1)
-      }
-
-      this.socket.onerror = (err) => {
-        console.error('Socket encountered error: ', err.message, 'Closing socket')
-        this.socket.close()
-      }
-    },
     async openChat () {
       if (this.data.admin_id === this.$auth.user._id) {
         try {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          this.socket.send(JSON.stringify({
+          this.$bus.$emit('socket-send', {
             id: this.data._id,
             type: 'action',
             message: 'admin'
-          }))
+          })
           await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
@@ -306,11 +285,11 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      this.socket.send(JSON.stringify({
+      this.$bus.$emit('socket-send', {
         id: this.data._id,
         type: 'action',
         message: 'leave'
-      }))
+      })
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'

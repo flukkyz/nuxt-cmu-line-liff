@@ -45,7 +45,6 @@ export default {
       profile: null,
       valid: true,
       oneClick: false,
-      socket: null,
       rules: {
         content: [
           v => !!v || 'กรุณากรอกกรอกข้อความปัญหาการใช้งาน'
@@ -69,8 +68,6 @@ export default {
     } else {
       liff.login({ redirectUri: window.location.href })
     }
-
-    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
   },
   methods: {
     async getLineProfile () {
@@ -121,12 +118,11 @@ export default {
           Authorization: `Bearer ${this.profile.userId}`
         }
       })
-
-      this.socket.send(JSON.stringify({
-        id: send.data._id,
+      this.$bus.$emit('socket-send', {
+        id: this.data._id,
         type: 'action',
         message: 'wait'
-      }))
+      })
       console.log(send)
       const formData = new FormData()
       formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
