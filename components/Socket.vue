@@ -8,7 +8,8 @@
 export default {
   data () {
     return {
-      socket: null
+      socket: null,
+      timeInterval: null
     }
   },
   created () {
@@ -16,18 +17,18 @@ export default {
 
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'socket/send') {
-        console.log('SOCKET SEND')
-        if (this.socket.readyState === WebSocket.OPEN) {
-          console.log('SEND', state.socket.dataSend)
-          this.socket.send(JSON.stringify(state.socket.dataSend))
-        } else {
-          setTimeout(() => {
-            console.log('SEND 1 S', state.socket.dataSend)
-            this.socket.send(JSON.stringify(state.socket.dataSend))
-          }, 1000)
-        }
+        this.timeInterval = setInterval(() => {
+          if (this.socket.readyState === WebSocket.OPEN) {
+            clearInterval(this.timeInterval)
+            console.log('SEND', state.socket.dataSend)
+            this.sendSocket(state.socket.dataSend)
+          }
+        }, 10)
       }
     })
+  },
+  beforeDestroy () {
+    clearInterval(this.timeInterval)
   },
   methods: {
     connectSocket () {
@@ -55,6 +56,9 @@ export default {
         console.error('Socket encountered error: ', err.message, 'Closing socket')
         this.socket.close()
       }
+    },
+    sendSocket (data) {
+      this.socket.send(JSON.stringify(data))
     }
   }
 }
