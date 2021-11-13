@@ -47,10 +47,10 @@ const getContent = (messageId) => {
 
 
 var wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-window.wsClient.onopen = (event) => {
+wsClient.onopen = (event) => {
   console.log('Successfully connected to the echo websocket server...')
 }
-window.wsClient.onmessage = (event) => {
+wsClient.onmessage = (event) => {
   console.log(event)
   console.log(event.data)
 }
@@ -78,7 +78,7 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
-          window.wsClient.send(JSON.stringify({
+          wsClient.send(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
             message: event.message.text
