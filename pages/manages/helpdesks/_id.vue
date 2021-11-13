@@ -140,9 +140,6 @@
         <dialogs-confirm @confirm="confirmLeaveChat" />
       </v-form>
     </div>
-    <h1>
-      {{ $store.state.socket.subscribeReceive }}
-    </h1>
   </div>
 </template>
 
@@ -161,18 +158,21 @@ export default {
     }
   },
   created () {
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === 'socket/receive') {
-        if (state.socket.dataReceive.type === 'text') {
-          console.log('RECEIVE', state.socket.dataReceive)
-          this.msgLists.push({
-            is_admin: false,
-            content: state.socket.dataReceive.message
-          })
-          this.refershChat()
+    if (!this.$store.state.socket.subscribeReceive) {
+      this.$store.subscribe((mutation, state) => {
+        if (mutation.type === 'socket/receive') {
+          if (state.socket.dataReceive.type === 'text') {
+            console.log('RECEIVE', state.socket.dataReceive)
+            this.msgLists.push({
+              is_admin: false,
+              content: state.socket.dataReceive.message
+            })
+            this.refershChat()
+          }
         }
-      }
-    })
+      })
+      this.$store.commit('socket/subscribeReceive')
+    }
   },
   async mounted () {
     try {

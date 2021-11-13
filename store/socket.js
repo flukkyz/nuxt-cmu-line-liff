@@ -1,5 +1,5 @@
 export const state = () => ({
-  subscribeReceive: '1245644654646',
+  subscribeReceive: false,
   dataSend: null,
   dataReceive: null
 })
