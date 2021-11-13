@@ -194,7 +194,9 @@ export default {
       if (!this.socket) {
         this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
         this.socket.onopen = (event) => {
+          console.log('Connect WS')
           this.socket.onmessage = (event) => {
+            console.log('MESSAGE DATA', event.data)
             try {
               const eventData = JSON.parse(event.data)
               if (eventData.type === 'text') {
@@ -213,6 +215,7 @@ export default {
       if (!this.socket) {
         this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
         this.socket.onopen = (event) => {
+          console.log('Connect WS')
           this.socket.send(JSON.stringify({
             id: this.data._id,
             type: 'action',
