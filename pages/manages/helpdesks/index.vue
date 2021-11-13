@@ -16,8 +16,7 @@
       </v-card-title>
       <v-data-table
         :headers="headers"
-        :items="datas"
-        :search="search"
+        :items="dataFilters"
         hide-default-header
         :footer-props="{
           itemsPerPageOptions: [10,20,50,100,300,500]
@@ -106,6 +105,24 @@ export default {
       this.datas = datas.data
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+    }
+  },
+  computed: {
+    dataFilters () {
+      let dataFilters = this.datas
+      if (this.search) {
+        const search = this.search
+        dataFilters = dataFilters.filter((item) => {
+          return [
+            this.$findSome(search, item.message[0].content),
+            this.$findSome(search, item.user_detail[0].firstname),
+            this.$findSome(search, item.user_detail[0].lastname),
+            this.$findSome(search, item.user_detail[0].email),
+            this.$findSome(search, item.user_detail[0].organizationname)
+          ].some(ele => ele)
+        })
+      }
+      return dataFilters
     }
   }
 }

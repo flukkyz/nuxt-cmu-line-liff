@@ -161,4 +161,10 @@ export default ({ app }, inject) => {
     }
     return newStr
   })
+  inject('findSome', (search, item) => {
+    if (search && item) {
+      return search.toLowerCase().split(' ').some(ele => item.toLowerCase().includes(ele) || app.$charSwitch(item).toLowerCase().includes(ele))
+    }
+    return false
+  })
 }
