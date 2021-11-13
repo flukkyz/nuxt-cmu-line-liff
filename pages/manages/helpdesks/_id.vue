@@ -210,11 +210,6 @@ export default {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          this.$store.commit('socket/send', {
-            id: this.data._id,
-            type: 'action',
-            message: 'admin'
-          })
           await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
@@ -225,6 +220,11 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
+      this.$store.commit('socket/send', {
+        id: this.data._id,
+        type: 'action',
+        message: 'admin'
+      })
       this.refershChat(0)
     },
     refershChat (duration = 200) {
