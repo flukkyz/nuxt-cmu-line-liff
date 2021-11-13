@@ -302,6 +302,11 @@ export default {
       })
     },
     async confirmLeaveChat () {
+      this.socket.send(JSON.stringify({
+        id: this.data._id,
+        type: 'action',
+        message: 'leave'
+      }))
       // this.socket.disconnect()
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
