@@ -118,7 +118,7 @@ export default {
           Authorization: `Bearer ${this.profile.userId}`
         }
       })
-      this.$bus.$emit('socket-send', {
+      this.$store.commit('socket/send', {
         id: send.data._id,
         type: 'action',
         message: 'wait'

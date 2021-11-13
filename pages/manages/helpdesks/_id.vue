@@ -157,16 +157,15 @@ export default {
     }
   },
   created () {
-    this.$bus.$on('socket-receive', (data) => {
-      this.msgLists.push({
-        is_admin: false,
-        content: data.message
-      })
-      this.refershChat()
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'socket/receive') {
+        this.msgLists.push({
+          is_admin: false,
+          content: state.socket.dataReceive
+        })
+        this.refershChat()
+      }
     })
-  },
-  beforeDestroy () {
-    this.$bus.$off('socket-receive')
   },
   async mounted () {
     try {
@@ -207,7 +206,7 @@ export default {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          this.$bus.$emit('socket-send', {
+          this.$store.commit('socket/send', {
             id: this.data._id,
             type: 'action',
             message: 'admin'
@@ -284,7 +283,7 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      this.$bus.$emit('socket-send', {
+      this.$store.commit('socket/send', {
         id: this.data._id,
         type: 'action',
         message: 'leave'
