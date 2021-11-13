@@ -38,11 +38,9 @@
             color="warning"
             overlap
           >
-            <v-btn icon :to="localePath({name: 'manages-helpdesks'})">
-              <v-icon small>
-                fas fa-bell
-              </v-icon>
-            </v-btn>
+            <v-icon small :to="localePath({name: 'manages-helpdesks'})">
+              fas fa-bell
+            </v-icon>
           </v-badge>
           <v-btn text class="py-6 d-none d-md-flex" @click.stop="logout">
             <v-icon left>
@@ -71,7 +69,7 @@
 export default {
   data () {
     return {
-      noti: 0
+      noti: 5
     }
   },
   computed: {
