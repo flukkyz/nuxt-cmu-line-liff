@@ -195,6 +195,7 @@ export default {
       try {
         const data = await this.$axios.$get(`${this.api}/${this.$route.params.id}`)
         this.data = data.data[0]
+        console.log(this.data)
         if (this.data.category_detail) {
           this.categoryRadio = this.data.category_detail._id
           console.log(this.categoryRadio)
