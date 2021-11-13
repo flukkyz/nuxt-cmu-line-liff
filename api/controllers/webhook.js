@@ -51,7 +51,9 @@ const sendSocket = (sendData) => {
   wsClient.onopen = (event) => {
     wsClient.send(sendData)
   }
-  return wsClient
+  wsClient.onmessage = (event) => {
+    console.log('MESSAGE DATA',event.data)
+  }
 }
 
 module.exports = {

@@ -158,7 +158,6 @@ export default {
     }
   },
   async mounted () {
-    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
     try {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
@@ -191,17 +190,48 @@ export default {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
     },
+    receiveSocket () {
+      if (!this.socket) {
+        this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+        this.socket.onopen = (event) => {
+          this.socket.onmessage = (event) => {
+            const eventData = JSON.parse(event.data)
+            if (eventData.type === 'text') {
+              this.msgLists.push({
+                is_admin: false,
+                content: eventData.message
+              })
+              this.refershChat()
+            }
+          }
+        }
+      }
+    },
+    sendSocket (action) {
+      if (!this.socket) {
+        this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+        this.socket.onopen = (event) => {
+          this.socket.send(JSON.stringify({
+            id: this.data._id,
+            type: 'action',
+            message: action
+          }))
+        }
+      } else {
+        this.socket.send(JSON.stringify({
+          id: this.data._id,
+          type: 'action',
+          message: action
+        }))
+      }
+    },
     async openChat () {
       if (this.data.admin_id === this.$auth.user._id) {
         try {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          this.socket.send(JSON.stringify({
-            id: this.data._id,
-            type: 'action',
-            message: 'admin'
-          }))
+          this.sendSocket('admin')
           await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
@@ -212,24 +242,8 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
-
-      this.socket.onmessage = (event) => {
-        console.log(event.data)
-        const eventData = JSON.parse(event.data)
-        this.msgLists.push({
-          is_admin: false,
-          content: eventData.message
-        })
-        this.refershChat()
-      }
+      this.receiveSocket()
       this.refershChat(0)
-      // this.socket.on(this.data._id, (msg) => {
-      //   this.msgLists.push({
-      //     is_admin: false,
-      //     content: msg
-      //   })
-      //   this.refershChat()
-      // })
     },
     refershChat (duration = 200) {
       if (this.msgLists.length - 1 !== this.lastMsgListId) {
@@ -291,11 +305,7 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      this.socket.send(JSON.stringify({
-        id: this.data._id,
-        type: 'action',
-        message: 'leave'
-      }))
+      this.sendSocket('leave')
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
