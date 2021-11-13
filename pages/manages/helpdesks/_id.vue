@@ -38,8 +38,8 @@
             {{ data.user_detail[0].email }}
           </v-list-item-subtitle>
         </v-list-item-content>
-        <v-list-item-action class="align-self-start">
-          <p>
+        <v-list-item-action class="align-self-end">
+          <p class="mb-0">
             <span class="info--text caption font-weigth-bold">
               ประเภทปัญหาที่แจ้ง
             </span>
