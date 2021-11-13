@@ -39,6 +39,12 @@
           </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action class="align-self-start">
+          <p>
+            <span class="info--text caption font-weigth-bold">
+              ประเภทปัญหาที่แจ้ง
+            </span>
+            {{ data.category_detail[0].name }}
+          </p>
           <p class="grey--text caption mb-0">
             {{ $dateText(data.createdAt,'medium','long') }}
           </p>
