@@ -217,6 +217,11 @@ export default {
       }
     },
     async setCategory (val) {
+      this.$store.commit('socket/send', {
+        id: this.data._id,
+        type: 'action',
+        message: 'wait'
+      })
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'read',
