@@ -159,6 +159,7 @@ export default {
     }
   },
   async mounted () {
+    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
     try {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
@@ -170,7 +171,6 @@ export default {
       console.log(e)
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
-    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
   },
   methods: {
     async fetchData () {
