@@ -31,29 +31,35 @@ export default {
   },
 
   mounted () {
-    console.log('Starting connection to WebSocket Server')
-    this.connection = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-
-    this.connection.onmessage = (event) => {
-      try {
-        this.dddd = JSON.parse(event.data)
-      } catch (error) {
-
-      }
-    }
-
-    this.connection.onopen = (event) => {
-      console.log(event)
-      console.log('Successfully connected to the echo websocket server...')
-    }
+    this.connect()
   },
   methods: {
     aaaa (event) {
       console.log(event)
     },
-    save () {
+    connect () {
+      console.log('Starting connection to WebSocket Server')
+      this.connection = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+
+      this.connection.onmessage = (event) => {
+        try {
+          this.dddd = JSON.parse(event.data)
+        } catch (error) {
+
+        }
+      }
+
+      this.connection.onopen = (event) => {
+        console.log(event)
+        console.log('Successfully connected to the echo websocket server...')
+      }
+    },
+    async save () {
       console.log('Hello')
       console.log(this.connection)
+      if (!this.connection) {
+        await this.connect()
+      }
       this.connection.send(JSON.stringify({
         id: '12121212',
         type: 'text',
