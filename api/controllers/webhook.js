@@ -59,7 +59,7 @@ const sendSocket = (sendData) => {
     }
   }else{
     console.log('ELSE SOCKET')
-    console.log('SEND',event.data)
+    console.log('SEND')
     wsClient.send(sendData)
   }
 }
