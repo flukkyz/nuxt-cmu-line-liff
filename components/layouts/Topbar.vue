@@ -33,6 +33,7 @@
       <template v-else>
         <template v-if="$auth.loggedIn">
           <v-badge
+            :content="noti"
             :value="noti"
             class="mr-5"
             color="warning"
@@ -86,6 +87,14 @@ export default {
         }
       }
     })
+  },
+  async beforeMount () {
+    try {
+      const noti = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}helpdesks/status/wait`)
+      console.log(noti)
+    } catch (e) {
+      this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+    }
   },
   methods: {
     toggleDrawer () {
