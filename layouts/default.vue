@@ -26,10 +26,13 @@ export default {
   created () {
     this.connectSocket()
     this.$bus.$on('socket-send', (data) => {
+      console.log('SOCKET SEND')
       if (this.socket.readyState === WebSocket.OPEN) {
+        console.log('SEND')
         this.socket.send(JSON.stringify(data))
       } else {
         setTimeout(() => {
+          console.log('SEND 1 S')
           this.socket.send(JSON.stringify(data))
         }, 1000)
       }
