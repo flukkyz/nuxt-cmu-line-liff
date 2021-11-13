@@ -141,7 +141,7 @@
       </v-form>
     </div>
     <h1>
-      {{ $store.state.subscribeReceive }}
+      {{ $store.state.socket.subscribeReceive }}
     </h1>
   </div>
 </template>
