@@ -66,6 +66,7 @@ const sendSocket = (sendData) => {
 
 module.exports = {
   index: async (req, res) => {
+    wsClient = null
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
