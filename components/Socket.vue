@@ -40,11 +40,7 @@ export default {
         console.log('Message:', e.data)
         try {
           const eventData = JSON.parse(e.data)
-          if (eventData.type === 'text') {
-            this.$store.commit('socket/receive', eventData)
-          } else {
-            console.log(eventData)
-          }
+          this.$store.commit('socket/receive', eventData)
         } catch (error) { }
       }
 

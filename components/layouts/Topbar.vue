@@ -32,6 +32,16 @@
       </template>
       <template v-else>
         <template v-if="$auth.loggedIn">
+          <v-badge
+            :content="noti"
+            :value="noti"
+            color="warning"
+            overlap
+          >
+            <v-icon small :to="localePath({name: 'manages-helpdesks'})">
+              fas fa-bell
+            </v-icon>
+          </v-badge>
           <v-btn text class="py-6 d-none d-md-flex" @click.stop="logout">
             <v-icon left>
               fas fa-sign-out-alt
@@ -57,10 +67,25 @@
 
 <script>
 export default {
+  data () {
+    return {
+      noti: 0
+    }
+  },
   computed: {
     iconName () {
       return this.$auth.loggedIn ? this.$auth.user.firstname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) + this.$auth.user.lastname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) : ''
     }
+  },
+  created () {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'socket/receive') {
+        if (state.socket.dataReceive.type === 'notification') {
+          console.log('RECEIVE', state.socket.dataReceive)
+          this.noti = state.socket.dataReceive.message
+        }
+      }
+    })
   },
   methods: {
     toggleDrawer () {
