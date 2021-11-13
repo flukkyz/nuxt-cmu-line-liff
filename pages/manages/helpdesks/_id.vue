@@ -158,6 +158,7 @@ export default {
     }
   },
   async mounted () {
+    this.connectSocket()
     try {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
