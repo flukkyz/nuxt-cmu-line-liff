@@ -80,7 +80,7 @@ export default {
           ...profile,
           ...user.data
         }
-        const chatStatusData = await this.$axios.$post(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
+        const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.profile.userId}`
