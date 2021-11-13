@@ -38,7 +38,7 @@
             color="warning"
             overlap
           >
-            <v-btn icon :to="localePath({name: 'manages-helpdesks'})">
+            <v-btn fab :to="localePath({name: 'manages-helpdesks'})">
               <v-icon small>
                 fas fa-bell
               </v-icon>
