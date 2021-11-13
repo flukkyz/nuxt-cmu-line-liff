@@ -98,7 +98,7 @@ module.exports = {
             type: 'text',
             message: event.message.text
           }))
-          const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
+          await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
             content: event.message.text
           },{headers})
         }else{

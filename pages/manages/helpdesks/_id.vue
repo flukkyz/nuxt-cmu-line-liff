@@ -96,7 +96,7 @@
         </div>
       </div>
       <v-form v-if="data.mode === 'start' && data.admin_id === $auth.user._id" ref="form" v-model="valid" @submit.prevent="sendChat">
-        <v-row class="pa-3">
+        <v-row class="px-3">
           <v-col>
             <v-textarea
               v-model="msgBox"
