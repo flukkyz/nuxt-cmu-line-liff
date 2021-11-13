@@ -59,7 +59,7 @@ const connectSocket = () => {
   wsClient.onclose = function(e) {
     console.log('Socket is closed. Reconnect will be now.', e.reason);
     setTimeout(function() {
-      connect();
+      connectSocket();
     }, 10);
   };
 
