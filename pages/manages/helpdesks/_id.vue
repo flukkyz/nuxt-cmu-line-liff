@@ -197,7 +197,7 @@ export default {
         this.data = data.data[0]
         console.log(this.data)
         if (this.data.category_detail) {
-          this.categoryRadio = this.data.category_detail._id
+          this.categoryRadio = this.data.category_detail[0]._id
           console.log(this.categoryRadio)
         }
       } catch (e) {
