@@ -39,7 +39,7 @@
           </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action class="align-self-end">
-          <p class="mb-0">
+          <p v-if="data.category_detail && data.category_detail.length > 0" class="mb-0">
             <span class="info--text caption font-weigth-bold">
               ประเภทปัญหาที่แจ้ง
             </span>
