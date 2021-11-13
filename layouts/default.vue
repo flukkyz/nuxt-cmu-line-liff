@@ -51,7 +51,7 @@ export default {
           const eventData = JSON.parse(e.data)
           if (eventData.type === 'text') {
             this.$bus.$emit('socket-receive', eventData)
-          } else if (eventData.type === 'action') {
+          } else {
             console.log(eventData)
           }
         } catch (error) { }
