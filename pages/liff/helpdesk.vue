@@ -71,26 +71,6 @@ export default {
     }
 
     this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-
-    this.socket.onopen = (event) => {
-      console.log(event)
-      console.log('Successfully connected to the echo websocket server...')
-    }
-
-    this.socket.onmessage = (event) => {
-      console.log(event)
-      console.log(event.data)
-      try {
-        const eventData = JSON.parse(event.data)
-        this.msgLists.push({
-          is_admin: false,
-          content: eventData.message
-        })
-        this.refershChat()
-      } catch (error) {
-
-      }
-    }
   },
   methods: {
     async getLineProfile () {

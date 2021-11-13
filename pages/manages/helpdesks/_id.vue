@@ -170,6 +170,7 @@ export default {
       console.log(e)
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
+    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
   },
   methods: {
     async fetchData () {
@@ -197,6 +198,11 @@ export default {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
+          this.socket.send(JSON.stringify({
+            id: this.data._id,
+            type: 'action',
+            message: 'admin'
+          }))
           await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
@@ -207,12 +213,6 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
-      this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-
-      this.socket.onopen = (event) => {
-        console.log(event)
-        console.log('Successfully connected to the echo websocket server...')
-      }
 
       this.socket.onmessage = (event) => {
         console.log(event)
@@ -250,7 +250,7 @@ export default {
     },
     async sendChat () {
       this.socket.send(JSON.stringify({
-        id: '0',
+        id: this.data._id,
         type: 'text',
         message: 'ok'
       }))
