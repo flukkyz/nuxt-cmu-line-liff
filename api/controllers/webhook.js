@@ -45,28 +45,33 @@ const getContent = (messageId) => {
   })
 }
 
-let wsClient = null
-const sendSocket = (sendData) => {
-  if(!wsClient){
-    console.log('IF SOCKET')
-    wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-    wsClient.onopen = (event) => {
-      console.log('SEND',event.data)
-      wsClient.send(sendData)
-    }
-    wsClient.onmessage = (event) => {
-      console.log('MESSAGE DATA',event.data)
-    }
-  }else{
-    console.log('ELSE SOCKET')
-    console.log('SEND',wsClient)
-    wsClient.send(sendData)
-  }
+let wsClient
+const connectSocket = () => {
+  wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+  wsClient.onopen = function() {
+    console.log('Socket Connected');
+  };
+
+  wsClient.onmessage = function(e) {
+    console.log('Message:', e.data);
+  };
+
+  wsClient.onclose = function(e) {
+    console.log('Socket is closed. Reconnect will be now.', e.reason);
+    setTimeout(function() {
+      connect();
+    }, 10);
+  };
+
+  wsClient.onerror = function(err) {
+    console.error('Socket encountered error: ', err.message, 'Closing socket');
+    wsClient.close();
+  };
 }
+connectSocket()
 
 module.exports = {
   index: async (req, res) => {
-    wsClient = null
     const event = req.body.events[0]
     const replyToken = event.replyToken
     const userId = event.source.userId
@@ -88,7 +93,7 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
-          sendSocket(JSON.stringify({
+          wsClient.send(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
             message: event.message.text
