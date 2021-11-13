@@ -45,6 +45,7 @@ export default {
       profile: null,
       valid: true,
       oneClick: false,
+      socket: null,
       rules: {
         content: [
           v => !!v || 'กรุณากรอกกรอกข้อความปัญหาการใช้งาน'
@@ -67,6 +68,28 @@ export default {
       this.getLineProfile()
     } else {
       liff.login({ redirectUri: window.location.href })
+    }
+
+    this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+
+    this.socket.onopen = (event) => {
+      console.log(event)
+      console.log('Successfully connected to the echo websocket server...')
+    }
+
+    this.socket.onmessage = (event) => {
+      console.log(event)
+      console.log(event.data)
+      try {
+        const eventData = JSON.parse(event.data)
+        this.msgLists.push({
+          is_admin: false,
+          content: eventData.message
+        })
+        this.refershChat()
+      } catch (error) {
+
+      }
     }
   },
   methods: {
@@ -118,28 +141,8 @@ export default {
           Authorization: `Bearer ${this.profile.userId}`
         }
       })
-      const socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 
-      socket.onopen = (event) => {
-        console.log(event)
-        console.log('Successfully connected to the echo websocket server...')
-      }
-
-      socket.onmessage = (event) => {
-        console.log(event)
-        console.log(event.data)
-        try {
-          const eventData = JSON.parse(event.data)
-          this.msgLists.push({
-            is_admin: false,
-            content: eventData.message
-          })
-          this.refershChat()
-        } catch (error) {
-
-        }
-      }
-      socket.send(JSON.stringify({
+      this.socket.send(JSON.stringify({
         id: send.data._id,
         type: 'action',
         message: 'wait'
