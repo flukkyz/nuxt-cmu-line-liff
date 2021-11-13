@@ -86,7 +86,7 @@ export default {
             Authorization: `Bearer ${this.profile.userId}`
           }
         })
-        if (chatStatusData.data.chat) {
+        if (chatStatusData.chat) {
           const formData = new FormData()
           formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
           formData.append('send_type', 'select')
