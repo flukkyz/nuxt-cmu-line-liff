@@ -70,7 +70,8 @@
 export default {
   data () {
     return {
-      noti: 0
+      noti: 0,
+      subscribe: null
     }
   },
   computed: {
@@ -79,7 +80,7 @@ export default {
     }
   },
   created () {
-    this.$store.subscribe((mutation, state) => {
+    this.subscribe = this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'socket/receive') {
         if (state.socket.dataReceive.type === 'notification') {
           console.log('RECEIVE', state.socket.dataReceive)
@@ -87,6 +88,9 @@ export default {
         }
       }
     })
+  },
+  beforeDestroy () {
+    this.subscribe()
   },
   async beforeMount () {
     try {
