@@ -52,8 +52,7 @@ const socket = () => {
     console.log('Successfully connected to the echo websocket server...')
   }
   wsClient.onmessage = (event) => {
-    console.log(event)
-    console.log(event.data)
+    console.log('MESSAGE DATA',event.data)
   }
   return wsClient
 }
