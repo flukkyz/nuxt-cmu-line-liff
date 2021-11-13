@@ -56,11 +56,16 @@
 
       <label for="">ประเภทปัญหาที่แจ้ง</label>
       ประเภทปัญหาที่แจ้ง
-      <v-radio-group row class="mt-0" hide-details @change="setCategory">
+      <v-radio-group
+        v-model="categoryRadio"
+        row
+        class="mt-0"
+        hide-details
+        @change="setCategory"
+      >
         <v-radio
           v-for="category in categories"
           :key="`category-${category._id}`"
-          v-model="categoryRadio"
           :label="category.name"
           :value="category._id"
         />
