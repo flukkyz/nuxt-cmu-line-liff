@@ -85,7 +85,7 @@ export default {
     this.subscribe = this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'socket/receive') {
         if (state.socket.dataReceive.type === 'notification') {
-          console.log('RECEIVE', state.socket.dataReceive)
+          console.log('RECEIVE NOTI', state.socket.dataReceive)
           this.noti = state.socket.dataReceive.message
         }
       }
