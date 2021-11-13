@@ -140,6 +140,9 @@
         <dialogs-confirm @confirm="confirmLeaveChat" />
       </v-form>
     </div>
+    <h1>
+      {{ $store.state.subscribeReceive }}
+    </h1>
   </div>
 </template>
 
