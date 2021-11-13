@@ -152,27 +152,28 @@ export default {
       categories: null,
       data: null,
       msgLists: [],
+      subscribe: null,
       msgBox: '',
       // sending: false,
       lastMsgListId: null
     }
   },
   created () {
-    if (!this.$store.state.socket.subscribeReceive) {
-      this.$store.subscribe((mutation, state) => {
-        if (mutation.type === 'socket/receive') {
-          if (state.socket.dataReceive.type === 'text') {
-            console.log('RECEIVE', state.socket.dataReceive)
-            this.msgLists.push({
-              is_admin: false,
-              content: state.socket.dataReceive.message
-            })
-            this.refershChat()
-          }
+    this.subscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'socket/receive') {
+        if (state.socket.dataReceive.type === 'text') {
+          console.log('RECEIVE', state.socket.dataReceive)
+          this.msgLists.push({
+            is_admin: false,
+            content: state.socket.dataReceive.message
+          })
+          this.refershChat()
         }
-      })
-      this.$store.commit('socket/subscribeReceive')
-    }
+      }
+    })
+  },
+  beforeDestroy () {
+    this.subscribe = null
   },
   async mounted () {
     try {
