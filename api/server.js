@@ -2,12 +2,12 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 
+var wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 const { notFound, handleError } = require('./middlewares')
 const routes = require('./routes')
 
 const app = express()
 
-var wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
 global.wsClient.onopen = (event) => {
   console.log('Successfully connected to the echo websocket server...')
 }
