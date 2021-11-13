@@ -195,14 +195,16 @@ export default {
         this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
         this.socket.onopen = (event) => {
           this.socket.onmessage = (event) => {
-            const eventData = JSON.parse(event.data)
-            if (eventData.type === 'text') {
-              this.msgLists.push({
-                is_admin: false,
-                content: eventData.message
-              })
-              this.refershChat()
-            }
+            try {
+              const eventData = JSON.parse(event.data)
+              if (eventData.type === 'text') {
+                this.msgLists.push({
+                  is_admin: false,
+                  content: eventData.message
+                })
+                this.refershChat()
+              }
+            } catch (error) { }
           }
         }
       }
@@ -218,14 +220,16 @@ export default {
           }))
         }
         this.socket.onmessage = (event) => {
-          const eventData = JSON.parse(event.data)
-          if (eventData.type === 'text') {
-            this.msgLists.push({
-              is_admin: false,
-              content: eventData.message
-            })
-            this.refershChat()
-          }
+          try {
+            const eventData = JSON.parse(event.data)
+            if (eventData.type === 'text') {
+              this.msgLists.push({
+                is_admin: false,
+                content: eventData.message
+              })
+              this.refershChat()
+            }
+          } catch (error) { }
         }
       } else {
         this.socket.send(JSON.stringify({
