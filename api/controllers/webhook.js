@@ -48,22 +48,22 @@ const getContent = (messageId) => {
 let wsClient
 const connectSocket = () => {
   wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-  wsClient.onopen = function() {
+  wsClient.onopen = () => {
     console.log('Socket Connected');
   };
 
-  wsClient.onmessage = function(e) {
+  wsClient.onmessage = (e) => {
     console.log('Message:', e.data);
   };
 
-  wsClient.onclose = function(e) {
+  wsClient.onclose = (e) => {
     console.log('Socket is closed. Reconnect will be now.', e.reason);
-    setTimeout(function() {
+    setTimeout(() => {
       connectSocket();
     }, 1);
   };
 
-  wsClient.onerror = function(err) {
+  wsClient.onerror = (err) => {
     console.error('Socket encountered error: ', err.message, 'Closing socket');
     wsClient.close();
   };
