@@ -46,10 +46,10 @@ const getContent = (messageId) => {
 }
 
 
-const socket = () => {
+const sendSocket = (sendData) => {
   const wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
   wsClient.onopen = (event) => {
-    console.log('Successfully connected to the echo websocket server...')
+    wsClient.send(sendData)
   }
   wsClient.onmessage = (event) => {
     console.log('MESSAGE DATA',event.data)
@@ -80,28 +80,11 @@ module.exports = {
         const chatStatusData = await axios.get(`${BACKEND_API}line/users/chat`,{headers})
         if(chatStatusData.data.chat){
           console.log('IS CHAT');
-
-          let wsClient = socket()
-          while (!wsClient) {
-            wsClient = socket()
-            
-          }
-          wsClient.send(JSON.stringify({
+          sendSocket(JSON.stringify({
             id: chatStatusData.data._id,
             type: 'text',
             message: event.message.text
           }))
-
-          // const socket = io(process.env.BASE_URL);
-          // socket.on(chatStatusData.data._id, (msg) => {
-          //   socket.disconnect()
-          // })
-          // socket.emit(chatStatusData.data._id, event.message.text)
-
-          // const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
-          //   content: event.message.text
-          // },{headers})
-          // notify to admin
         }else{
           if (event.type === "message") {
             const msg = event.message.text
