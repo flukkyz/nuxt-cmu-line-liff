@@ -70,7 +70,7 @@
 export default {
   data () {
     return {
-      noti: 5
+      noti: 0
     }
   },
   computed: {
