@@ -157,7 +157,6 @@ export default {
     }
   },
   created () {
-    this.connectSocket()
     this.$bus.$on('socket-receive', (data) => {
       this.msgLists.push({
         is_admin: false,
