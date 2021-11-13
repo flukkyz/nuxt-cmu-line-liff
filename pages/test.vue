@@ -57,7 +57,7 @@ export default {
     async save () {
       console.log('Hello')
       console.log(this.connection)
-      if (!this.connection) {
+      while (!this.connection) {
         await this.connect()
       }
       this.connection.send(JSON.stringify({
