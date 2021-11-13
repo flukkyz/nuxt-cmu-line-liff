@@ -7,6 +7,11 @@ const routes = require('./routes')
 
 const app = express()
 
+var wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+global.wsClient.onopen = (event) => {
+  console.log('Successfully connected to the echo websocket server...')
+}
+
 app.use(express.json({limit: '50mb'}))
 app.use(cors())
 app.use(express.urlencoded({
