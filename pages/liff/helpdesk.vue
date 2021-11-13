@@ -119,7 +119,7 @@ export default {
         }
       })
       this.$bus.$emit('socket-send', {
-        id: this.data._id,
+        id: send.data._id,
         type: 'action',
         message: 'wait'
       })
