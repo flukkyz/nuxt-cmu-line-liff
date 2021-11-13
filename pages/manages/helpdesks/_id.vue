@@ -190,56 +190,36 @@ export default {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
     },
-    receiveSocket () {
-      if (!this.socket) {
-        this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-        this.socket.onopen = (event) => {
-          console.log('Connect WS : receiveSocket')
-          this.socket.onmessage = (event) => {
-            console.log('MESSAGE DATA', event.data)
-            try {
-              const eventData = JSON.parse(event.data)
-              if (eventData.type === 'text') {
-                this.msgLists.push({
-                  is_admin: false,
-                  content: eventData.message
-                })
-                this.refershChat()
-              }
-            } catch (error) { }
-          }
-        }
+    connectSocket () {
+      this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
+      this.socket.onopen = function () {
+        console.log('Socket Connected')
       }
-    },
-    sendSocket (action) {
-      if (!this.socket) {
-        this.socket = new WebSocket('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
-        this.socket.onopen = (event) => {
-          console.log('Connect WS : sendSocket')
-          this.socket.send(JSON.stringify({
-            id: this.data._id,
-            type: 'action',
-            message: action
-          }))
-        }
-        this.socket.onmessage = (event) => {
-          try {
-            const eventData = JSON.parse(event.data)
-            if (eventData.type === 'text') {
-              this.msgLists.push({
-                is_admin: false,
-                content: eventData.message
-              })
-              this.refershChat()
-            }
-          } catch (error) { }
-        }
-      } else {
-        this.socket.send(JSON.stringify({
-          id: this.data._id,
-          type: 'action',
-          message: action
-        }))
+
+      this.socket.onmessage = function (e) {
+        console.log('Message:', e.data)
+        try {
+          const eventData = JSON.parse(e.data)
+          if (eventData.type === 'text') {
+            this.msgLists.push({
+              is_admin: false,
+              content: eventData.message
+            })
+            this.refershChat()
+          }
+        } catch (error) { }
+      }
+
+      this.socket.onclose = function (e) {
+        console.log('Socket is closed. Reconnect will be now.', e.reason)
+        setTimeout(function () {
+          this.connectSocket()
+        }, 1)
+      }
+
+      this.socket.onerror = function (err) {
+        console.error('Socket encountered error: ', err.message, 'Closing socket')
+        this.socket.close()
       }
     },
     async openChat () {
@@ -248,7 +228,11 @@ export default {
           await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
             mode: 'start'
           })
-          this.sendSocket('admin')
+          this.socket.send(JSON.stringify({
+            id: this.data._id,
+            type: 'action',
+            message: 'admin'
+          }))
           await this.fetchData()
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
@@ -259,7 +243,6 @@ export default {
     },
     startChat () {
       this.msgLists = [...this.data.message]
-      this.receiveSocket()
       this.refershChat(0)
     },
     refershChat (duration = 200) {
@@ -322,7 +305,11 @@ export default {
       })
     },
     async confirmLeaveChat () {
-      this.sendSocket('leave')
+      this.socket.send(JSON.stringify({
+        id: this.data._id,
+        type: 'action',
+        message: 'leave'
+      }))
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
