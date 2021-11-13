@@ -173,7 +173,7 @@ export default {
     })
   },
   beforeDestroy () {
-    this.subscribe = null
+    this.subscribe()
   },
   async mounted () {
     try {
