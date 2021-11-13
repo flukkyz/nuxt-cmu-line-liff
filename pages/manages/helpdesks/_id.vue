@@ -162,7 +162,7 @@ export default {
         console.log('RECEIVE', state.socket.dataReceive)
         this.msgLists.push({
           is_admin: false,
-          content: state.socket.dataReceive
+          content: state.socket.dataReceive.message
         })
         this.refershChat()
       }
