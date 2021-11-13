@@ -39,9 +39,11 @@
             color="warning"
             overlap
           >
-            <v-icon :to="localePath({name: 'manages-helpdesks'})">
-              fas fa-bell
-            </v-icon>
+            <nuxt-link :to="localePath({name: 'manages-helpdesks'})">
+              <v-icon>
+                fas fa-bell
+              </v-icon>
+            </nuxt-link>
           </v-badge>
           <v-btn text class="py-6 d-none d-md-flex" @click.stop="logout">
             <v-icon left>
