@@ -45,7 +45,7 @@ const getContent = (messageId) => {
   })
 }
 
-let wsClient = nul
+let wsClient = null
 const sendSocket = (sendData) => {
   if(!wsClient){
     console.log('IF SOCKET')
