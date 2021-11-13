@@ -50,6 +50,7 @@
               fas fa-sign-out-alt
             </v-icon>
             {{ $t('LOGOUT') }}
+            {{ noti }}
           </v-btn>
           <v-btn text class="py-6 d-flex d-md-none" @click.stop="logout">
             <v-icon small>
@@ -65,7 +66,6 @@
         </v-btn>
       </template>
     </v-app-bar>
-    aa{{ noti }}aa
   </div>
 </template>
 
