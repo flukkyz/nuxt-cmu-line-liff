@@ -51,9 +51,6 @@ const sendSocket = (sendData) => {
   wsClient.onopen = (event) => {
     wsClient.send(sendData)
   }
-  wsClient.onmessage = (event) => {
-    console.log('MESSAGE DATA',event.data)
-  }
   return wsClient
 }
 
@@ -85,6 +82,9 @@ module.exports = {
             type: 'text',
             message: event.message.text
           }))
+          const data = await axios.put(`${BACKEND_API}line/helpdesks/message/${chatStatusData.data._id}`,{
+            content: event.message.text
+          },{headers})
         }else{
           if (event.type === "message") {
             const msg = event.message.text

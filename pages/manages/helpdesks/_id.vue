@@ -84,7 +84,6 @@
             <v-card :id="`msg-list-${i}`" class="mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
               <v-card-title v-if="!msg.is_admin" class="pb-0 body-1 font-weight-bold">
                 {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
-                {{ `msg-list-${i}` }}
               </v-card-title>
               <v-card-text class="pa-2">
                 <v-card-subtitle :class="msg.is_admin ? 'py-2' : 'pt-0 pb-2'">
@@ -215,18 +214,13 @@ export default {
       this.msgLists = [...this.data.message]
 
       this.socket.onmessage = (event) => {
-        console.log(event)
         console.log(event.data)
-        try {
-          const eventData = JSON.parse(event.data)
-          this.msgLists.push({
-            is_admin: false,
-            content: eventData.message
-          })
-          this.refershChat()
-        } catch (error) {
-
-        }
+        const eventData = JSON.parse(event.data)
+        this.msgLists.push({
+          is_admin: false,
+          content: eventData.message
+        })
+        this.refershChat()
       }
       this.refershChat(0)
       // this.socket.on(this.data._id, (msg) => {
@@ -249,11 +243,6 @@ export default {
       }
     },
     async sendChat () {
-      this.socket.send(JSON.stringify({
-        id: this.data._id,
-        type: 'text',
-        message: 'ok'
-      }))
       this.msgLists.push({
         is_admin: true,
         content: this.msgBox
@@ -307,7 +296,6 @@ export default {
         type: 'action',
         message: 'leave'
       }))
-      // this.socket.disconnect()
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
