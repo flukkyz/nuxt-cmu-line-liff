@@ -77,8 +77,8 @@
         เปิดการสนทนา
       </v-btn>
     </div>
-    <div v-else-if="['start','leave'].includes(data.mode)" class="chat grey lighten-5 py-3">
-      <div class="chat-list px-3">
+    <div v-else-if="['start','leave'].includes(data.mode)" class="chat grey lighten-5">
+      <div class="chat-list pa-3">
         <div v-for="(msg,i) in msgLists" :key="`msg-${i}`">
           <div class="d-flex">
             <v-card :id="`msg-list-${i}`" class="mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
@@ -96,7 +96,7 @@
         </div>
       </div>
       <v-form v-if="data.mode === 'start' && data.admin_id === $auth.user._id" ref="form" v-model="valid" @submit.prevent="sendChat">
-        <v-row>
+        <v-row class="pa-3">
           <v-col>
             <v-textarea
               v-model="msgBox"
