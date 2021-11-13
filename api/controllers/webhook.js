@@ -48,6 +48,7 @@ const getContent = (messageId) => {
 let wsClient = nul
 const sendSocket = (sendData) => {
   if(!wsClient){
+    console.log('IF SOCKET')
     wsClient = new ws('wss://mis-api.cmu.ac.th/mis/lineapp/ws/api', 'protocol')
     wsClient.onopen = (event) => {
       console.log('SEND',event.data)
@@ -57,6 +58,7 @@ const sendSocket = (sendData) => {
       console.log('MESSAGE DATA',event.data)
     }
   }else{
+    console.log('ELSE SOCKET')
     console.log('SEND',event.data)
     wsClient.send(sendData)
   }
