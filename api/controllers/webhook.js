@@ -50,6 +50,7 @@ wsClient.onopen = (event) => {
   console.log('Successfully connected to the echo websocket server...')
 }
 wsClient.onmessage = (event) => {
+  console.log(event)
   console.log(event.data)
 }
 
