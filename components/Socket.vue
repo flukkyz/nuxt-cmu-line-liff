@@ -18,11 +18,11 @@ export default {
       if (mutation.type === 'socket/send') {
         console.log('SOCKET SEND')
         if (this.socket.readyState === WebSocket.OPEN) {
-          console.log('SEND')
+          console.log('SEND', state.socket.dataSend)
           this.socket.send(JSON.stringify(state.socket.dataSend))
         } else {
           setTimeout(() => {
-            console.log('SEND 1 S')
+            console.log('SEND 1 S', state.socket.dataSend)
             this.socket.send(JSON.stringify(state.socket.dataSend))
           }, 1000)
         }

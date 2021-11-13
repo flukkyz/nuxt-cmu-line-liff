@@ -159,6 +159,7 @@ export default {
   created () {
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'socket/receive') {
+        console.log('RECEIVE', state.socket.dataReceive)
         this.msgLists.push({
           is_admin: false,
           content: state.socket.dataReceive
@@ -235,6 +236,11 @@ export default {
       }
     },
     async sendChat () {
+      this.$store.commit('socket/send', {
+        id: this.data._id,
+        type: 'text',
+        message: 'admin test'
+      })
       this.msgLists.push({
         is_admin: true,
         content: this.msgBox
