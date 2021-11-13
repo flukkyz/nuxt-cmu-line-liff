@@ -236,11 +236,6 @@ export default {
       }
     },
     async sendChat () {
-      this.$store.commit('socket/send', {
-        id: this.data._id,
-        type: 'text',
-        message: 'admin test'
-      })
       this.msgLists.push({
         is_admin: true,
         content: this.msgBox

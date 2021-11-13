@@ -8,6 +8,7 @@
     <snackbar />
     <overlay />
     <b-t-t />
+    <socket />
   </v-app>
 </template>
 
