@@ -3,7 +3,6 @@
     <v-app-bar
       v-if="$auth.loggedIn"
       app
-      dark
       color="topbar"
       elevation="0"
     >

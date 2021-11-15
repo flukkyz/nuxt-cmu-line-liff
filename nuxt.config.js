@@ -133,10 +133,10 @@ export default {
       dark: false,
       themes: {
         light: {
-          bgColor: '#E6E8E4',
-          topbar: '#7B88BA',
-          sidebar: '#7B88BA',
-          primary: '#2D2824',
+          bgColor: '#EEE',
+          topbar: '#FFF',
+          sidebar: '#FFF',
+          primary: '#7B88BA',
           accent: '#217288'
           // secondary: '#f36c28',
           // third: '#eb9421',
