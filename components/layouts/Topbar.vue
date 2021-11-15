@@ -72,11 +72,18 @@
 export default {
   data () {
     return {
-      noti: 0,
       subscribe: null
     }
   },
   computed: {
+    noti: {
+      get () {
+        return this.$store.state.noti
+      },
+      set (val) {
+        this.$store.commit('setNoti', val)
+      }
+    },
     iconName () {
       return this.$auth.loggedIn ? this.$auth.user.firstname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) + this.$auth.user.lastname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) : ''
     }
@@ -86,7 +93,7 @@ export default {
       if (mutation.type === 'socket/receive') {
         if (state.socket.dataReceive.type === 'notification') {
           console.log('RECEIVE NOTI', state.socket.dataReceive)
-          this.noti = state.socket.dataReceive.message
+          this.$store.commit('setNoti', state.socket.dataReceive.message)
         }
       }
     })
@@ -97,7 +104,12 @@ export default {
   async beforeMount () {
     try {
       const noti = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}helpdesks/status/wait`)
-      this.noti = noti.data
+      this.$store.commit('setNoti', noti.data)
+      this.$store.commit('socket/send', {
+        id: '',
+        type: 'action',
+        message: 'admin'
+      })
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
