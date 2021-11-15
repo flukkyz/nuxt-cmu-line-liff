@@ -53,7 +53,7 @@
                   v-if="subItem.noti"
                   :content="noti"
                   :value="noti"
-                  class="my-3"
+                  class="my-5"
                   color="warning"
                 >
                   {{ subItem.text }}
