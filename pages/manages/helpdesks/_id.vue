@@ -108,7 +108,7 @@
       <div class="chat-list pa-3">
         <div v-for="(msg,i) in msgLists" :key="`msg-${i}`">
           <div class="d-flex">
-            <v-card :id="`msg-list-${i}`" class="mb-3 rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
+            <v-card :id="`msg-list-${i}`" class="rounded" max-width="70%" :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'" elevation="0">
               <v-card-title v-if="!msg.is_admin" class="pb-0 body-1 font-weight-bold">
                 {{ msg.is_admin ? `Admin: ${$auth.user.firstname} ${$auth.user.lastname}` : `${data.user_detail[0].firstname} ${data.user_detail[0].lastname}` }}
               </v-card-title>
@@ -119,7 +119,7 @@
               </v-card-text>
             </v-card>
           </div>
-          <p v-if="msg.createdAt" class="grey--text caption mb-0" :class="{'text-right': msg.is_admin}">
+          <p v-if="msg.createdAt" class="grey--text caption mb-3" :class="{'text-right': msg.is_admin}">
             {{ $dateText(msg.createdAt,'medium','long') }}
           </p>
         </div>
