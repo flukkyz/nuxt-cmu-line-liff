@@ -35,6 +35,7 @@ module.exports = {
       })
     }
     
+    console.log('sendTo',sendTo);
     try {
       if(sendTo && sendTo.length === 1){
         await client.pushMessage(sendTo[0],resp)
