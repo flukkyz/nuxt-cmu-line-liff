@@ -97,7 +97,7 @@
         outlined
         color="red"
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
-        @click="cancelChat"
+        @click="onConfirm('cancel')"
       >
         <v-icon small left>
           fas fa-comment-slash
@@ -155,7 +155,7 @@
               color="red"
               class="mt-4"
               block
-              @click="leaveChat"
+              @click="onConfirm('leave')"
             >
               <v-icon small left>
                 fas fa-door-open
@@ -164,7 +164,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <dialogs-confirm @confirm="confirmLeaveChat" />
+        <dialogs-confirm @confirm="onSaveConfirm" />
       </v-form>
     </div>
   </div>
@@ -309,50 +309,50 @@ export default {
       formData.append('announce_img', null)
       await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
     },
-    leaveChat () {
-      this.$bus.$emit('open-confirm-dialog', 'leave', {
-        header: {
-          icon: 'fas fa-question-circle',
-          text: 'ออกจากการสนทนา'
+    onConfirm (action) {
+      const actions = {
+        leave: {
+          header: {
+            icon: 'fas fa-question-circle',
+            text: 'ออกจากการสนทนา'
+          },
+          detail: {
+            text: `ยืนยันการออกจากการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+          },
+          yesBtn: {
+            icon: 'fas fa-door-open',
+            color: 'red',
+            text: 'ออกจากการสนทนา'
+          },
+          noBtn: {
+            icon: 'fas fa-comments',
+            color: 'info',
+            text: 'สนทนาต่อ'
+          }
         },
-        detail: {
-          text: `ยืนยันการออกจากการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
-        },
-        yesBtn: {
-          icon: 'fas fa-door-open',
-          color: 'red',
-          text: 'ออกจากการสนทนา'
-        },
-        noBtn: {
-          icon: 'fas fa-comments',
-          color: 'info',
-          text: 'สนทนาต่อ'
+        cancel: {
+          header: {
+            icon: 'fas fa-question-circle',
+            text: 'ละทิ้งการสนทนานี้'
+          },
+          detail: {
+            text: `ยืนยันการละทิ้งการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+          },
+          yesBtn: {
+            icon: 'fas fa-comment-slash',
+            color: 'red',
+            text: 'ละทิ้งการสนทนา'
+          },
+          noBtn: {
+            icon: 'fas fa-ban',
+            color: 'info',
+            text: 'ยกเลิก'
+          }
         }
-      })
+      }
+      this.$bus.$emit('open-confirm-dialog', action, actions[action])
     },
-    cancelChat () {
-      console.log('aaaaaaaaaaaaaa')
-      this.$bus.$emit('open-confirm-dialog', 'cancel', {
-        header: {
-          icon: 'fas fa-question-circle',
-          text: 'ละทิ้งการสนทนานี้'
-        },
-        detail: {
-          text: `ยืนยันการละทิ้งการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
-        },
-        yesBtn: {
-          icon: 'fas fa-comment-slash',
-          color: 'red',
-          text: 'ละทิ้งการสนทนา'
-        },
-        noBtn: {
-          icon: 'fas fa-ban',
-          color: 'info',
-          text: 'ยกเลิก'
-        }
-      })
-    },
-    async confirmLeaveChat (params) {
+    async onSaveConfirm (params) {
       if (params === 'leave') {
         this.$store.commit('socket/send', {
           id: this.data._id,
