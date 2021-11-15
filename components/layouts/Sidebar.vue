@@ -53,9 +53,7 @@
                   v-if="subItem.noti"
                   :content="noti"
                   :value="noti"
-                  class="mr-5"
                   color="warning"
-                  overlap
                 >
                   {{ subItem.text }}
                 </v-badge>
@@ -82,9 +80,7 @@
                   v-if="item.noti"
                   :content="noti"
                   :value="noti"
-                  class="mr-5"
                   color="warning"
-                  overlap
                 >
                   {{ item.text }}
                 </v-badge>
@@ -188,8 +184,7 @@ export default {
           {
             url: 'reports-reports1',
             icon: 'fas fa-list-alt',
-            text: 'รายงาน 1',
-            noti: true
+            text: 'รายงาน 1'
           },
           {
             url: 'reports-reports2',
