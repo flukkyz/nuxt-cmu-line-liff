@@ -96,7 +96,7 @@
         outlined
         color="red"
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
-        @click.stop="onConfirm('cancel')"
+        @click.stop="onConfirm('ignore')"
       >
         <v-icon small left>
           fas fa-comment-slash
@@ -329,7 +329,7 @@ export default {
             text: 'สนทนาต่อ'
           }
         },
-        cancel: {
+        ignore: {
           header: {
             icon: 'fas fa-question-circle',
             text: 'ละทิ้งการสนทนานี้'
