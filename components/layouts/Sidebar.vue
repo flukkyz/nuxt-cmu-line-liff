@@ -5,6 +5,7 @@
       v-model="drawer"
       width="350"
       color="sidebar"
+      dark
       app
       temporary
     >
@@ -97,7 +98,7 @@
       </v-list>
       <template #append>
         <div class="pa-2">
-          <v-btn v-if="$auth.loggedIn" block text color="secondary" @click.stop="logout">
+          <v-btn v-if="$auth.loggedIn" block text color="bgColor" @click.stop="logout">
             <v-icon small left>
               fas fa-sign-out-alt
             </v-icon>
