@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app dark class="brown lighten-5">
     <layouts-sidebar />
     <layouts-topbar />
     <v-main>
