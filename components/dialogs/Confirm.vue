@@ -84,6 +84,7 @@ export default {
   },
   created () {
     this.$bus.$on(`open-confirm-dialog${(this.value ? `-${this.value}` : '')}`, (params, options) => {
+      console.log('in confirm')
       this.$overlay.showLoading()
       this.oneClick = false
       if (options) {
