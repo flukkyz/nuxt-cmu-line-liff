@@ -81,7 +81,7 @@
       </v-data-table>
     </v-card>
     <h1 v-else class="display-2 grey--text text-center mt-16">
-      ยังไม่มีการแจ้งเตือนมาใหม่
+      ยังไม่มีการแจ้งปัญหาใหม่
     </h1>
   </div>
 </template>
