@@ -194,6 +194,7 @@ export default {
       const categories = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}categories`)
       this.categories = categories.data
       await this.fetchData()
+      this.msgLists = [...this.data.message]
       if (this.data.mode === 'start') {
         await this.startChat()
       }
@@ -239,6 +240,7 @@ export default {
             mode: 'start'
           })
           await this.fetchData()
+          this.msgLists = [...this.data.message]
           this.startChat()
           await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
         } catch (e) {
@@ -247,7 +249,6 @@ export default {
       }
     },
     startChat () {
-      this.msgLists = [...this.data.message]
       this.$store.commit('socket/send', {
         id: this.data._id,
         type: 'action',
