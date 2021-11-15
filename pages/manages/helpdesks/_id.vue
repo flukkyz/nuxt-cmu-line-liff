@@ -93,11 +93,10 @@
       </v-btn>
       <v-btn
         x-large
-        elevation="0"
         outlined
         color="red"
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
-        @click="onConfirm('cancel')"
+        @click.stop="onConfirm('cancel')"
       >
         <v-icon small left>
           fas fa-comment-slash
