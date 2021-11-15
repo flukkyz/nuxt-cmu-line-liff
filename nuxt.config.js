@@ -133,7 +133,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          bgColor: '#EEE',
+          bgColor: '#faffff',
           topbar: '#FFF',
           sidebar: '#FFF',
           primary: '#7B88BA',
