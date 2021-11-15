@@ -237,9 +237,9 @@ export default {
           category_id: val
         })
         this.$store.commit('socket/send', {
-          id: '',
+          id: this.data._id,
           type: 'action',
-          message: 'admin'
+          message: 'wait'
         })
         await this.fetchData()
       } catch (e) {
