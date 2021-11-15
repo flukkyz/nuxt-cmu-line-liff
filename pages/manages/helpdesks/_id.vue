@@ -349,6 +349,7 @@ export default {
           }
         }
       }
+      console.log('onConfirm', action, actions[action])
       this.$bus.$emit('open-confirm-dialog', action, actions[action])
     },
     async onSaveConfirm (params) {
