@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  middleware: 'auth'
+  middleware: 'auth',
+  mounted () {
+    setTimeout(() => {
+      this.$router.push(this.localePath({ name: 'dashboard' }))
+    }, 1000)
+  }
 }
 </script>
 
