@@ -53,6 +53,7 @@
                   v-if="subItem.noti"
                   :content="noti"
                   :value="noti"
+                  class="mt-0"
                   color="warning"
                 >
                   {{ subItem.text }}
@@ -74,7 +75,7 @@
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
-            <v-list-item-content>
+            <v-list-item-content class="overflow-y-visible">
               <v-list-item-title>
                 <v-badge
                   v-if="item.noti"
@@ -185,7 +186,8 @@ export default {
           {
             url: 'reports-reports1',
             icon: 'fas fa-list-alt',
-            text: 'รายงาน 1'
+            text: 'รายงาน 1',
+            noti: true
           },
           {
             url: 'reports-reports2',
