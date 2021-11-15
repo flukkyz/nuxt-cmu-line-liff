@@ -145,6 +145,8 @@ export default {
       console.log('send', send)
       console.log('send.data', send.data)
       console.log('send.data._id', send.data._id)
+      console.log([this.profile.userId])
+      console.log([...send.data.admin])
       await this.pushMessage([this.profile.userId], `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
       await this.pushMessage([...send.data.admin], `มีข้อความการแจ้งปัญหาการใช้งานใหม่${this.form.admin_reply ? '(ต้องการให้ตอบกลับ)' : ''}`)
       this.close()
