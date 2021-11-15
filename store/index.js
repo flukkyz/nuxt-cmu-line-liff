@@ -1,5 +1,6 @@
 export const state = () => ({
   drawer: false,
+  noti: 0,
   dark_mode: false,
   pending_login: false
   // enums: {
@@ -21,6 +22,9 @@ export const state = () => ({
 export const mutations = {
   setDrawer (state, val) {
     state.drawer = val
+  },
+  setNoti (state, val) {
+    state.noti = val
   },
   setDarkMode (state, val) {
     state.dark_mode = val

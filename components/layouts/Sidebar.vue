@@ -48,7 +48,18 @@
               <v-list-item-icon>
                 <v-icon small v-text="subItem.icon" />
               </v-list-item-icon>
-              <v-list-item-title class="caption" v-text="subItem.text" />
+              <v-list-item-title class="caption">
+                <v-badge
+                  v-if="subItem.noti"
+                  :content="noti"
+                  :value="noti"
+                  class="mr-5"
+                  color="warning"
+                  overlap
+                >
+                  {{ subItem.text }}
+                </v-badge>
+              </v-list-item-title>
             </v-list-item>
           </v-list-group>
 
@@ -101,6 +112,14 @@ export default {
         this.$store.commit('setDrawer', val)
       }
     },
+    noti: {
+      get () {
+        return this.$store.state.noti
+      },
+      set (val) {
+        this.$store.commit('setNoti', val)
+      }
+    },
     iconName () {
       return this.$auth.loggedIn ? this.$auth.user.firstname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) + this.$auth.user.lastname_EN.replaceAll(/เ|แ|โ|ไ|ใ/g, '').substring(0, 1) : ''
     }
@@ -137,7 +156,8 @@ export default {
       this.sideItems.push({
         url: { name: 'manages-helpdesks' },
         icon: 'fas fa-info-circle',
-        text: 'การแจ้งปัญหาของผู้ใช้งาน'
+        text: 'การแจ้งปัญหาของผู้ใช้งาน',
+        noti: true
       })
       this.sideItems.push({
         url: { name: 'manages-helpdesks-histories' },
