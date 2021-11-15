@@ -140,6 +140,11 @@ export default {
         text: 'การแจ้งปัญหาของผู้ใช้งาน'
       })
       this.sideItems.push({
+        url: { name: 'manages-helpdesks-histories' },
+        icon: 'fas fa-history',
+        text: 'ประวัติการแจ้งปัญหา'
+      })
+      this.sideItems.push({
         group: 'รายงาน',
         icon: 'fas fa-list-alt',
         items: [
