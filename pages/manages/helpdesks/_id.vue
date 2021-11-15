@@ -51,13 +51,15 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
-    <v-card class="grey lighten-4 mt-2 mb-3" elevation="0">
-      <v-card-text>
-        <v-card-subtitle>
-          {{ data.message[0].content }}
-        </v-card-subtitle>
-      </v-card-text>
-    </v-card>
+    <div v-if="['wait','read'].includes(data.mode)" class="">
+      <v-card class="grey lighten-4 mt-2 mb-3" elevation="0">
+        <v-card-text>
+          <v-card-subtitle>
+            {{ data.message[0].content }}
+          </v-card-subtitle>
+        </v-card-text>
+      </v-card>
+    </div>
 
     <label for="">ประเภทปัญหาที่แจ้ง</label>
     <v-radio-group
