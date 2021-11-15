@@ -331,6 +331,7 @@ export default {
       })
     },
     cancelChat () {
+      console.log('aaaaaaaaaaaaaa')
       this.$bus.$emit('open-confirm-dialog', 'cancel', {
         header: {
           icon: 'fas fa-question-circle',
