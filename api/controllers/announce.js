@@ -38,7 +38,7 @@ module.exports = {
     console.log('sendTo',sendTo);
     try {
       if(sendTo && sendTo.length === 1){
-        await client.pushMessage(sendTo[0],resp)
+        await client.pushMessage(sendTo,resp)
       }else{
         if(data.send_type === 'all'){
           await client.broadcast(resp)
