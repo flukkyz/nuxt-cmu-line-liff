@@ -80,7 +80,7 @@
         </template>
       </v-data-table>
     </v-card>
-    <h1 v-else class="display-2 teal--text text-center">
+    <h1 v-else class="display-2 grey--text text-center mt-16">
       ยังไม่มีการแจ้งเตือนมาใหม่
     </h1>
   </div>
