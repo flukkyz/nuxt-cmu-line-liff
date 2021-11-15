@@ -53,7 +53,7 @@
                   v-if="subItem.noti"
                   :content="noti"
                   :value="noti"
-                  class="mt-0"
+                  class="my-3"
                   color="warning"
                 >
                   {{ subItem.text }}
@@ -186,8 +186,7 @@ export default {
           {
             url: 'reports-reports1',
             icon: 'fas fa-list-alt',
-            text: 'รายงาน 1',
-            noti: true
+            text: 'รายงาน 1'
           },
           {
             url: 'reports-reports2',
@@ -224,9 +223,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.v-list-item__content{
-  overflow: visible !important;
-}
-</style>
