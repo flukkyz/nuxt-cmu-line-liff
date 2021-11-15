@@ -112,7 +112,7 @@
               :id="`msg-list-${i}`"
               class="rounded"
               max-width="70%"
-              min-width="200"
+              min-width="100"
               :class="msg.is_admin ? 'ml-auto primary lighten-4' : 'success lighten-4'"
               elevation="0"
             >
