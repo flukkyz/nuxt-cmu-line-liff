@@ -118,10 +118,10 @@
                 </v-card-subtitle>
               </v-card-text>
             </v-card>
-            <p v-if="msg.createdAt" class="grey--text caption mb-0" :class="{'text-right': msg.is_admin}">
-              {{ $dateText(msg.createdAt,'medium','long') }}
-            </p>
           </div>
+          <p v-if="msg.createdAt" class="grey--text caption mb-0" :class="{'text-right': msg.is_admin}">
+            {{ $dateText(msg.createdAt,'medium','long') }}
+          </p>
         </div>
       </div>
       <v-form v-if="data.mode === 'start' && data.admin_id === $auth.user._id" ref="form" v-model="valid" @submit.prevent="sendChat">
