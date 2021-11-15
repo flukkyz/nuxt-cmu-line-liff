@@ -148,9 +148,10 @@ export default {
       console.log([this.profile.userId])
       console.log([...send.data.admin])
       await this.pushMessage([this.profile.userId], `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
-      setTimeout(async () => {
-        await this.pushMessage(send.data.admin, `มีข้อความการแจ้งปัญหาการใช้งานใหม่${this.form.admin_reply ? '(ต้องการให้ตอบกลับ)' : ''}`)
-      }, 100)
+      await this.pushMessage(send.data.admin, `มีข้อความการแจ้งปัญหาการใช้งานใหม่${this.form.admin_reply ? '(ต้องการให้ตอบกลับ)' : ''}`)
+      if (send.data.notification > 1) {
+        await this.pushMessage(send.data.admin, `มีการแจ้งปัญหาการใช้งานที่ยังไม่ได้อ่านรวม ${send.data.notification} รายการ`)
+      }
       this.close()
     },
     async pushMessage (to, message) {
