@@ -1,8 +1,8 @@
 <template>
-  <v-app dark class="brown lighten-5">
+  <v-app dark>
     <layouts-sidebar />
     <layouts-topbar />
-    <v-main>
+    <v-main class="brown lighten-5">
       <v-container class="py-0 my-0">
         <breadcrumbs />
         <nuxt />
