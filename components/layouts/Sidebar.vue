@@ -75,7 +75,7 @@
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
-            <v-list-item-content class="overflow-y-visible">
+            <v-list-item-content>
               <v-list-item-title>
                 <v-badge
                   v-if="item.noti"
@@ -224,3 +224,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.v-list-item__content{
+  overflow: visible;
+}
+</style>
