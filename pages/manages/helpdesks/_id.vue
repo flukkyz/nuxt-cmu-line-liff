@@ -313,20 +313,20 @@ export default {
         leave: {
           header: {
             icon: 'fas fa-question-circle',
-            text: 'ออกจากการสนทนา'
+            text: 'ละทิ้งการสนทนานี้'
           },
           detail: {
-            text: `ยืนยันการออกจากการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+            text: `ยืนยันการละทิ้งการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
           },
           yesBtn: {
-            icon: 'fas fa-door-open',
+            icon: 'fas fa-comment-slash',
             color: 'red',
-            text: 'ออกจากการสนทนา'
+            text: 'ละทิ้งการสนทนา'
           },
           noBtn: {
-            icon: 'fas fa-comments',
+            icon: 'fas fa-ban',
             color: 'info',
-            text: 'สนทนาต่อ'
+            text: 'ยกเลิก'
           }
         },
         ignore: {
