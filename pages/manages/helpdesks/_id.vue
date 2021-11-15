@@ -86,6 +86,9 @@
         color="success"
         @click="openChat"
       >
+        <v-icon small left>
+          fas fa-comment-dots
+        </v-icon>
         เปิดการสนทนา
       </v-btn>
       <v-btn
