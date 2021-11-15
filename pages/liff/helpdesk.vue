@@ -138,21 +138,25 @@ export default {
         }
       })
       this.$store.commit('socket/send', {
-        id: send.data._id,
+        id: send.data.helpdesk._id,
         type: 'action',
         message: 'wait'
       })
       console.log('send', send)
       console.log('send.data', send.data)
       console.log('send.data._id', send.data._id)
+      await this.pushMessage([this.profile.userId], `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
+      await this.pushMessage(send.data.admin, `มีข้อความการแจ้งปัญหาการใช้งานใหม่${this.form.admin_reply ? '(ต้องการให้ตอบกลับ)' : ''}`)
+      this.close()
+    },
+    async pushMessage (to, message) {
       const formData = new FormData()
-      formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
+      formData.append('txt', message)
       formData.append('send_type', 'select')
-      formData.append('users', [this.profile.userId])
+      formData.append('users', to)
       formData.append('announce_img', null)
       try {
         await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-        this.close()
       } catch (e) {
         this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
       }
