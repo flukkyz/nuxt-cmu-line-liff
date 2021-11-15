@@ -132,20 +132,21 @@ export default {
     theme: {
       dark: false,
       themes: {
-        // light: {
-        //   topbar: '#FFFFFF',
-        //   sidebar: '#FFFFFF',
-        //   primary: '#713279',
-        //   accent: '#082141',
-        //   secondary: '#f36c28',
-        //   third: '#eb9421',
-        //   info: '#5f7cbd',
-        //   warning: '#fcb123',
-        //   error: '#c54b4b',
-        //   success: '#4ebb57',
-        //   dark: '#3a3a3c',
-        //   light: '#f3f3f4'
-        // },
+        light: {
+          bgColor: '#F7F5F5',
+          topbar: '#324D5C',
+          sidebar: '#716C79',
+          primary: '#288DE2',
+          accent: '#8EB3BF',
+          secondary: '#f36c28',
+          third: '#eb9421',
+          info: '#5f7cbd',
+          warning: '#fcb123',
+          error: '#c54b4b',
+          success: '#4ebb57',
+          dark: '#3a3a3c',
+          light: '#f3f3f4'
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,

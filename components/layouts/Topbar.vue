@@ -4,7 +4,7 @@
       v-if="$auth.loggedIn"
       app
       dark
-      color="lime darken-4"
+      color="topbar"
       elevation="0"
     >
       <v-app-bar-nav-icon v-if="$auth.loggedIn" @click.stop="toggleDrawer" />

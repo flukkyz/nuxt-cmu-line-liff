@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <div class="box-full d-flex align-center justify-center">
+    <div class="box-full d-flex align-center justify-center bgColor">
       <div class="pa-2">
         <v-img src="/images/logo.png" max-width="200" contain class="mx-auto" />
         <h1 class="text-center mt-8 display-4 primary--text">

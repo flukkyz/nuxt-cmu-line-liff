@@ -2,7 +2,7 @@
   <v-app dark>
     <layouts-sidebar />
     <layouts-topbar />
-    <v-main class="light-blue lighten-5">
+    <v-main class="bgColor">
       <v-container class="py-0 my-0">
         <breadcrumbs />
         <nuxt />

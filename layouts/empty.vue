@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-main>
+    <v-main class="bgColor">
       <v-container class="py-0 my-0">
         <nuxt />
       </v-container>

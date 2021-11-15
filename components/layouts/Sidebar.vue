@@ -4,6 +4,7 @@
       v-if="$auth.loggedIn"
       v-model="drawer"
       width="350"
+      color="sidebar"
       app
       temporary
     >
