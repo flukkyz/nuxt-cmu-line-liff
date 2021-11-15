@@ -63,7 +63,7 @@
     <v-radio-group
       v-model="categoryRadio"
       row
-      class="mt-0"
+      class="mt-0 mb-3"
       hide-details
       @change="setCategory"
     >
