@@ -27,7 +27,7 @@ module.exports = {
       }else if(data.send_type === 'except'){
         sendTo = users.data.data.filter(ele => !data.users.includes(ele.lineid)).map(ele => ele.lineid)
       }else{
-        sendTo = [...data.users]
+        sendTo = data.users
       }
     } catch (e) {
       res.status(500).json({
