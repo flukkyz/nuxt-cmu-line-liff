@@ -4,7 +4,7 @@
       <span class="fas fa-info-circle" />
       การแจ้งปัญหาของผู้ใช้งาน
     </h2>
-    <v-card class="mt-5">
+    <v-card v-if="datas.length > 0" class="mt-5">
       <v-card-title>
         <v-text-field
           v-model="search"
@@ -80,6 +80,9 @@
         </template>
       </v-data-table>
     </v-card>
+    <h1 v-else class="display-2 teal--text text-center">
+      ยังไม่มีการแจ้งเตือนมาใหม่
+    </h1>
   </div>
 </template>
 
