@@ -51,32 +51,30 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
+    <v-card class="grey lighten-4 mt-2 mb-3" elevation="0">
+      <v-card-text>
+        <v-card-subtitle>
+          {{ data.message[0].content }}
+        </v-card-subtitle>
+      </v-card-text>
+    </v-card>
+
+    <label for="">ประเภทปัญหาที่แจ้ง</label>
+    <v-radio-group
+      v-model="categoryRadio"
+      row
+      class="mt-0"
+      hide-details
+      @change="setCategory"
+    >
+      <v-radio
+        v-for="category in categories"
+        :key="`category-${category._id}`"
+        :label="category.name"
+        :value="category._id"
+      />
+    </v-radio-group>
     <div v-if="['wait','read'].includes(data.mode)" class="">
-      <v-card class="grey lighten-4 mt-2 mb-3" elevation="0">
-        <v-card-text>
-          <v-card-subtitle>
-            {{ data.message[0].content }}
-          </v-card-subtitle>
-        </v-card-text>
-      </v-card>
-
-      <label for="">ประเภทปัญหาที่แจ้ง</label>
-      ประเภทปัญหาที่แจ้ง
-      <v-radio-group
-        v-model="categoryRadio"
-        row
-        class="mt-0"
-        hide-details
-        @change="setCategory"
-      >
-        <v-radio
-          v-for="category in categories"
-          :key="`category-${category._id}`"
-          :label="category.name"
-          :value="category._id"
-        />
-      </v-radio-group>
-
       <v-btn
         v-if="data.admin_reply"
         x-large
@@ -219,7 +217,7 @@ export default {
     async setCategory (val) {
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-          mode: 'read',
+          mode: (this.data.mode === 'wait' ? 'read' : this.data.mode),
           category_id: val
         })
         this.$store.commit('socket/send', {
