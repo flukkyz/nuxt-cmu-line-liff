@@ -75,7 +75,7 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="caption">
+              <v-list-item-title>
                 <v-badge
                   v-if="item.noti"
                   :content="noti"
