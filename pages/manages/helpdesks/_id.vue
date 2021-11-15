@@ -76,18 +76,30 @@
         :value="category._id"
       />
     </v-radio-group>
-    <div v-if="['wait','read'].includes(data.mode)" class="">
+    <div v-if="['wait','read'].includes(data.mode)" class="mt-10">
       <v-btn
         v-if="data.admin_reply"
         x-large
         elevation="0"
-        class="mt-10"
+        class="mr-3"
         depressed
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
         color="success"
         @click="openChat"
       >
         เปิดการสนทนา
+      </v-btn>
+      <v-btn
+        outlined
+        color="red"
+        block
+        :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
+        @click="cancelChat"
+      >
+        <v-icon small left>
+          fas fa-comment-slash
+        </v-icon>
+        ละทิ้งการสนทนานี้
       </v-btn>
     </div>
     <div v-else-if="['start','leave'].includes(data.mode)" class="chat grey lighten-5">
@@ -149,7 +161,8 @@
             </v-btn>
           </v-col>
         </v-row>
-        <dialogs-confirm @confirm="confirmLeaveChat" />
+        <dialogs-confirm value="leave" @confirm="confirmLeaveChat" />
+        <dialogs-confirm value="cancel" @confirm="confirmCancelChat" />
       </v-form>
     </div>
   </div>
@@ -223,9 +236,9 @@ export default {
           category_id: val
         })
         this.$store.commit('socket/send', {
-          id: this.data._id,
+          id: '',
           type: 'action',
-          message: 'wait'
+          message: 'admin'
         })
         await this.fetchData()
       } catch (e) {
@@ -295,7 +308,7 @@ export default {
       await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
     },
     leaveChat () {
-      this.$bus.$emit('open-confirm-dialog', null, {
+      this.$bus.$emit('open-confirm-dialog-leave', null, {
         header: {
           icon: 'fas fa-question-circle',
           text: 'ออกจากการสนทนา'
@@ -315,6 +328,27 @@ export default {
         }
       })
     },
+    cancelChat () {
+      this.$bus.$emit('open-confirm-dialog-cancel', null, {
+        header: {
+          icon: 'fas fa-question-circle',
+          text: 'ละทิ้งการสนทนานี้'
+        },
+        detail: {
+          text: `ยืนยันการละทิ้งการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+        },
+        yesBtn: {
+          icon: 'fas fa-comment-slash',
+          color: 'red',
+          text: 'ละทิ้งการสนทนา'
+        },
+        noBtn: {
+          icon: 'fas fa-ban',
+          color: 'info',
+          text: 'ยกเลิก'
+        }
+      })
+    },
     async confirmLeaveChat () {
       this.$store.commit('socket/send', {
         id: this.data._id,
@@ -327,6 +361,17 @@ export default {
         })
         await this.fetchData()
         await this.pushMessageBack('ปิดการสนทนา ขอบคุณสำหรับคำแนะนำในการใช้งาน')
+      } catch (e) {
+        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
+      }
+      this.$overlay.hide()
+    },
+    async confirmCancelChat () {
+      try {
+        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
+          mode: 'leave'
+        })
+        await this.fetchData()
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
