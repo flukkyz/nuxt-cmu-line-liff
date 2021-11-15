@@ -61,7 +61,6 @@
                 </v-badge>
                 <span v-else>
                   {{ subItem.text }}
-
                 </span>
               </v-list-item-title>
             </v-list-item>

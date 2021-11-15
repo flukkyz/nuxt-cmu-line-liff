@@ -96,7 +96,8 @@ export default {
           class: 'px-0 ma-0'
         }
       ],
-      datas: null
+      datas: null,
+      subscribe: null
     }
   },
   async fetch () {
@@ -124,6 +125,18 @@ export default {
       }
       return dataFilters
     }
+  },
+  created () {
+    this.subscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'socket/receive') {
+        if (state.socket.dataReceive.type === 'notification') {
+          this.fetch()
+        }
+      }
+    })
+  },
+  beforeDestroy () {
+    this.subscribe()
   }
 }
 </script>
