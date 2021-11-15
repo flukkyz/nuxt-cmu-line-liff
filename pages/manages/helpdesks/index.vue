@@ -127,10 +127,10 @@ export default {
     }
   },
   created () {
-    this.subscribe = this.$store.subscribe((mutation, state) => {
+    this.subscribe = this.$store.subscribe(async (mutation, state) => {
       if (mutation.type === 'socket/receive') {
         if (state.socket.dataReceive.type === 'notification') {
-          this.fetch()
+          await this.$fetch()
         }
       }
     })
