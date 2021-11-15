@@ -241,7 +241,7 @@ export default {
           await this.fetchData()
           this.msgLists = [...this.data.message]
           this.startChat()
-          await this.pushMessageBack('เปิดการสนทนา กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
+          await this.pushMessageBack(`เปิดการสนทนาที่คุณแจ้งเรื่อง "${this.data.message[0].content}" กดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา`)
         } catch (e) {
           this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
         }
