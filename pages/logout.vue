@@ -31,7 +31,7 @@ export default {
   mounted () {
     setTimeout(async () => {
       await this.$auth.logout()
-      this.$bus.$emit('reset-side-menu')
+      // this.$bus.$emit('reset-side-menu')
     }, 300)
   }
 }

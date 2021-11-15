@@ -9,7 +9,7 @@ export default {
   middleware: 'auth',
   mounted () {
     setTimeout(() => {
-      this.$router.push(this.localePath({ name: 'dashboard' }))
+      this.$router.push(this.localePath({ name: 'manages-helpdesks' }))
     }, 1000)
   }
 }
