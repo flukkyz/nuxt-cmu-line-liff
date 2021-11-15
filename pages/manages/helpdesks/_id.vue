@@ -96,7 +96,7 @@
         outlined
         color="red"
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
-        @click.stop="onConfirm('ignore')"
+        @click="onConfirm('ignore')"
       >
         <v-icon small left>
           fas fa-comment-slash
@@ -163,9 +163,9 @@
             </v-btn>
           </v-col>
         </v-row>
-        <dialogs-confirm @confirm="onSaveConfirm" />
       </v-form>
     </div>
+    <dialogs-confirm @confirm="onSaveConfirm" />
   </div>
 </template>
 
@@ -313,20 +313,20 @@ export default {
         leave: {
           header: {
             icon: 'fas fa-question-circle',
-            text: 'ละทิ้งการสนทนานี้'
+            text: 'ออกจากการสนทนา'
           },
           detail: {
-            text: `ยืนยันการละทิ้งการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
+            text: `ยืนยันการออกจากการสนทนากับ ${this.data.user_detail[0].firstname} ${this.data.user_detail[0].lastname}`
           },
           yesBtn: {
-            icon: 'fas fa-comment-slash',
+            icon: 'fas fa-door-open',
             color: 'red',
-            text: 'ละทิ้งการสนทนา'
+            text: 'ออกจากการสนทนา'
           },
           noBtn: {
-            icon: 'fas fa-ban',
+            icon: 'fas fa-comments',
             color: 'info',
-            text: 'ยกเลิก'
+            text: 'สนทนาต่อ'
           }
         },
         ignore: {
