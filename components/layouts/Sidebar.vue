@@ -80,7 +80,7 @@
                   v-if="item.noti"
                   :content="noti"
                   :value="noti"
-                  class="mt-0"
+                  class="mt-n5"
                   color="warning"
                 >
                   {{ item.text }}
