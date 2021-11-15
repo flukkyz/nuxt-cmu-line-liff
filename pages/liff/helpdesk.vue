@@ -142,7 +142,9 @@ export default {
         type: 'action',
         message: 'wait'
       })
-      console.log(send)
+      console.log('send', send)
+      console.log('send.data', send.data)
+      console.log('send.data._id', send.data._id)
       const formData = new FormData()
       formData.append('txt', `เราได้รับข้อความการแจ้งปัญหาการใช้งานของคุณแล้ว ${this.form.admin_reply ? 'เจ้าหน้าที่จะตอบกลับโดยเร็วที่สุด' : ''} ขอบคุณครับ`)
       formData.append('send_type', 'select')
