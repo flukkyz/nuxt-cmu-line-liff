@@ -77,7 +77,21 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title v-text="item.text" />
+              <v-list-item-title class="caption">
+                <v-badge
+                  v-if="item.noti"
+                  :content="noti"
+                  :value="noti"
+                  class="mr-5"
+                  color="warning"
+                  overlap
+                >
+                  {{ item.text }}
+                </v-badge>
+                <span v-else>
+                  {{ item.text }}
+                </span>
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </template>
@@ -174,7 +188,8 @@ export default {
           {
             url: 'reports-reports1',
             icon: 'fas fa-list-alt',
-            text: 'รายงาน 1'
+            text: 'รายงาน 1',
+            noti: true
           },
           {
             url: 'reports-reports2',
