@@ -135,7 +135,7 @@ export default {
         light: {
           bgColor: '#F7F5F5',
           topbar: '#324D5C',
-          sidebar: '#716C79',
+          sidebar: '#F6A27F',
           primary: '#288DE2',
           accent: '#8EB3BF',
           secondary: '#f36c28',
