@@ -76,9 +76,8 @@
         :value="category._id"
       />
     </v-radio-group>
-    <div v-if="['wait','read'].includes(data.mode)" class="mt-10">
+    <div v-if="['wait','read'].includes(data.mode) && data.admin_reply" class="mt-10">
       <v-btn
-        v-if="data.admin_reply"
         x-large
         elevation="0"
         class="mr-3"
@@ -90,9 +89,10 @@
         เปิดการสนทนา
       </v-btn>
       <v-btn
+        x-large
+        elevation="0"
         outlined
         color="red"
-        block
         :disabled="!data.category_detail || (data.category_detail && data.category_detail.length === 0)"
         @click="cancelChat"
       >
