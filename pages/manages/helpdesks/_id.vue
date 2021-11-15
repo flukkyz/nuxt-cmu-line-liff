@@ -164,8 +164,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <dialogs-confirm value="leave" @confirm="confirmLeaveChat" />
-        <dialogs-confirm value="cancel" @confirm="confirmCancelChat" />
+        <dialogs-confirm @confirm="confirmLeaveChat" />
       </v-form>
     </div>
   </div>
@@ -311,7 +310,7 @@ export default {
       await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
     },
     leaveChat () {
-      this.$bus.$emit('open-confirm-dialog-leave', null, {
+      this.$bus.$emit('open-confirm-dialog', 'leave', {
         header: {
           icon: 'fas fa-question-circle',
           text: 'ออกจากการสนทนา'
@@ -332,7 +331,7 @@ export default {
       })
     },
     cancelChat () {
-      this.$bus.$emit('open-confirm-dialog-cancel', null, {
+      this.$bus.$emit('open-confirm-dialog', 'cancel', {
         header: {
           icon: 'fas fa-question-circle',
           text: 'ละทิ้งการสนทนานี้'
@@ -352,29 +351,22 @@ export default {
         }
       })
     },
-    async confirmLeaveChat () {
-      this.$store.commit('socket/send', {
-        id: this.data._id,
-        type: 'action',
-        message: 'leave'
-      })
-      try {
-        await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
-          mode: 'leave'
+    async confirmLeaveChat (params) {
+      if (params === 'leave') {
+        this.$store.commit('socket/send', {
+          id: this.data._id,
+          type: 'action',
+          message: 'leave'
         })
-        await this.fetchData()
-        await this.pushMessageBack('ปิดการสนทนา ขอบคุณสำหรับคำแนะนำในการใช้งาน')
-      } catch (e) {
-        this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
-      this.$overlay.hide()
-    },
-    async confirmCancelChat () {
       try {
         await this.$axios.$put(`${this.api}/mode/${this.$route.params.id}`, {
           mode: 'leave'
         })
         await this.fetchData()
+        if (params === 'leave') {
+          await this.pushMessageBack('ปิดการสนทนา ขอบคุณสำหรับคำแนะนำในการใช้งาน')
+        }
       } catch (e) {
         this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
       }
