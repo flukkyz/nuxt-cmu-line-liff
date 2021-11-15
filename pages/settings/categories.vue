@@ -10,7 +10,7 @@
             เพิ่ม{{ modelName }}
           </v-btn>
         </div>
-        <h2>
+        <h2 class="primary--text">
           <span class="fas fa-cubes" />
           จัดการข้อมูล{{ modelName }}
         </h2>

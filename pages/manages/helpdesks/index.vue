@@ -1,6 +1,6 @@
 <template>
   <div v-if="datas" class="mt-10 mb-5">
-    <h2>
+    <h2 class="primary--text">
       <span class="fas fa-info-circle" />
       การแจ้งปัญหาของผู้ใช้งาน
     </h2>

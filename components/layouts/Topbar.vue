@@ -132,6 +132,6 @@ export default {
 
 <style lang="scss" scoped>
 header.v-sheet{
-  border-bottom:  4px solid #007bff !important;
+  border-bottom:  4px solid #217288 !important;
 }
 </style>

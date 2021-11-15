@@ -8,7 +8,7 @@
         เพิ่มประเภท FAQ
       </v-btn>
     </div>
-    <h2>
+    <h2 class="primary--text">
       <span class="fas fa-question-circle" />
       จัดการข้อมูลคำถามที่พบบ่อย (FAQ)
     </h2>
