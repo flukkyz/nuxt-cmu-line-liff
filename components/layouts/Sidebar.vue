@@ -227,6 +227,6 @@ export default {
 
 <style lang="scss" scoped>
 .v-list-item__content{
-  overflow: visible;
+  overflow: visible !important;
 }
 </style>
