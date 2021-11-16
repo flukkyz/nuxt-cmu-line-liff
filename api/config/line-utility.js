@@ -321,7 +321,7 @@ module.exports = {
 
                   type: 'text',
                   weight: 'bold',
-                  size: unit === 1 ? '4xl' : 'xl',
+                  size: unit === 1 ? '4xl' : '3xl',
                   text: unit === 1 ? symbol : `${unit} ${symbol}`
                 }
               ]
