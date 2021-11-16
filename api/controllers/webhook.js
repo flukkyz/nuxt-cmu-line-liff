@@ -118,15 +118,28 @@ module.exports = {
               resp.push(cmuUtility.faq(data.data.data))
             } else {
               try {
+                // Binance----------------------------------------------------------
                 // const searchSymbol = `${msg.toUpperCase()}USDT`
                 // const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
                 // const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
                 // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
+                // Binance----------------------------------------------------------
 
-                const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=USD`,{headers: headersCoin})
+                const splitMsg = msg.trim().split(' ')
+                let coin = ''
+                let unit = 1
+                if(splitMsg.length === 2){
+                  if(!Number.isNaN(splitMsg[0])){
+                    unit = Number.parseFloat(splitMsg[0])
+                  }
+                  coin = splitMsg[1].toUpperCase()
+                }else if(splitMsg.length === 1){
+                  coin = splitMsg[0].toUpperCase()
+                }
+                const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
-                  const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${msg.toUpperCase()}&convert=THB`,{headers: headersCoin})
-                  resp.push(lineUtility.symbol(msg.toUpperCase(),dataUSD.data.data[msg.toUpperCase()].name,dataUSD.data.data[msg.toUpperCase()].quote.USD.price,dataTHB.data.data[msg.toUpperCase()].quote.THB.price,dataUSD.data.data[msg.toUpperCase()].quote.USD.percent_change_24h))
+                  const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=THB`,{headers: headersCoin})
+                  resp.push(lineUtility.symbol(coin,dataUSD.data.data[coin].name,dataUSD.data.data[coin].quote.USD.price,dataTHB.data.data[coin].quote.THB.price,dataUSD.data.data[coin].quote.USD.percent_change_24h,unit))
                 }else{
                   resp.push(lineUtility.sticker('11537','52002751'))
                   resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))

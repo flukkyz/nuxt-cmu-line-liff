@@ -291,7 +291,7 @@ module.exports = {
       }
     }
   },
-  symbol: (symbol,name,usd,thb,percent24) => {
+  symbol: (symbol,name,usd,thb,percent24,unit) => {
     return {
       type: 'flex',
       altText: 'Cryptocurrency',
@@ -321,8 +321,8 @@ module.exports = {
 
                   type: 'text',
                   weight: 'bold',
-                  size: '4xl',
-                  text: symbol
+                  size: unit === 1 ? '4xl' : 'xl',
+                  text: unit === 1 ? symbol : `${unit} ${symbol}`
                 }
               ]
             },
@@ -341,7 +341,7 @@ module.exports = {
                     },
                     {
                       type: 'span',
-                      text: new Intl.NumberFormat('th-th').format(usd),
+                      text: new Intl.NumberFormat('th-th').format(unit === 1 ? usd : (unit * usd)),
                       weight: 'bold',
                       size: 'xxl'
                     }
@@ -360,7 +360,7 @@ module.exports = {
                     {
                       type: 'span',
                       weight: 'bold',
-                      text: new Intl.NumberFormat('th-th').format(thb),
+                      text: new Intl.NumberFormat('th-th').format(unit === 1 ? thb : (unit * thb)),
                     },
                     {
                       type: 'span',
