@@ -53,7 +53,7 @@ module.exports = {
                   weight: 'bold',
                   contents: [
                     utility.span(new Intl.NumberFormat('th-th').format(salary),{
-                      size: '3xl'
+                      size: 'xxl'
                     }),
                     utility.span(' บาท',{
                       size: 'xl'
@@ -82,7 +82,7 @@ module.exports = {
       justifyContent: 'center',
       paddingBottom: '20px',
       contents: [
-        utility.message('จำนวนวันลาที่เหลือ')
+        utility.message('สรุปการลาประจำปี')
       ]
     }]
     for (const data of datas) {
@@ -93,7 +93,7 @@ module.exports = {
         paddingEnd: '30px',
         contents: [
           utility.message(data.leaveTypeName,{wrap: true, flex: 4}),
-          utility.message(`${data.leaveLimit} วัน`,{align: 'end', flex: 0})
+          utility.message(`${data.leaveDay}/${data.leaveLimit} วัน`,{align: 'end', flex: 0})
         ]
       })
     }
