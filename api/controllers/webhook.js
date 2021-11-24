@@ -146,8 +146,8 @@ module.exports = {
                 }
               } catch (error) {
                 console.log(error);
-                resp.push(lineUtility.sticker('11537','52002773'))
-                resp.push(lineUtility.message(`เห้ย!! อย่าพิมพ์มั่วสิ`))
+                resp.push(lineUtility.sticker('11537','52002744'))
+                resp.push(lineUtility.message(`ยังไม่มีคำสั่งนี้ในระบบ กรุณาเลือกเมนูใหม่อีกครั้ง`))
               }
             }
           } else if(event.type === "postback") {
