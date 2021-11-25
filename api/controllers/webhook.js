@@ -136,7 +136,7 @@ module.exports = {
                 // Binance----------------------------------------------------------
 
                 yahooFinanceOptions.params.symbols = 'thb=x'
-                const usdThb = await axios.request(options)
+                const usdThb = await axios.request(yahooFinanceOptions)
                 console.log("THB",usdThb.data.quoteResponse.result[0].regularMarketPrice);
 
                 const splitMsg = msg.trim().split(' ')
