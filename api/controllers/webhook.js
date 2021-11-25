@@ -1,45 +1,34 @@
 const cmuUtility = require('../config/cmu-utility')
 const lineUtility = require('../config/line-utility')
 const axios = require('axios')
+const line = require('@line/bot-sdk')
 const fs = require('fs')
 const ws = require('ws');
 
+const client = new line.Client({
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+})
+
 const BACKEND_API = `${process.env.API_URL}${process.env.API_DIR}`
-const LINE_API = `https://api.line.me/v2/bot/message/`
 
 const headersCoin = {
   'X-CMC_PRO_API_KEY': 'c06d8809-22a8-4471-b7a4-d4f99d275c91'
 }
 
-const headersLine = {
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
+const reply = (replyToken,messages) => {
+  client.replyMessage(replyToken, messages).catch((e) => {
+    console.log(e)
+  })
+}
+const push = (to,messages) => {
+  client.pushMessage(to, messages).catch((e) => {
+    console.log(e)
+  })
 }
 
-const reply = async (replyToken,messages) => {
-  try {
-    await axios.post(`${LINE_API}reply`,{
-      replyToken,
-      messages
-    },{headers: headersLine})
-  } catch (e) {
-    console.log(e)
-  }
-}
-const push = async (to,messages) => {
-  try {
-    await axios.post(`${LINE_API}push`,{
-      to,
-      messages
-    },{headers: headersLine})
-  } catch (e) {
-    console.log(e)
-  }
-}
-
-const getContent = async (messageId) => {
+const getContent = (messageId) => {
   let writeStream = fs.createWriteStream('./static/uploads/chats/secret.jpg');
-  await axios.get(`https://api-data.line.me/v2/bot/message/${messageId}/content`,{headers: headersLine}).then((stream) => {
+  client.getMessageContent(messageId).then((stream) => {
     stream.on('data', (chunk) => {
       console.log(chunk);
     })
@@ -133,7 +122,7 @@ module.exports = {
                 // const searchSymbol = `${msg.toUpperCase()}USDT`
                 // const data = await axios.get(`https://api.binance.com/api/v3/exchangeInfo?symbol=${searchSymbol}`)
                 // const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
-                // await resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
+                // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
                 // Binance----------------------------------------------------------
 
                 const splitMsg = msg.trim().split(' ')
@@ -177,10 +166,10 @@ module.exports = {
         resp.push(lineUtility.message(`เกิดข้อผิดพลาดจากระบบ กรุณาลองใหม่ภายหลัง`))
       }
       if(resp.length > 0){
-        await reply(replyToken,resp)
+        reply(replyToken,resp)
       }
     }else{
-      await reply(replyToken,cmuUtility.register)
+      reply(replyToken,cmuUtility.register)
     }
     res.send("HTTP POST request sent to the webhook URL!")
   }

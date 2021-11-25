@@ -337,12 +337,14 @@ module.exports = {
                     {
                       type: 'span',
                       text: '$',
+                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
                       size: 'xl'
                     },
                     {
                       type: 'span',
                       text: new Intl.NumberFormat('th-th').format(unit === 1 ? usd : (unit * usd)),
                       weight: 'bold',
+                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
                       size: 'xxl'
                     }
                   ]
@@ -361,10 +363,12 @@ module.exports = {
                       type: 'span',
                       weight: 'bold',
                       text: new Intl.NumberFormat('th-th').format(unit === 1 ? thb : (unit * thb)),
+                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A')
                     },
                     {
                       type: 'span',
                       text: ' บาท',
+                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
                       size: 'sm'
                     }
                   ]
