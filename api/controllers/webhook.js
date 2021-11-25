@@ -157,8 +157,8 @@ module.exports = {
                 }else{
                   console.log('-----------------------------------');
                   console.log(`${coin}.bk`);
-                  yahooFinanceOptions.params.symbols = `${coin}.bk`
-                  const setBK = await axios.request(yahooFinanceOptions)
+                  // yahooFinanceOptions.params.symbols = `${coin}.bk`
+                  // const setBK = await axios.request(yahooFinanceOptions)
                   console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
                   
                   
