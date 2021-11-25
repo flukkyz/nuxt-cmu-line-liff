@@ -12,7 +12,7 @@ router.post(`${path}/`, webhookController.index)
 router.get(`${path}/test`,(req,res) => {
   console.log('test ...............................');
   googleFinance.historical({
-    symbol: 'BKK: PLANB',
+    symbol: 'BKK:PLANB',
     from: '2014-01-01',
     to: '2014-12-31'
   }, function (err, quotes) {
