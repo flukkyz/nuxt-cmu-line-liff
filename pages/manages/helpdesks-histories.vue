@@ -46,7 +46,7 @@
                   </v-tooltip>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title class="title">
+                  <v-list-item-title v-if="item.user_detail" class="title">
                     <v-badge v-if="item.mode === 'wait'" dot color="warning">
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </v-badge>
@@ -103,7 +103,6 @@ export default {
     try {
       const datas = await this.$axios.$get(`${this.api}`)
       this.datas = datas.data
-      console.log(this.datas)
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }
