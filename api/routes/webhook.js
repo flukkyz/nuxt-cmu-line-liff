@@ -12,6 +12,10 @@ router.post(`${path}/`, webhookController.index)
 router.get(`${path}/test`,(req,res) => {
   console.log('test ...............................');
   googleStocks(['AAPL'], function(error, data) {
+    if(error){
+      console.log("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+      console.log(error);
+    }
     console.log(data);
   });
 
