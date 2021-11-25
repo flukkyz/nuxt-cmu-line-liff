@@ -446,7 +446,7 @@ module.exports = {
 
                   type: 'text',
                   weight: 'bold',
-                  size: unit === 1 ? '4xl' : '3xl',
+                  size: unit === 1 ? 'xxl' : 'xl',
                   color: '#FFFFFF',
                   text: unit === 1 ? symbol : `${unit} ${symbol}`
                 }
@@ -488,7 +488,7 @@ module.exports = {
                   contents: [
                     {
                       type: 'span',
-                      text: 'High 24h '
+                      text: '24h High  '
                     },
                     {
                       type: 'span',
@@ -504,7 +504,7 @@ module.exports = {
                   contents: [
                     {
                       type: 'span',
-                      text: 'Low 24h '
+                      text: '24h Low  '
                     },
                     {
                       type: 'span',
@@ -520,7 +520,7 @@ module.exports = {
                   contents: [
                     {
                       type: 'span',
-                      text: 'Volume 24h '
+                      text: '24h Volume  '
                     },
                     {
                       type: 'span',
