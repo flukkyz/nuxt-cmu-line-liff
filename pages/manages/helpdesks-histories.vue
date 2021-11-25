@@ -54,7 +54,7 @@
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </span>
                   </v-list-item-title>
-                  <v-list-item-subtitle class="mt-1">
+                  <v-list-item-subtitle v-if="item.user_detail.length > 0" class="mt-1">
                     <v-icon x-small>
                       fas fa-sitemap
                     </v-icon>
