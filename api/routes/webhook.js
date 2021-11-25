@@ -9,7 +9,7 @@ const path = '/webhook'
 
 router.post(`${path}/`, webhookController.index)
 
-router.get((req,res) => {
+router.get(`${path}/test`,(req,res) => {
   googleFinance.companyNews({
     symbol: 'SET:PLANB'
   }, function (err, news) {
