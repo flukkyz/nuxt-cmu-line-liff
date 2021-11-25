@@ -46,7 +46,7 @@
                   </v-tooltip>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title v-if="item.user_detail" class="title">
+                  <v-list-item-title v-if="item.user_detail.length > 0" class="title">
                     <v-badge v-if="item.mode === 'wait'" dot color="warning">
                       {{ `${item.user_detail[0].firstname} ${item.user_detail[0].lastname}` }}
                     </v-badge>
