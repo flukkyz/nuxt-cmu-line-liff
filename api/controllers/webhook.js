@@ -139,6 +139,8 @@ module.exports = {
                 const usdThb = await axios.request(yahooFinanceOptions)
                 console.log("THB",usdThb.data.quoteResponse.result[0].regularMarketPrice);
 
+                const thb = usdThb.data.quoteResponse.result[0].regularMarketPrice
+
                 const splitMsg = msg.trim().split(' ')
                 let coin = ''
                 let unit = 1
@@ -152,8 +154,7 @@ module.exports = {
                 }
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
-                  const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=THB`,{headers: headersCoin})
-                  resp.push(lineUtility.symbol(coin,dataUSD.data.data[coin].name,dataUSD.data.data[coin].quote.USD.price,dataTHB.data.data[coin].quote.THB.price,dataUSD.data.data[coin].quote.USD.percent_change_24h,unit))
+                  resp.push(lineUtility.symbol(coin, dataUSD.data.data[coin].name, dataUSD.data.data[coin].quote.USD.price, dataUSD.data.data[coin].quote.USD.price*thb, dataUSD.data.data[coin].quote.USD.percent_change_24h, unit))
                 }else{
                   
                   // resp.push(lineUtility.sticker('11537','52002751'))
