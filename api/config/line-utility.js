@@ -320,6 +320,7 @@ module.exports = {
                   type: 'text',
                   weight: 'bold',
                   size: 'xl',
+                  color: percent24 === 0 ? "#000000" : '#FFFFFF',
                   text: name
                 },
                 {
@@ -327,6 +328,7 @@ module.exports = {
                   type: 'text',
                   weight: 'bold',
                   size: unit === 1 ? '4xl' : '3xl',
+                  color: percent24 === 0 ? "#000000" : '#FFFFFF',
                   text: unit === 1 ? symbol : `${unit} ${symbol}`
                 }
               ]
@@ -342,14 +344,14 @@ module.exports = {
                     {
                       type: 'span',
                       text: '$',
-                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
+                      color: percent24 === 0 ? "#000000" : '#FFFFFF',
                       size: 'xl'
                     },
                     {
                       type: 'span',
                       text: new Intl.NumberFormat('th-th').format(unit === 1 ? usd : (unit * usd)),
                       weight: 'bold',
-                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
+                      color: percent24 === 0 ? "#000000" : '#FFFFFF',
                       size: 'xxl'
                     }
                   ]
@@ -368,12 +370,12 @@ module.exports = {
                       type: 'span',
                       weight: 'bold',
                       text: new Intl.NumberFormat('th-th').format(unit === 1 ? thb : (unit * thb)),
-                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A')
+                      color: percent24 === 0 ? "#000000" : '#FFFFFF'
                     },
                     {
                       type: 'span',
                       text: ' บาท',
-                      color: percent24 === 0 ? "#000000" : (percent24 > 0 ? '#2EBD85' : '#E0294A'),
+                      color: percent24 === 0 ? "#000000" : '#FFFFFF',
                       size: 'sm'
                     }
                   ]
@@ -387,7 +389,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
-                  color: '#888888',
+                  color: percent24 === 0 ? "#888888" : '#AAAAAA',
                   size: 'xxs',
                   contents: [
                     {
