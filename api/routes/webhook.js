@@ -23,7 +23,7 @@ router.get(`${path}/test`,(req,res) => {
   };
 
   axios.request(options).then(function (response) {
-    console.log(response.data);
+    console.log(response.data.quoteResponse.result[0].regularMarketPrice);
   }).catch(function (error) {
     console.error(error);
   });
