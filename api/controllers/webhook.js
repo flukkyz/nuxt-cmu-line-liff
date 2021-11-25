@@ -131,6 +131,17 @@ module.exports = {
               yahooFinanceOptions.params.symbols = 'thb=x'
               const usdThb = await axios.request(yahooFinanceOptions)
               const thb = usdThb.data.quoteResponse.result[0].regularMarketPrice
+              const splitMsg = msg.trim().split(' ')
+              let coin = ''
+              let unit = 1
+              if(splitMsg.length === 2){
+                if(!Number.isNaN(splitMsg[0])){
+                  unit = Number.parseFloat(splitMsg[0])
+                }
+                coin = splitMsg[1].toUpperCase()
+              }else if(splitMsg.length === 1){
+                coin = splitMsg[0].toUpperCase()
+              }
               try {
                 // Binance----------------------------------------------------------
                 // const searchSymbol = `${msg.toUpperCase()}USDT`
@@ -139,17 +150,6 @@ module.exports = {
                 // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
                 // Binance----------------------------------------------------------
 
-                const splitMsg = msg.trim().split(' ')
-                let coin = ''
-                let unit = 1
-                if(splitMsg.length === 2){
-                  if(!Number.isNaN(splitMsg[0])){
-                    unit = Number.parseFloat(splitMsg[0])
-                  }
-                  coin = splitMsg[1].toUpperCase()
-                }else if(splitMsg.length === 1){
-                  coin = splitMsg[0].toUpperCase()
-                }
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
                   hasResult = true
@@ -161,8 +161,6 @@ module.exports = {
                 }
               } catch (error) {
                 console.log(error);
-                resp.push(lineUtility.sticker('11537','52002744'))
-                resp.push(lineUtility.message(`ยังไม่มีคำสั่งนี้ในระบบ กรุณาเลือกเมนูใหม่อีกครั้ง`))
               }
               if(!hasResult){
                 try {
