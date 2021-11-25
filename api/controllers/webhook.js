@@ -155,6 +155,7 @@ module.exports = {
                 if(dataUSD.data.status.error_code === 0){
                   resp.push(lineUtility.symbol(coin, dataUSD.data.data[coin].name, dataUSD.data.data[coin].quote.USD.price, dataUSD.data.data[coin].quote.USD.price*thb, dataUSD.data.data[coin].quote.USD.percent_change_24h, unit))
                 }else{
+                  console.log('-----------------------------------');
                   console.log(`${coin}.bk`);
                   yahooFinanceOptions.params.symbols = `${coin}.bk`
                   const setBK = await axios.request(yahooFinanceOptions)
