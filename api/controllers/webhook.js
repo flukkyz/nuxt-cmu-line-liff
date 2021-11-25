@@ -127,6 +127,10 @@ module.exports = {
               const data = await axios.get(`${BACKEND_API}line/faqs`,{headers})
               resp.push(cmuUtility.faq(data.data.data))
             } else {
+              let hasResult = false
+              yahooFinanceOptions.params.symbols = 'thb=x'
+              const usdThb = await axios.request(yahooFinanceOptions)
+              const thb = usdThb.data.quoteResponse.result[0].regularMarketPrice
               try {
                 // Binance----------------------------------------------------------
                 // const searchSymbol = `${msg.toUpperCase()}USDT`
@@ -134,11 +138,6 @@ module.exports = {
                 // const dataPrice = await axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${searchSymbol}`)
                 // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
                 // Binance----------------------------------------------------------
-
-                yahooFinanceOptions.params.symbols = 'thb=x'
-                const usdThb = await axios.request(yahooFinanceOptions)
-
-                const thb = usdThb.data.quoteResponse.result[0].regularMarketPrice
 
                 const splitMsg = msg.trim().split(' ')
                 let coin = ''
@@ -153,23 +152,31 @@ module.exports = {
                 }
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
+                  hasResult = true
                   resp.push(lineUtility.symbol(coin, dataUSD.data.data[coin].name, dataUSD.data.data[coin].quote.USD.price, dataUSD.data.data[coin].quote.USD.price*thb, dataUSD.data.data[coin].quote.USD.percent_change_24h, unit))
-                }else{
-                  console.log('-----------------------------------');
-                  console.log(`${coin}.bk`);
-                  // yahooFinanceOptions.params.symbols = `${coin}.bk`
-                  // const setBK = await axios.request(yahooFinanceOptions)
-                  console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
-                  
-                  
-                  // resp.push(lineUtility.sticker('11537','52002751'))
-                  // resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
+                }else{     
+                  hasResult = true             
+                  resp.push(lineUtility.sticker('11537','52002751'))
+                  resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
                 }
-                console.log('------------------aaaaaaaaaaaaaaaa-----------------');
               } catch (error) {
                 console.log(error);
                 resp.push(lineUtility.sticker('11537','52002744'))
                 resp.push(lineUtility.message(`ยังไม่มีคำสั่งนี้ในระบบ กรุณาเลือกเมนูใหม่อีกครั้ง`))
+              }
+              if(!hasResult){
+                try {
+                  console.log('-----------------------------------');
+                  console.log(`${coin}.bk`);
+                  yahooFinanceOptions.params.symbols = `${coin}.bk`
+                  const setBK = await axios.request(yahooFinanceOptions)
+                  hasResult = true             
+                    console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
+                } catch (error) {
+                  console.log(error);
+                  resp.push(lineUtility.sticker('11537','52002744'))
+                  resp.push(lineUtility.message(`ยังไม่มีคำสั่งนี้ในระบบ กรุณาเลือกเมนูใหม่อีกครั้ง`))
+                }
               }
             }
           } else if(event.type === "postback") {
