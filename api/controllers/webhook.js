@@ -15,6 +15,16 @@ const headersCoin = {
   'X-CMC_PRO_API_KEY': 'c06d8809-22a8-4471-b7a4-d4f99d275c91'
 }
 
+const yahooFinanceOptions = {
+  method: 'GET',
+  url: 'https://yh-finance.p.rapidapi.com/market/v2/get-quotes',
+  params: {region: 'SG'},
+  headers: {
+    'x-rapidapi-host': 'yh-finance.p.rapidapi.com',
+    'x-rapidapi-key': 'a9b7101e0dmsh9d51c5f2ef8c0e6p17bf57jsnddb1d5cabb79'
+  }
+};
+
 const reply = (replyToken,messages) => {
   client.replyMessage(replyToken, messages).catch((e) => {
     console.log(e)
@@ -125,6 +135,10 @@ module.exports = {
                 // resp.push(lineUtility.symbol(data.data.symbols[0].baseAsset,dataPrice.data.price,dataPrice.data.price*33))
                 // Binance----------------------------------------------------------
 
+                yahooFinanceOptions.params.symbols = 'thb=x'
+                const usdThb = await axios.request(options)
+                console.log("THB",usdThb.data.quoteResponse.result[0].regularMarketPrice);
+
                 const splitMsg = msg.trim().split(' ')
                 let coin = ''
                 let unit = 1
@@ -141,8 +155,9 @@ module.exports = {
                   const dataTHB = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=THB`,{headers: headersCoin})
                   resp.push(lineUtility.symbol(coin,dataUSD.data.data[coin].name,dataUSD.data.data[coin].quote.USD.price,dataTHB.data.data[coin].quote.THB.price,dataUSD.data.data[coin].quote.USD.percent_change_24h,unit))
                 }else{
-                  resp.push(lineUtility.sticker('11537','52002751'))
-                  resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
+                  
+                  // resp.push(lineUtility.sticker('11537','52002751'))
+                  // resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
                 }
               } catch (error) {
                 console.log(error);
