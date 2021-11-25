@@ -147,6 +147,7 @@ module.exports = {
                 console.log(`${coin}.bk`);
                 yahooFinanceOptions.params.symbols = `${coin}.bk`
                 const setBK = await axios.request(yahooFinanceOptions)
+                console.log(setBK);
                 hasResult = true  
                 const symbol = setBK.data.quoteResponse.result[0].symbol.split('.')[0]
                 const name  = setBK.data.quoteResponse.result[0].longName
