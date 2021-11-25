@@ -2,6 +2,44 @@ const utility = require('../config/line-utility')
 const axios = require('axios')
 const line = require('@line/bot-sdk')
 
+const LINE_API = `https://api.line.me/v2/bot/message/`
+
+const headersLine = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${process.env.CHANNEL_ACCESS_TOKEN}`
+}
+
+const push = async (to,messages) => {
+  try {
+    await axios.post(`${LINE_API}push`,{
+      to,
+      messages
+    },{headers: headersLine})
+  } catch (e) {
+    console.log(e)
+  }
+}
+const multicast = async (to,messages) => {
+  try {
+    await axios.post(`${LINE_API}multicast`,{
+      to,
+      messages
+    },{headers: headersLine})
+  } catch (e) {
+    console.log(e)
+  }
+}
+const broadcast = async (messages) => {
+  try {
+    await axios.post(`${LINE_API}broadcast`,{
+      messages
+    },{headers: headersLine})
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+
 module.exports = {
   index: async (req, res) => {
     let data = req.body
@@ -12,10 +50,6 @@ module.exports = {
     }else{
       resp.push(utility.message(data.txt))
     }
-
-    const client = new line.Client({
-      channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
-    })
 
     let sendTo
     try {
@@ -38,12 +72,12 @@ module.exports = {
     console.log('sendTo',sendTo);
     try {
       if(sendTo && sendTo.length === 1){
-        await client.pushMessage(sendTo[0],resp)
+        await push(sendTo[0],resp)
       }else{
         if(data.send_type === 'all'){
-          await client.broadcast(resp)
+          await broadcast(resp)
         }else{
-          await client.multicast(sendTo,resp)
+          await multicast(sendTo,resp)
         }
       }
       res.json({status: 'ok'})
