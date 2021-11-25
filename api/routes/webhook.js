@@ -16,6 +16,7 @@ router.get(`${path}/test`,(req,res) => {
     console.log(news);
     // res.send("HTTP POST request sent to the webhook URL!")
   });
+  res.json({a: 1})
 })
 
 module.exports = router
