@@ -147,15 +147,16 @@ module.exports = {
                 console.log(`${coin}.bk`);
                 yahooFinanceOptions.params.symbols = `${coin}.bk`
                 const setBK = await axios.request(yahooFinanceOptions)
-                console.log(setBK.data);
-                hasResult = true  
-                const symbol = setBK.data.quoteResponse.result[0].symbol.split('.')[0]
-                const name  = setBK.data.quoteResponse.result[0].longName
-                const price = setBK.data.quoteResponse.result[0].regularMarketPrice
-                const high = setBK.data.quoteResponse.result[0].regularMarketDayHigh
-                const low = setBK.data.quoteResponse.result[0].regularMarketDayLow
-                const volume = setBK.data.quoteResponse.result[0].regularMarketVolume
-                resp.push(lineUtility.symbolSET(`SET: ${symbol}`, name, price, high,low,volume, unit))        
+                if(setBK.data.quoteResponse.result.length > 0){
+                  hasResult = true  
+                  const symbol = setBK.data.quoteResponse.result[0].symbol.split('.')[0]
+                  const name  = setBK.data.quoteResponse.result[0].longName
+                  const price = setBK.data.quoteResponse.result[0].regularMarketPrice
+                  const high = setBK.data.quoteResponse.result[0].regularMarketDayHigh
+                  const low = setBK.data.quoteResponse.result[0].regularMarketDayLow
+                  const volume = setBK.data.quoteResponse.result[0].regularMarketVolume
+                  resp.push(lineUtility.symbolSET(`SET: ${symbol}`, name, price, high,low,volume, unit))        
+                }
               } catch (error) {
                 console.log(error);
               }
