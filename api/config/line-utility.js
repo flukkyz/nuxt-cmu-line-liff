@@ -410,6 +410,132 @@ module.exports = {
       }
     }
   },
+  symbolSET: (symbol,name, price, high,low,volume, unit) => {
+    return {
+      type: 'flex',
+      altText: 'Cryptocurrency',
+      contents: {
+        type: 'bubble',
+        styles: {
+          body: {
+            backgroundColor: '#000000'
+          }
+        },
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          alignItems: 'center',
+          justifyContent: 'center',
+          contents: [
+            {
+              type: 'box',
+              layout: 'vertical',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingTop: '20px',
+              paddingBottom: '20px',
+              contents: [
+                {
+                  type: 'text',
+                  weight: 'bold',
+                  size: 'xl',
+                  color: '#FFFFFF',
+                  text: name
+                },
+                {
+
+                  type: 'text',
+                  weight: 'bold',
+                  size: unit === 1 ? '4xl' : '3xl',
+                  color: '#FFFFFF',
+                  text: unit === 1 ? symbol : `${unit} ${symbol}`
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingBottom: '15px',
+              contents: [
+                {
+                  type: 'text',
+                  contents: [
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(unit === 1 ? price : (unit * price)),
+                      color: '#FFFFFF'
+                    },
+                    {
+                      type: 'span',
+                      text: ' บาท',
+                      color: '#FFFFFF',
+                      size: 'sm'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              paddingBottom: '30px',
+              contents: [
+                {
+                  type: 'text',
+                  color: '#2EBD85',
+                  size: 'xxs',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'High 24h '
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(high)
+                    }
+                  ]
+                },
+                {
+                  type: 'text',
+                  color: '#E0294A',
+                  size: 'xxs',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'Low 24h '
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(low)
+                    }
+                  ]
+                },
+                {
+                  type: 'text',
+                  color: '#DDDDDD',
+                  size: 'xxs',
+                  contents: [
+                    {
+                      type: 'span',
+                      text: 'Volume 24h '
+                    },
+                    {
+                      type: 'span',
+                      weight: 'bold',
+                      text: new Intl.NumberFormat('th-th').format(volume)
+                    }
+                  ]
+                }
+              ]
+            },
+          ]
+        }
+      }
+    }
+  },
   leave: (data) => {
     
     return {

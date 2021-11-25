@@ -153,7 +153,11 @@ module.exports = {
                 const dataUSD = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin}&convert=USD`,{headers: headersCoin})
                 if(dataUSD.data.status.error_code === 0){
                   hasResult = true
-                  resp.push(lineUtility.symbol(coin, dataUSD.data.data[coin].name, dataUSD.data.data[coin].quote.USD.price, dataUSD.data.data[coin].quote.USD.price*thb, dataUSD.data.data[coin].quote.USD.percent_change_24h, unit))
+                  const name =  dataUSD.data.data[coin].name
+                  const priceUSD =  dataUSD.data.data[coin].quote.USD.price
+                  const priceTHB =  dataUSD.data.data[coin].quote.USD.price*thb
+                  const percent24 =  dataUSD.data.data[coin].quote.USD.percent_change_24h
+                  resp.push(lineUtility.symbol(coin, name, priceUSD, priceTHB, percent24, unit))
                 }else{     
                   hasResult = true             
                   resp.push(lineUtility.sticker('11537','52002751'))
@@ -168,8 +172,14 @@ module.exports = {
                   console.log(`${coin}.bk`);
                   yahooFinanceOptions.params.symbols = `${coin}.bk`
                   const setBK = await axios.request(yahooFinanceOptions)
-                  hasResult = true             
-                    console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
+                  hasResult = true  
+                  const symbol = setBK.data.quoteResponse.result[0].symbol.split('.')[0]
+                  const name  = setBK.data.quoteResponse.result[0].longName
+                  const price = setBK.data.quoteResponse.result[0].regularMarketPrice
+                  const high = setBK.data.quoteResponse.result[0].regularMarketDayHigh
+                  const low = setBK.data.quoteResponse.result[0].regularMarketDayLow
+                  const volume = setBK.data.quoteResponse.result[0].regularMarketVolume
+                  resp.push(lineUtility.symbolSET(`SET: ${symbol}`, name, price, high,low,volume, unit))        
                 } catch (error) {
                   console.log(error);
                   resp.push(lineUtility.sticker('11537','52002744'))
