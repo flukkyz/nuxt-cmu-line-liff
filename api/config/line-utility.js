@@ -297,6 +297,11 @@ module.exports = {
       altText: 'Cryptocurrency',
       contents: {
         type: 'bubble',
+        styles: {
+          body: {
+            backgroundColor: percent24 === 0 ? "#FFFFFF" : (percent24 > 0 ? '#2EBD85' : '#E0294A')
+          }
+        },
         body: {
           type: 'box',
           layout: 'vertical',
