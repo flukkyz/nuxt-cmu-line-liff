@@ -147,7 +147,7 @@ module.exports = {
                 console.log(`${coin}.bk`);
                 yahooFinanceOptions.params.symbols = `${coin}.bk`
                 const setBK = await axios.request(yahooFinanceOptions)
-                if(setBK.data.quoteResponse.result.length > 0){
+                if(setBK.data.quoteResponse.result.length > 0 && setBK.data.quoteResponse.result[0].exchange && setBK.data.quoteResponse.result[0].exchange === 'SET'){
                   hasResult = true  
                   const symbol = setBK.data.quoteResponse.result[0].symbol.split('.')[0]
                   const name  = setBK.data.quoteResponse.result[0].longName
