@@ -11,12 +11,18 @@ router.post(`${path}/`, webhookController.index)
 
 router.get(`${path}/test`,(req,res) => {
   console.log('test ...............................');
-  // googleFinance.companyNews({
-  //   symbol: 'NASDAQ:AAPL'
-  // }, function (err, news) {
-  //   console.log(news);
-  //   // res.send("HTTP POST request sent to the webhook URL!")
-  // });
+  googleFinance.historical({
+    symbol: 'NASDAQ:AAPL',
+    from: '2014-01-01',
+    to: '2014-12-31'
+  }, function (err, quotes) {
+    if(err){
+      console.log("error");
+      console.log(err);
+    }
+    console.log(quotes);
+    //...
+  });
   res.json({a: 1})
 })
 
