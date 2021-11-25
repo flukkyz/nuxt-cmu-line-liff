@@ -156,10 +156,10 @@ module.exports = {
                   resp.push(lineUtility.symbol(coin, dataUSD.data.data[coin].name, dataUSD.data.data[coin].quote.USD.price, dataUSD.data.data[coin].quote.USD.price*thb, dataUSD.data.data[coin].quote.USD.percent_change_24h, unit))
                 }else{
                   yahooFinanceOptions.params.symbols = `${coin}.bk`
-                  const usdThb = await axios.request(yahooFinanceOptions)
-                  console.log("SET",usdThb.data.quoteResponse.result[0].regularMarketPrice);
+                  const setBK = await axios.request(yahooFinanceOptions)
+                  console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
 
-                  
+
                   // resp.push(lineUtility.sticker('11537','52002751'))
                   // resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
                 }
