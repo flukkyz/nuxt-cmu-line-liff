@@ -1,7 +1,7 @@
 const express = require('express')
 const { webhookController } = require('../controllers')
 
-googleFinance = require('google-finance');
+const google = require("google-finance-data");
 
 const router = express.Router()
 
@@ -11,18 +11,10 @@ router.post(`${path}/`, webhookController.index)
 
 router.get(`${path}/test`,(req,res) => {
   console.log('test ...............................');
-  googleFinance.historical({
-    symbol: 'BKK:PLANB',
-    from: '2014-01-01',
-    to: '2014-12-31'
-  }, function (err, quotes) {
-    if(err){
-      console.log("error");
-      console.log(err);
-    }
-    console.log(quotes);
-    //...
-  });
+  google.getSymbol("msft")
+  .then(data => console.log(JSON.stringify(data, null, 2)))
+  .catch(err => console.error(err.stack ? err.stack : err));
+
   res.json({a: 1})
 })
 
