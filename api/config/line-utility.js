@@ -438,7 +438,7 @@ module.exports = {
                 {
                   type: 'text',
                   weight: 'bold',
-                  size: 'xl',
+                  size: 'lg',
                   color: '#FFFFFF',
                   text: name
                 },
