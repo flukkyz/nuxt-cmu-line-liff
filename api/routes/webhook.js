@@ -10,6 +10,7 @@ const path = '/webhook'
 router.post(`${path}/`, webhookController.index)
 
 router.get(`${path}/test`,(req,res) => {
+  console.log('test ...............................');
   // googleFinance.companyNews({
   //   symbol: 'NASDAQ:AAPL'
   // }, function (err, news) {
