@@ -389,7 +389,7 @@ module.exports = {
               contents: [
                 {
                   type: 'text',
-                  color: percent24 === 0 ? "#888888" : '#AAAAAA',
+                  color: percent24 === 0 ? "#000000" : '#FFFFFF',
                   size: 'xxs',
                   contents: [
                     {
