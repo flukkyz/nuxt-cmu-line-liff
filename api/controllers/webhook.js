@@ -160,11 +160,12 @@ module.exports = {
                   yahooFinanceOptions.params.symbols = `${coin}.bk`
                   const setBK = await axios.request(yahooFinanceOptions)
                   console.log("SET",setBK.data.quoteResponse.result[0].regularMarketPrice);
-
-
+                  
+                  
                   // resp.push(lineUtility.sticker('11537','52002751'))
                   // resp.push(lineUtility.message(`หมดโควต้าดูราคาเหรียญแล้ว รอเดือนหน้าเน้อ...`))
                 }
+                console.log('------------------aaaaaaaaaaaaaaaa-----------------');
               } catch (error) {
                 console.log(error);
                 resp.push(lineUtility.sticker('11537','52002744'))
