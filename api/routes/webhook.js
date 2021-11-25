@@ -1,7 +1,7 @@
 const express = require('express')
 const { webhookController } = require('../controllers')
 
-const google = require("google-finance-data");
+const googleStocks = require('google-stocks');
 
 const router = express.Router()
 
@@ -11,9 +11,9 @@ router.post(`${path}/`, webhookController.index)
 
 router.get(`${path}/test`,(req,res) => {
   console.log('test ...............................');
-  google.getSymbol("msft")
-  .then(data => console.log(JSON.stringify(data, null, 2)))
-  .catch(err => console.error(err.stack ? err.stack : err));
+  googleStocks(['AAPL'], function(error, data) {
+    console.log(data);
+  });
 
   res.json({a: 1})
 })
