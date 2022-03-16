@@ -102,7 +102,8 @@ export default {
         this.$overlay.hide()
       } else {
         const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-        window.location = authen.data
+        // window.location = authen.data
+        window.open(authen.data, '_self')
       }
     },
     save () {
