@@ -55,7 +55,8 @@ export default {
         admin_reply: false
       },
       timeoutCheckUser: null,
-      popupWindow: ''
+      popupWindow: '',
+      log: ''
     }
   },
   created () {
@@ -91,33 +92,32 @@ export default {
             ...profile,
             ...user.data
           }
-          let log = ''
           try {
-            log = '1' + `${process.env.apiUrl}${process.env.apiDirectory}line/users/chat` + ' ' + this.profile.userId
             const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
               headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.profile.userId}`
               }
             })
-            log = '2'
+            this.log = '2'
             if (chatStatusData.chat) {
-              log = '3'
+              this.log = '3'
               const formData = new FormData()
               formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
               formData.append('send_type', 'select')
-              log = '4'
+              this.log = '4'
               formData.append('users', [this.profile.userId])
-              log = '5'
+              this.log = '5'
               formData.append('announce_img', null)
-              log = '6'
+              this.log = '6'
               await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-              log = '7'
+              this.log = '7'
               this.close()
-              log = '8'
+              this.log = '8'
             }
           } catch (e) {
-            this.$notifier.showMessage({ title: 'Error' + log, content: e, color: 'error' })
+            this.log = ' error ' + e
+            this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
           }
           this.$overlay.hide()
         }, 500)
