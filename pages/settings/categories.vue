@@ -83,7 +83,6 @@ export default {
     try {
       const datas = await this.$axios.$get(this.api)
       this.datas = datas.data
-      console.log(this.datas)
     } catch (e) {
       this.$nuxt.error({ statusCode: e.response.status, message: e.response.data.message })
     }

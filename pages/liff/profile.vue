@@ -51,7 +51,6 @@ export default {
       const profile = await liff.getProfile()
       const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/lineid/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
-      this.datas = user
       if (user.status === 'ok') {
         this.profile = {
           ...profile,

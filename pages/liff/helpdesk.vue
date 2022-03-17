@@ -74,7 +74,6 @@ export default {
       const profile = await liff.getProfile()
       const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/lineid/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
-      this.datas = user
       if (user.status === 'ok') {
         this.profile = {
           ...profile,
@@ -102,8 +101,7 @@ export default {
         this.$overlay.hide()
       } else {
         const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-        // window.location = authen.data
-        window.open(authen.data, '_self')
+        window.location = authen.data
       }
     },
     save () {
