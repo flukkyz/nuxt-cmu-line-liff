@@ -23,22 +23,6 @@
       ปิด
     </v-btn>
   </div>
-  <div v-else class="">
-    <h1>checkTimeout</h1>
-    <h2>{{ checkTimeout }}</h2>
-    <p class="mb-0">
-      Line
-    </p>
-    <pre>
-      {{ logLine }}
-    </pre>
-    <p class="mb-0">
-      User
-    </p>
-    <pre>
-      {{ logUser }}
-    </pre>
-  </div>
 </template>
 
 <script>
@@ -48,10 +32,7 @@ export default {
     return {
       profile: null,
       timeoutCheckUser: null,
-      popupWindow: '',
-      checkTimeout: 0,
-      logLine: null,
-      logUser: null
+      popupWindow: ''
     }
   },
   created () {
@@ -73,10 +54,8 @@ export default {
   methods: {
     async getLineProfile (redirect = true) {
       const profile = await liff.getProfile()
-      this.logLine = profile
       const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/lineid/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
-      this.logUser = user
       if (user.status === 'ok') {
         if (this.timeoutCheckUser) {
           clearTimeout(this.timeoutCheckUser)
@@ -91,13 +70,11 @@ export default {
         this.$overlay.hide()
       } else {
         this.timeoutCheckUser = setTimeout(() => {
-          this.checkTimeout++
           this.getLineProfile(false)
         }, 3000)
         if (redirect) {
           const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-          this.popupWindow = window.open(authen.data, '_top')
-          // window.location = authen.data
+          this.popupWindow = window.open(authen.data, '_self')
         }
       }
     },
