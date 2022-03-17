@@ -48,6 +48,7 @@ export default {
     return {
       profile: null,
       timeoutCheckUser: null,
+      popupWindow: null,
       checkTimeout: 0,
       logLine: null,
       logUser: null
@@ -78,6 +79,7 @@ export default {
       this.logUser = user
       if (user.status === 'ok') {
         if (this.timeoutCheckUser) {
+          this.popupWindow.close()
           clearTimeout(this.timeoutCheckUser)
         }
         this.profile = {
@@ -92,7 +94,8 @@ export default {
         }, 5000)
         if (redirect) {
           const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-          window.location = authen.data
+          this.popupWindow = window.open(authen.data)
+          // window.location = authen.data
         }
       }
     },
