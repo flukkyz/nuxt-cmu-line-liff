@@ -26,6 +26,18 @@
   <div v-else class="">
     <h1>checkTimeout</h1>
     <h2>{{ checkTimeout }}</h2>
+    <p class="mb-0">
+      Line
+    </p>
+    <pre>
+      {{ logUser }}
+    </pre>
+    <p class="mb-0">
+      User
+    </p>
+    <pre>
+      {{ logUser }}
+    </pre>
   </div>
 </template>
 
@@ -36,7 +48,9 @@ export default {
     return {
       profile: null,
       timeoutCheckUser: null,
-      checkTimeout: 0
+      checkTimeout: 0,
+      logLine: null,
+      logUser: null
     }
   },
   created () {
@@ -58,8 +72,10 @@ export default {
   methods: {
     async getLineProfile (redirect = true) {
       const profile = await liff.getProfile()
+      this.logLine = profile
       const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/lineid/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
+      this.logUser = user
       if (user.status === 'ok') {
         if (this.timeoutCheckUser) {
           clearTimeout(this.timeoutCheckUser)
