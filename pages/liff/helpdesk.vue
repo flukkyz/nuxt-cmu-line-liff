@@ -4,6 +4,7 @@
       <h3 class="text-center teal--text fonr-weight-light my-5">
         แจ้งปัญหาการใช้งาน
       </h3>
+      {{ log }}
       <v-row>
         <v-col>
           <v-textarea
