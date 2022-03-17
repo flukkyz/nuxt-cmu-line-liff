@@ -48,7 +48,7 @@ export default {
     return {
       profile: null,
       timeoutCheckUser: null,
-      popupWindow: null,
+      popupWindow: '',
       checkTimeout: 0,
       logLine: null,
       logUser: null
