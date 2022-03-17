@@ -91,24 +91,24 @@ export default {
             ...profile,
             ...user.data
           }
-          const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${this.profile.userId}`
-            }
-          })
-          if (chatStatusData.chat) {
-            const formData = new FormData()
-            formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
-            formData.append('send_type', 'select')
-            formData.append('users', [this.profile.userId])
-            formData.append('announce_img', null)
-            try {
+          try {
+            const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.profile.userId}`
+              }
+            })
+            if (chatStatusData.chat) {
+              const formData = new FormData()
+              formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
+              formData.append('send_type', 'select')
+              formData.append('users', [this.profile.userId])
+              formData.append('announce_img', null)
               await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
               this.close()
-            } catch (e) {
-              this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
             }
+          } catch (e) {
+            this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
           }
           this.$overlay.hide()
         }, 500)
