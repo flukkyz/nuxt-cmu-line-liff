@@ -60,7 +60,7 @@ export default {
         this.$store.commit('setPendingLogin', false)
         // this.$bus.$emit('reset-side-menu')
       })
-    } else {
+    } else if (this.$route.query.state) {
       liff.init({ liffId: process.env.liffID }).then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then(async (profile) => {
@@ -69,8 +69,7 @@ export default {
             await this.$axios.$get(url)
             this.register = true
             setTimeout(() => {
-              // window.close()
-              // window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
+              window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
             }, 1000)
           })
         } else {
