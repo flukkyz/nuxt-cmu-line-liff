@@ -79,8 +79,10 @@ export default {
       this.logUser = user
       if (user.status === 'ok') {
         if (this.timeoutCheckUser) {
-          await this.popupWindow.close()
           clearTimeout(this.timeoutCheckUser)
+        }
+        if (this.popupWindow) {
+          await this.popupWindow.close()
         }
         this.profile = {
           ...profile,
