@@ -17,7 +17,7 @@
         </v-col>
       </v-row>
       <h1 class="display-1 text-center teal--text mt-5">
-        Waiting for Authentication state: {{ $route.query.state }}
+        Waiting for Authentication
       </h1>
     </div>
   </div>
@@ -32,7 +32,8 @@ export default {
   },
   data () {
     return {
-      register: false
+      register: false,
+      timeoutRedirect: null
     }
   },
   head () {
@@ -43,6 +44,9 @@ export default {
   created () {
     // this.$breadcrumbs.clear()
     this.$store.commit('setPendingLogin', true)
+  },
+  beforeDestroy () {
+    this.timeoutRedirect && clearTimeout(this.timeoutRedirect)
   },
   async beforeMount () {
     if (this.$route.query.state && this.$route.query.state === 'admin') {
@@ -60,7 +64,7 @@ export default {
         this.$store.commit('setPendingLogin', false)
         // this.$bus.$emit('reset-side-menu')
       })
-    } else if (this.$route.query.state) {
+    } else {
       liff.init({ liffId: process.env.liffID }).then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then(async (profile) => {
@@ -68,7 +72,7 @@ export default {
             const url = `${process.env.apiUrl}${process.env.apiDirectory}token/${this.$route.query.code}?lineid=${profile.userId}`
             await this.$axios.$get(url)
             this.register = true
-            setTimeout(() => {
+            this.timeoutRedirect = setTimeout(() => {
               window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
             }, 1000)
           })
