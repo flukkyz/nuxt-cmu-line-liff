@@ -4,6 +4,9 @@
       <h3 class="text-center teal--text fonr-weight-light my-5">
         แจ้งปัญหาการใช้งาน
       </h3>
+      <pre>
+        {{ profile }}
+      </pre>
       {{ log }}
       <v-row>
         <v-col>
@@ -94,7 +97,7 @@ export default {
             ...user.data
           }
           try {
-            this.log += JSON.stringify(this.profile)
+            this.log += '1'
             const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
               headers: {
                 'Content-Type': 'application/json',
