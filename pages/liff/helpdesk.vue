@@ -93,7 +93,7 @@ export default {
           }
           let log = ''
           try {
-            log = '1'
+            log = '1' + `${process.env.apiUrl}${process.env.apiDirectory}line/users/chat` + ' ' + this.profile.userId
             const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
               headers: {
                 'Content-Type': 'application/json',
