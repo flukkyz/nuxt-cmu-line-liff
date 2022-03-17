@@ -73,7 +73,7 @@ export default {
             await this.$axios.$get(url)
             this.register = true
             this.timeoutRedirect = setTimeout(() => {
-              window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
+              // window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
             }, 3000)
           })
         } else {
