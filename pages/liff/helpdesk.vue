@@ -94,30 +94,31 @@ export default {
             ...user.data
           }
           try {
+            this.log += JSON.stringify(this.profile)
             const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
               headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.profile.userId}`
               }
             })
-            this.log = '2'
+            this.log += '2'
             if (chatStatusData.chat) {
-              this.log = '3'
+              this.log += '3'
               const formData = new FormData()
               formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
               formData.append('send_type', 'select')
-              this.log = '4'
+              this.log += '4'
               formData.append('users', [this.profile.userId])
-              this.log = '5'
+              this.log += '5'
               formData.append('announce_img', null)
-              this.log = '6'
+              this.log += '6'
               await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-              this.log = '7'
+              this.log += '7'
               this.close()
-              this.log = '8'
+              this.log += '8'
             }
           } catch (e) {
-            this.log = ' error ' + e
+            this.log += ' error ' + e
             this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
           }
           this.$overlay.hide()
