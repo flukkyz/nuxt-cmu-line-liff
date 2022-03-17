@@ -4,10 +4,6 @@
       <h3 class="text-center teal--text fonr-weight-light my-5">
         แจ้งปัญหาการใช้งาน
       </h3>
-      <pre>
-        {{ profile }}
-      </pre>
-      {{ log }}
       <v-row>
         <v-col>
           <v-textarea
@@ -59,8 +55,7 @@ export default {
         admin_reply: false
       },
       timeoutCheckUser: null,
-      popupWindow: '',
-      log: ''
+      popupWindow: ''
     }
   },
   created () {
@@ -88,53 +83,41 @@ export default {
         if (this.timeoutCheckUser) {
           clearTimeout(this.timeoutCheckUser)
         }
+        this.profile = {
+          ...profile,
+          ...user.data
+        }
         if (this.popupWindow) {
           await this.popupWindow.close()
-        }
-        setTimeout(async () => {
-          this.profile = {
-            ...profile,
-            ...user.data
-          }
-          try {
-            this.log += '1'
-            const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${this.profile.userId}`
-              }
-            })
-            this.log += '2'
-            if (chatStatusData.chat) {
-              this.log += '3'
-              const formData = new FormData()
-              formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
-              formData.append('send_type', 'select')
-              this.log += '4'
-              formData.append('users', [this.profile.userId])
-              this.log += '5'
-              formData.append('announce_img', null)
-              this.log += '6'
-              await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
-              this.log += '7'
-              this.close()
-              this.log += '8'
+        } else {
+          const chatStatusData = await this.$axios.$get(`${process.env.apiUrl}${process.env.apiDirectory}line/users/chat`, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${this.profile.userId}`
             }
-          } catch (e) {
-            this.log += ' error ' + e
-            this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
+          })
+          if (chatStatusData.chat) {
+            const formData = new FormData()
+            formData.append('txt', 'คุณกำลังอยู่ในโหมดสนทนา สามารถสนทนาผ่านทางช่องแชทของ Line ได้โดยกดปุ่มไอคอนรูปแป้นพิมพ์ด้านล่างซ้ายเพื่อเปลี่ยนไปใช้แป้นพิมพ์ในการสนทนา')
+            formData.append('send_type', 'select')
+            formData.append('users', [this.profile.userId])
+            formData.append('announce_img', null)
+            try {
+              await this.$axios.$post(`${process.env.baseUrl}/api/announce`, formData)
+              this.close()
+            } catch (e) {
+              this.$notifier.showMessage({ title: 'Error', content: e, color: 'error' })
+            }
           }
-          this.$overlay.hide()
-        }, 500)
+        }
+        this.$overlay.hide()
       } else {
         this.timeoutCheckUser = setTimeout(() => {
           this.getLineProfile(false)
         }, 3000)
         if (redirect) {
-          setTimeout(async () => {
-            const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-            this.popupWindow = window.open(authen.data, '_self')
-          }, 500)
+          const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
+          this.popupWindow = window.open(authen.data, '_self')
         }
       }
     },
