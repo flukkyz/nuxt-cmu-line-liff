@@ -30,7 +30,7 @@
       Line
     </p>
     <pre>
-      {{ logUser }}
+      {{ logLine }}
     </pre>
     <p class="mb-0">
       User
