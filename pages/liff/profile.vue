@@ -96,7 +96,7 @@ export default {
         }, 3000)
         if (redirect) {
           const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-          this.popupWindow = window.open(authen.data, 'CMU Oauth')
+          this.popupWindow = window.open(authen.data, '_top')
           // window.location = authen.data
         }
       }
