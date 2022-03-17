@@ -74,7 +74,7 @@ export default {
             this.register = true
             this.timeoutRedirect = setTimeout(() => {
               window.location = `https://liff.line.me/${process.env.liffID}/${this.$route.query.state}`
-            }, 5000)
+            }, 3000)
           })
         } else {
           liff.login()
