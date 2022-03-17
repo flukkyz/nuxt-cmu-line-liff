@@ -17,7 +17,7 @@
         </v-col>
       </v-row>
       <h1 class="display-1 text-center teal--text mt-5">
-        Waiting for Authentication
+        Waiting for Authentication state: {{ query.state }}
       </h1>
     </div>
   </div>
