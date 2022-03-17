@@ -118,7 +118,7 @@ export default {
           setTimeout(async () => {
             const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
             this.popupWindow = window.open(authen.data, '_self')
-          }, 1000)
+          }, 500)
         }
       }
     },
