@@ -30,7 +30,8 @@ export default {
   layout: 'empty',
   data () {
     return {
-      profile: null
+      profile: null,
+      timeoutCheckUser: null
     }
   },
   created () {
@@ -46,21 +47,31 @@ export default {
       liff.login({ redirectUri: window.location.href })
     }
   },
+  beforeDestroy () {
+    this.timeoutCheckUser && clearTimeout(this.timeoutCheckUser)
+  },
   methods: {
-    async getLineProfile () {
+    async getLineProfile (redirect = true) {
       const profile = await liff.getProfile()
       const urlCheckIsUser = `${process.env.apiUrl}${process.env.apiDirectory}users/lineid/${profile.userId}`
       const user = await this.$axios.$get(urlCheckIsUser)
       if (user.status === 'ok') {
+        if (this.timeoutCheckUser) {
+          clearTimeout(this.timeoutCheckUser)
+        }
         this.profile = {
           ...profile,
           ...user.data
         }
         this.$overlay.hide()
       } else {
-        const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
-        // window.location = authen.data
-        window.open(authen.data, '_self')
+        this.timeoutCheckUser = setTimeout(() => {
+          this.getLineProfile(false)
+        }, 5000)
+        if (redirect) {
+          const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
+          window.location = authen.data
+        }
       }
     },
     close () {
