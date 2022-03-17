@@ -86,6 +86,7 @@ export default {
         if (this.popupWindow) {
           await this.popupWindow.close()
         }
+
         this.profile = {
           ...profile,
           ...user.data
