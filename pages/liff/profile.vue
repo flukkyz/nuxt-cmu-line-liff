@@ -23,6 +23,10 @@
       ปิด
     </v-btn>
   </div>
+  <div v-else class="">
+    <h1>checkTimeout</h1>
+    <h2>{{ checkTimeout }}</h2>
+  </div>
 </template>
 
 <script>
@@ -31,7 +35,8 @@ export default {
   data () {
     return {
       profile: null,
-      timeoutCheckUser: null
+      timeoutCheckUser: null,
+      checkTimeout: 0
     }
   },
   created () {
@@ -66,6 +71,7 @@ export default {
         this.$overlay.hide()
       } else {
         this.timeoutCheckUser = setTimeout(() => {
+          this.checkTimeout++
           this.getLineProfile(false)
         }, 5000)
         if (redirect) {
