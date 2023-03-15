@@ -19,9 +19,11 @@
       </v-icon>
       {{ `${profile.email}` }}
     </p>
-    <v-btn depressed class="mb-4" color="primary" @click="getLocation">
-      ส่งพิกัด
-    </v-btn>
+    <div class="mb-4">
+      <v-btn depressed color="primary" @click="getLocation">
+        ส่งพิกัด
+      </v-btn>
+    </div>
     <v-btn outlined @click="close">
       ปิด
     </v-btn>
