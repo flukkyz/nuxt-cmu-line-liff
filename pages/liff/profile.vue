@@ -19,6 +19,9 @@
       </v-icon>
       {{ `${profile.email}` }}
     </p>
+    <v-btn depressed class="mb-4" color="primary" @click="getLocation">
+      ส่งพิกัด
+    </v-btn>
     <v-btn outlined @click="close">
       ปิด
     </v-btn>
@@ -76,6 +79,17 @@ export default {
           const authen = await this.$axios.$get(`${process.env.apiUrl}${process.env.oAuthAuthorize}?page=${this.$route.path.replace('/liff/', '')}`)
           this.popupWindow = window.open(authen.data, '_self')
         }
+      }
+    },
+    getLocation () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          this.$notifier.showMessage({ title: 'OK', content: `${pos.coords.latitude},${pos.coords.longitude}`, color: 'success' })
+        }, (err) => {
+          this.$notifier.showMessage({ title: 'Error', content: err.message, color: 'error' })
+        })
+      } else {
+        this.$notifier.showMessage({ title: 'Error', content: 'Geolocation is not supported by this browser.', color: 'error' })
       }
     },
     close () {
