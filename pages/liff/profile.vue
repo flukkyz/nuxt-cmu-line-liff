@@ -85,8 +85,16 @@ export default {
     },
     getLocation () {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          this.$notifier.showMessage({ title: 'OK', content: `${pos.coords.latitude},${pos.coords.longitude}`, color: 'success' })
+        navigator.geolocation.getCurrentPosition(async (pos) => {
+          try {
+            await this.$axios.$post(`${process.env.baseUrl}/api/location`, {
+              cmuAccount: this.profile.email,
+              checkinData: `${pos.coords.latitude},${pos.coords.longitude}`
+            })
+            this.$notifier.showMessage({ title: 'ส่งพิกัดแล้ว', content: 'ส่งพิกัดเรียบร้อยแล้ว', color: 'success' })
+          } catch (err) {
+            this.$notifier.showMessage({ title: 'Error', content: err.message, color: 'error' })
+          }
         }, (err) => {
           this.$notifier.showMessage({ title: 'Error', content: err.message, color: 'error' })
         })
